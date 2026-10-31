@@ -8,6 +8,7 @@ import { VenuesSection } from '@/components/wedding/VenuesSection'
 import { GlimpsesSection } from '@/components/wedding/GlimpsesSection'
 import { InvitationActionsFooter } from '@/components/wedding/InvitationActionsFooter'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
+import { MandapamAestheticTheme } from '@/components/common/MandapamAestheticTheme'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { WeddingIntro } from '@/components/wedding-intro/WeddingIntro'
 import { FloatingAudioControls } from '@/components/wedding/FloatingAudioControls'
@@ -59,6 +60,9 @@ export function App() {
 
       {/* 3. Background Floating Jasmine & Gold Petals Animation */}
       <FloatingPetals />
+
+      {/* 3b. Traditional Mandapam Watercolor Theme (Banana Trees, Kuthuvilakku Lamps, Rose Urlis) */}
+      <MandapamAestheticTheme />
 
       {/* 4. Navigation Header */}
       <Navbar

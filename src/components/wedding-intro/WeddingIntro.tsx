@@ -73,12 +73,14 @@ export function WeddingIntro({ isOpen, onComplete }: WeddingIntroProps) {
       <div className="wedding-ambient-glow" />
 
       {/* Main Animated Character Video Experience */}
-      <WeddingVideoPlayer
-        onVideoEnd={handleVideoEnd}
-        onSkip={handleSkip}
-        isAudioPlaying={isAudioPlaying}
-        onToggleAudio={handleToggleAudio}
-      />
+      {phase === 'video' && (
+        <WeddingVideoPlayer
+          onVideoEnd={handleVideoEnd}
+          onSkip={handleSkip}
+          isAudioPlaying={isAudioPlaying}
+          onToggleAudio={handleToggleAudio}
+        />
+      )}
 
       {/* Phase 5: Automatic Wedding Card Unfolding & Reveal */}
       {phase === 'reveal' && (

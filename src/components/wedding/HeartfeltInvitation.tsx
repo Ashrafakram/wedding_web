@@ -58,6 +58,15 @@ export function HeartfeltInvitation() {
             <AnimatedKolamDivider />
           </div>
 
+          {/* Auspicious Brass Urli with Fresh Rose Petals from Mandapam Theme */}
+          <div className="flex justify-center -mb-8 sm:-mb-12 mt-4 relative z-10 pointer-events-none">
+            <img
+              src="/assets/mandapam_urli_transparent.png"
+              alt="Auspicious Brass Urli with Pink Rose Petals"
+              className="w-48 sm:w-64 h-auto object-contain mix-blend-multiply opacity-95 drop-shadow-sm"
+            />
+          </div>
+
         </div>
       </div>
     </section>

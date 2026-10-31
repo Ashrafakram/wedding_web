@@ -13,18 +13,32 @@ interface GlimpseItem {
 export function GlimpsesSection() {
   const glimpses: GlimpseItem[] = [
     {
+      id: 'reception_pink',
+      title: 'Tender Cheek Pinch in Dusty Pink Attire',
+      subtitle: 'Deepak & Swetha Reception Art with Lotus Blossoms',
+      src: '/assets/reception_couple_pinch_pink.jpg',
+      category: 'Reception Artwork',
+    },
+    {
+      id: 'reception_arch',
+      title: 'Royal Mandapam Gateway Reception Card',
+      subtitle: 'Walking up the Floral Steps in Blush Pink Lehenga & Sherwani',
+      src: '/assets/reception_royal_arch_card.jpg',
+      category: 'Invitation Card',
+    },
+    {
+      id: 'mandapam_decor',
+      title: 'Traditional Tamil Mandapam Decor',
+      subtitle: 'Tall Brass Kuthuvilakku, Banana Plants & Rose Petal Urli',
+      src: '/assets/mandapam_watercolor_trad.jpg',
+      category: 'Sacred Mandapam',
+    },
+    {
       id: 'avvs',
       title: 'AVVS Mahal Convention Center',
       subtitle: 'Ammapet, Salem — Grand Reception & Feast Venue',
       src: '/assets/avvs_mahal_exterior.jpg',
       category: 'Venue & Architecture',
-    },
-    {
-      id: 'stage',
-      title: 'Grand Reception Stage Decor',
-      subtitle: 'Floral Arches & Golden Chandelier Lighting',
-      src: '/assets/reception_stage_decor.jpg',
-      category: 'Celebration Stage',
     },
     {
       id: 'temple',
@@ -34,25 +48,11 @@ export function GlimpsesSection() {
       category: 'Divine Abode',
     },
     {
-      id: 'thali',
-      title: 'Sacred Thali (Mangalsutra)',
-      subtitle: 'Tied with Divine Blessings on Maroon Kanchipuram Silk',
-      src: '/assets/traditional_thali_mangalsutra.jpg',
-      category: 'Sacred Tradition',
-    },
-    {
-      id: 'lamp',
-      title: 'Auspicious Brass Kuthuvilakku',
-      subtitle: 'Symbol of Divine Light & Prosperity',
-      src: '/assets/kuthuvilakku_lamp.jpg',
-      category: 'Auspicious Symbols',
-    },
-    {
-      id: 'gopuram',
-      title: 'Dravidian Temple Gopuram',
-      subtitle: 'Soaring Heritage & Spiritual Blessings',
-      src: '/assets/temple_gopuram.jpg',
-      category: 'Temple Heritage',
+      id: 'save_date',
+      title: 'Save The Date Loving Moment',
+      subtitle: 'Swetha & Deepak Kumar — Two Hearts Bound Forever',
+      src: '/assets/save_the_date_cheek_touch.jpg',
+      category: 'Save The Date',
     },
   ]
 

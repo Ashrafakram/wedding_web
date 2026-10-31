@@ -45,11 +45,11 @@ export function SaveTheDateModal({
         {/* Digital Pass Card */}
         <div className="rounded-2xl border border-[#D8C7A9] bg-white p-5 shadow-sm text-center relative overflow-hidden my-2">
           {/* Couple Image Thumbnail */}
-          <div className="w-full h-40 rounded-xl overflow-hidden mb-3 border border-[#E8DEC8]">
+          <div className="w-full h-52 sm:h-56 rounded-xl overflow-hidden mb-3 border border-[#E8DEC8] bg-[#FAF5EB]">
             <img
-              src="/assets/couple_anime.jpg"
-              alt="Swetha & Deepak Kumar"
-              className="w-full h-full object-cover object-top"
+              src="/assets/save_the_date_cheek_touch.jpg"
+              alt="Swetha & Deepak Kumar Wedding Save The Date"
+              className="w-full h-full object-cover object-bottom"
             />
           </div>
 

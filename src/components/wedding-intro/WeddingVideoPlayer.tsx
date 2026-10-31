@@ -15,32 +15,46 @@ export function WeddingVideoPlayer({
   onToggleAudio,
 }: WeddingVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  const [hasStarted, setHasStarted] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-  // Start video playback immediately on mount
+  // Start video playback immediately on mount with zero delay
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    const tryPlay = () => {
-      video.play().then(() => {
-        setHasStarted(true)
-      }).catch(() => {
-        // Autoplay policy fallback: muted video always allowed
-        video.muted = true
-        video.play().then(() => setHasStarted(true)).catch(() => {})
-      })
-    }
+    video.defaultMuted = true
+    video.muted = true
 
-    // Try immediately
-    tryPlay()
+    const handlePlaying = () => {
+      setIsPlaying(true)
+    }
 
     const handleEnded = () => {
       onVideoEnd()
     }
 
+    video.addEventListener('playing', handlePlaying)
     video.addEventListener('ended', handleEnded)
+
+    // Trigger instant playback
+    const playPromise = video.play()
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        setIsPlaying(true)
+      }).catch(() => {
+        // Fallback if browser requires user gesture: retry on first interaction
+        const handleInteraction = () => {
+          video.play().catch(() => {})
+          window.removeEventListener('click', handleInteraction)
+          window.removeEventListener('touchstart', handleInteraction)
+        }
+        window.addEventListener('click', handleInteraction, { once: true })
+        window.addEventListener('touchstart', handleInteraction, { once: true })
+      })
+    }
+
     return () => {
+      video.removeEventListener('playing', handlePlaying)
       video.removeEventListener('ended', handleEnded)
     }
   }, [onVideoEnd])
@@ -60,7 +74,10 @@ export function WeddingVideoPlayer({
       {/* Pure Cinematic Character Animation (NO Video Player UI, NO Progress Bar, NO Time Codes) */}
       <video
         ref={videoRef}
-        className="w-full h-full object-cover sm:object-contain transition-opacity duration-700"
+        className={`w-full h-full object-cover sm:object-contain transition-opacity duration-500 ${
+          isPlaying ? 'opacity-100' : 'opacity-95'
+        }`}
+        poster="/videos/wedding-opening-poster.jpg"
         src="/videos/wedding-opening.mp4"
         autoPlay
         muted

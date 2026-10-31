@@ -16,7 +16,19 @@ interface NetworkShareModalProps {
 
 export function NetworkShareModal({ isOpen, onClose }: NetworkShareModalProps) {
   const [copied, setCopied] = useState(false)
-  const networkUrl = 'http://192.168.1.60:5174/'
+
+  // Compute shareable URL: if on localhost use actual active Wi-Fi LAN IP (192.168.1.7)
+  // If accessed via LAN IP or public server domain, use window.location.origin
+  const networkUrl = React.useMemo(() => {
+    if (typeof window === 'undefined') return 'http://192.168.1.7:5174/'
+    const hostname = window.location.hostname
+    const port = window.location.port ? `:${window.location.port}` : ''
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return `http://192.168.1.7${port}/`
+    }
+    return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+  }, [isOpen])
+
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(
     networkUrl
   )}&color=16-50-36&bgcolor=251-247-240`

@@ -40,12 +40,12 @@ export function CelebrationsSection() {
                 </span>
               </div>
 
-              {/* Arched Stage Photo */}
-              <div className="relative w-full h-52 sm:h-56 rounded-2xl overflow-hidden mb-4 shadow-md border-2 border-[#C59B27]/40 bg-[#FAF0EE]">
+              {/* Arched Reception Card Artwork */}
+              <div className="relative w-full h-60 sm:h-68 rounded-2xl overflow-hidden mb-4 shadow-md border-2 border-[#C59B27]/40 bg-[#FAF0EE]">
                 <img
-                  src="/assets/reception_stage_decor.jpg"
-                  alt="Grand Wedding Reception Stage at AVVS Mahal"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-106"
+                  src="/assets/reception_stairs_couple.jpg"
+                  alt="Grand Wedding Reception - Couple in Royal Blush Pink Lehenga & Sherwani at Mandapam"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-106"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#3E0C13]/30 via-transparent to-transparent pointer-events-none" />
               </div>
@@ -104,12 +104,12 @@ export function CelebrationsSection() {
                 </span>
               </div>
 
-              {/* Arched Temple Gateway Photo */}
-              <div className="relative w-full h-52 sm:h-56 rounded-2xl overflow-hidden mb-4 shadow-md border-2 border-[#C59B27]/40 bg-[#FAF5EB]">
+              {/* Sacred Wedding Ceremony Photo - Couple Walking to Temple Mandapam */}
+              <div className="relative w-full h-60 sm:h-68 rounded-2xl overflow-hidden mb-4 shadow-md border-2 border-[#C59B27]/40 bg-[#FAF5EB]">
                 <img
-                  src="/assets/senraya_entrance.jpg"
-                  alt="Senraya Perumal Temple Sacred Gateway"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-106"
+                  src="/assets/temple_couple_walk.jpg"
+                  alt="Traditional Sacred Tamil Muhurtham - Couple in Pattu Veshti & Kanchipuram Silk Saree Walking towards Temple Gopuram"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-106"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#5C131E]/30 via-transparent to-transparent pointer-events-none" />
               </div>

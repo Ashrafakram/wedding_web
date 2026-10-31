@@ -25,6 +25,16 @@ export function HeroSection() {
       id="home"
       className="relative pt-16 sm:pt-20 pb-12 sm:pb-20 flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#FAF5EB] via-[#FBF7F0] to-[#FAF5EB]"
     >
+      {/* 0. Traditional Mandapam Watercolor Backdrop Canvas */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-25 sm:opacity-30 mix-blend-multiply overflow-hidden">
+        <img
+          src="/assets/mandapam_watercolor_trad.jpg"
+          alt="Traditional Mandapam Watercolor Art Backdrop"
+          className="w-full h-full object-cover object-center filter contrast-110 saturate-115"
+        />
+        <div className="absolute inset-0 bg-radial-[ellipse_at_center] from-transparent via-[#FAF5EB]/50 to-[#FAF5EB]" />
+      </div>
+
       {/* 1. Traditional Swaying Brass Temple Bells at Top */}
       <div className="absolute top-0 inset-x-0 z-20">
         <SwayingTempleBells />
@@ -56,16 +66,16 @@ export function HeroSection() {
               {/* Soft Pulsing Golden Aura */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-[#C59B27]/25 via-[#5C131E]/15 to-[#F3D279]/30 rounded-full blur-2xl opacity-75 animate-pulse" />
               
-              {/* Couple Anime Illustration */}
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl border-2 border-[#C59B27]/60 group-hover:border-[#C59B27] transition-all duration-500 group-hover:scale-102">
+              {/* Couple Illustration - Tender Cheek Pinch in Dusty Pink Attire */}
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl border-2 border-[#C59B27]/60 group-hover:border-[#C59B27] transition-all duration-500 group-hover:scale-102 bg-[#FAF0EE]">
                 <img
-                  src="/assets/couple_anime.jpg"
-                  alt="Swetha and Deepak Kumar Traditional South Indian Wedding Couple"
+                  src="/assets/couple_pinch_pink_hero.jpg"
+                  alt="Swetha and Deepak Kumar - Loving Cheek Pinch Pose in Matching Dusty Pink Wedding Attire"
                   className="w-full h-auto object-cover rounded-3xl"
                 />
 
                 {/* Subtle Silk Sheen Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3E0C13]/40 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3E0C13]/30 via-transparent to-transparent pointer-events-none" />
 
                 {/* Tap to bless floating pill badge */}
                 <div className="absolute bottom-3 inset-x-3 flex justify-center">

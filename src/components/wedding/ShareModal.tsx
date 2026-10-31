@@ -17,8 +17,16 @@ interface ShareModalProps {
 
 export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalProps) {
   const [copied, setCopied] = useState(false)
-  const networkUrl = 'http://192.168.1.60:5174/'
-  const shareUrl = window.location.href.includes('localhost') ? networkUrl : window.location.href
+
+  const shareUrl = React.useMemo(() => {
+    if (typeof window === 'undefined') return 'http://192.168.1.7:5174/'
+    const hostname = window.location.hostname
+    const port = window.location.port ? `:${window.location.port}` : ''
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return `http://192.168.1.7${port}/`
+    }
+    return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+  }, [isOpen])
 
   const shareText = `💍 Swetha & Deepak Kumar Wedding Invitation\n\nWe cordially invite you to join our wedding celebration on 19 & 20 November 2026.\n\n✨ Reception: 19 Nov, 6:00 PM @ AVVS Mahal, Ammapet, Salem\n✨ Muhurtham: 20 Nov, 4:00 AM @ Senraya Perumal Temple, Odayapatti, Salem\n\nView details & live invitation: ${shareUrl}`
 

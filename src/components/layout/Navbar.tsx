@@ -25,6 +25,7 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
     { label: 'Home', href: '#home' },
     { label: 'Wedding', href: '#wedding' },
     { label: 'Venues', href: '#venues' },
+    { label: 'Gallery', href: '#gallery' },
     { label: 'Wishes', href: '#wishes', onClick: onWishesClick },
     { label: 'Contact', href: '#contact' },
   ]

@@ -114,7 +114,7 @@ export function CountdownSection() {
             {/* Heart Blessing Line */}
             <div className="mt-8 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#F3D279]/90 font-cinzel tracking-wider">
               <Heart className="size-3 text-[#F3D279] fill-[#F3D279] animate-pulse" />
-              <span>19 & 20 November 2026 &bull; Dharmapuri</span>
+              <span>19 & 20 November 2026 &bull; Salem (Ammapettai)</span>
               <Heart className="size-3 text-[#F3D279] fill-[#F3D279] animate-pulse" />
             </div>
           </div>

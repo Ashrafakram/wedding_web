@@ -5,6 +5,7 @@ import { HeartfeltInvitation } from '@/components/wedding/HeartfeltInvitation'
 import { CountdownSection } from '@/components/wedding/CountdownSection'
 import { CelebrationsSection } from '@/components/wedding/CelebrationsSection'
 import { VenuesSection } from '@/components/wedding/VenuesSection'
+import { GlimpsesSection } from '@/components/wedding/GlimpsesSection'
 import { InvitationActionsFooter } from '@/components/wedding/InvitationActionsFooter'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
@@ -89,6 +90,11 @@ export function App() {
         {/* Our Venues (AVVS Mahal & Senraya Temple) */}
         <ScrollReveal direction="up" delayMs={100}>
           <VenuesSection />
+        </ScrollReveal>
+
+        {/* Glimpses of Our Celebration (Photo Gallery matching references) */}
+        <ScrollReveal direction="up" delayMs={100}>
+          <GlimpsesSection />
         </ScrollReveal>
 
         {/* Footer & Interactive Actions */}

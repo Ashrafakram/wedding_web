@@ -138,9 +138,9 @@ export function HeroSection() {
               </div>
               
               <div className="flex items-center gap-2 text-[10px] sm:text-xs text-[#6B5E4F] tracking-wider mt-1 font-cinzel">
-                <span>AVVS Mahal</span>
+                <span>AVVS Mahal, Ammapettai</span>
                 <span className="text-[#C59B27]">&bull;</span>
-                <span>Senraya Perumal Temple, Dharmapuri</span>
+                <span>Senraya Perumal Temple, Salem</span>
               </div>
             </div>
 

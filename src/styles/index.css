@@ -2,6 +2,7 @@
 @import 'tw-animate-css';
 @import './envelope.css';
 @import './heart-unbox.css';
+@import './blessing.css';
 
 @theme inline {
   --color-wedding-cream: #FBF7F0;

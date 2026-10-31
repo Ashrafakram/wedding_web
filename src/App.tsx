@@ -8,7 +8,7 @@ import { VenuesSection } from '@/components/wedding/VenuesSection'
 import { InvitationActionsFooter } from '@/components/wedding/InvitationActionsFooter'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
-import { RoyalEnvelopeUnbox } from '@/components/wedding/RoyalEnvelopeUnbox'
+import { CinematicBlessingSplash } from '@/components/wedding/CinematicBlessingSplash'
 import { FloatingAudioControls } from '@/components/wedding/FloatingAudioControls'
 import { WaxSealIntro } from '@/components/wedding/WaxSealIntro'
 import { SendWishesModal } from '@/components/wedding/SendWishesModal'
@@ -18,11 +18,11 @@ import { NetworkShareModal } from '@/components/wedding/NetworkShareModal'
 import { downloadWeddingCalendarEvent } from '@/lib/calendar'
 
 export function App() {
-  // Royal 3D Envelope Unboxing Overlay defaults to OPEN on load, exactly like reference site
-  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(() => {
+  // Cinematic Animated Splash: They come -> Get blessings -> Invitation zooms out BOOM opens to website!
+  const [isSplashOpen, setIsSplashOpen] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
-      return params.get('skip_envelope') !== '1' && !window.location.hash
+      return params.get('skip_splash') !== '1' && params.get('skip_envelope') !== '1' && !window.location.hash
     }
     return true
   })
@@ -37,22 +37,22 @@ export function App() {
     downloadWeddingCalendarEvent()
   }
 
-  const handleReopenEnvelope = () => {
-    setIsEnvelopeOpen(true)
+  const handleReplaySplash = () => {
+    setIsSplashOpen(true)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <div className="min-h-screen bg-[#FBF7F0] text-[#1A2621] relative selection:bg-[#C59B27]/20 selection:text-[#163224]">
-      {/* 1. Royal 3D Envelope & Wax Seal Opening Ceremony (Full-screen on page load) */}
-      <RoyalEnvelopeUnbox
-        isOpen={isEnvelopeOpen}
-        onClose={() => setIsEnvelopeOpen(false)}
+      {/* 1. Fullscreen Cinematic Animated Splash ("Come with silver plate -> Get blessing -> Invitation zooms out BOOM opens site") */}
+      <CinematicBlessingSplash
+        isOpen={isSplashOpen}
+        onComplete={() => setIsSplashOpen(false)}
       />
 
-      {/* 2. Floating Wedding Music Equalizer & Re-open Envelope Controls (Bottom Left) */}
+      {/* 2. Floating Wedding Music Equalizer & Replay Ceremony Controls (Bottom Left) */}
       <FloatingAudioControls
-        onReopenEnvelope={handleReopenEnvelope}
+        onReopenEnvelope={handleReplaySplash}
       />
 
       {/* 3. Background Floating Jasmine & Gold Petals Animation */}
@@ -102,10 +102,10 @@ export function App() {
 
       {/* Floating Interactive Wax Seal Monogram Button (Bottom Right) */}
       <button
-        onClick={handleReopenEnvelope}
+        onClick={handleReplaySplash}
         className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 group flex items-center gap-2 bg-[#FAF5EB] pl-1.5 pr-3.5 sm:pr-4 py-1.5 rounded-full shadow-lg border border-[#D8C7A9] hover:border-[#C59B27] active:scale-90 transition-all duration-300 animate-pulse-ring cursor-pointer"
-        title="Open Royal Envelope Ceremony"
-        aria-label="Open Royal Envelope Ceremony"
+        title="Replay Blessing & Invitation Ceremony"
+        aria-label="Replay Blessing & Invitation Ceremony"
       >
         <div className="size-7 sm:size-8 rounded-full overflow-hidden shadow-xs border border-[#C59B27]/60">
           <img
@@ -115,7 +115,7 @@ export function App() {
           />
         </div>
         <span className="text-[10px] sm:text-[11px] font-cinzel uppercase tracking-[0.16em] text-[#163224] font-semibold">
-          Open Seal
+          Ceremony
         </span>
       </button>
 

@@ -13,6 +13,7 @@ class RoyalWeddingAudio {
   private filter: BiquadFilterNode | null = null
   private droneOscillators: OscillatorNode[] = []
   private melodyTimer: any = null
+  private scheduledNoteTimers: any[] = []
   private listeners: Array<(playing: boolean) => void> = []
 
   constructor() {}
@@ -64,8 +65,16 @@ class RoyalWeddingAudio {
     try {
       this.initAudioContext()
       this.isPlaying = true
-      this.notify()
 
+      if (this.audioCtx && this.audioCtx.state === 'suspended') {
+        this.audioCtx.resume()
+      }
+
+      if (this.masterGain && this.audioCtx) {
+        this.masterGain.gain.setValueAtTime(0.35, this.audioCtx.currentTime)
+      }
+
+      this.notify()
       this.startTanpuraDrone()
       this.startBansuriMelody()
     } catch (e) {
@@ -77,6 +86,23 @@ class RoyalWeddingAudio {
     this.isPlaying = false
     this.notify()
 
+    // 1. Immediately mute master volume to 0
+    if (this.masterGain && this.audioCtx) {
+      try {
+        this.masterGain.gain.setValueAtTime(0, this.audioCtx.currentTime)
+      } catch (_) {}
+    }
+
+    // 2. Clear all scheduled melody timeouts
+    this.scheduledNoteTimers.forEach((timer) => clearTimeout(timer))
+    this.scheduledNoteTimers = []
+
+    if (this.melodyTimer) {
+      clearTimeout(this.melodyTimer)
+      this.melodyTimer = null
+    }
+
+    // 3. Stop all drone oscillators
     this.droneOscillators.forEach((osc) => {
       try {
         osc.stop()
@@ -84,9 +110,11 @@ class RoyalWeddingAudio {
     })
     this.droneOscillators = []
 
-    if (this.melodyTimer) {
-      clearTimeout(this.melodyTimer)
-      this.melodyTimer = null
+    // 4. Suspend audio context to guarantee 100% immediate silence on hardware
+    if (this.audioCtx && this.audioCtx.state === 'running') {
+      try {
+        this.audioCtx.suspend()
+      } catch (_) {}
     }
   }
 
@@ -101,6 +129,14 @@ class RoyalWeddingAudio {
   // Tanpura Drone (Sa - Pa - Sa fundamental resonance)
   private startTanpuraDrone() {
     if (!this.audioCtx || !this.masterGain || !this.delay) return
+
+    // Stop existing drone if any
+    this.droneOscillators.forEach((osc) => {
+      try {
+        osc.stop()
+      } catch (_) {}
+    })
+    this.droneOscillators = []
 
     const baseFreq = 138.59 // C#
     const pitches = [
@@ -172,11 +208,12 @@ class RoyalWeddingAudio {
       phrase.forEach((noteIdx, i) => {
         const noteDuration = i === phrase.length - 1 ? 1.8 : 0.65
 
-        setTimeout(() => {
+        const noteTimer = setTimeout(() => {
           if (!this.isPlaying) return
           this.playBansuriNote(scale[noteIdx], noteDuration)
         }, noteDelay * 1000)
 
+        this.scheduledNoteTimers.push(noteTimer)
         noteDelay += noteDuration + 0.12
       })
 
@@ -188,7 +225,7 @@ class RoyalWeddingAudio {
   }
 
   private playBansuriNote(freq: number, duration: number) {
-    if (!this.audioCtx || this.audioCtx.state === 'suspended' || !this.masterGain || !this.delay)
+    if (!this.isPlaying || !this.audioCtx || this.audioCtx.state === 'suspended' || !this.masterGain || !this.delay)
       return
 
     const osc = this.audioCtx.createOscillator()

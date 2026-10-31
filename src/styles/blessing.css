@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Cinematic Animated Wedding Splash Ceremony
+   "They come with silver plate, get blessings, invitation flies out BOOM opens to site"
+   ========================================================================== */
+
+#cinematic-blessing-stage {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background: radial-gradient(circle at center, #163826 0%, #06140c 100%);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Walking Step Bobbing Motion for Couple Approaching */
+@keyframes coupleWalkStep {
+  0% {
+    transform: translateX(18%) translateY(0) scale(1);
+  }
+  25% {
+    transform: translateX(13%) translateY(-8px) scale(1.01);
+  }
+  50% {
+    transform: translateX(8%) translateY(0) scale(1.02);
+  }
+  75% {
+    transform: translateX(4%) translateY(-6px) scale(1.03);
+  }
+  100% {
+    transform: translateX(0) translateY(0) scale(1.04);
+  }
+}
+
+.animate-walk-approach {
+  animation: coupleWalkStep 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Divine Rays Pulsing around Elders */
+@keyframes divineGlowPulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+}
+
+.animate-divine-glow {
+  animation: divineGlowPulse 2.8s ease-in-out infinite;
+}
+
+/* Akshata Rice Particle Rain */
+@keyframes akshataCascade {
+  0% {
+    top: -15px;
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    top: 105%;
+    opacity: 0;
+    transform: translate(var(--sway-x, 25px), 0) rotate(420deg);
+  }
+}
+
+.akshata-particle {
+  position: absolute;
+  width: 5px;
+  height: 9px;
+  border-radius: 40% 40% 50% 50%;
+  background: linear-gradient(to bottom, #FFF38A, #FFC107);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.9);
+  animation: akshataCascade var(--duration, 2.5s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* ==========================================================================
+   THE "BOOM" INVITATION ZOOM & OPENING
+   ========================================================================== */
+@keyframes invitationBoomLaunch {
+  0% {
+    transform: translate(-50%, -50%) scale(0.15) rotate(-12deg);
+    opacity: 0;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.6) rotate(-3deg);
+    filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.8));
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(0deg);
+    filter: drop-shadow(0 0 60px rgba(255, 215, 0, 1));
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.15) rotate(0deg);
+    filter: drop-shadow(0 0 90px rgba(255, 240, 150, 1));
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3.2);
+    opacity: 0;
+    filter: blur(12px) drop-shadow(0 0 120px rgba(255, 255, 255, 1));
+  }
+}
+
+.animate-invitation-boom {
+  animation: invitationBoomLaunch 2.2s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+}
+
+/* Golden Shockwave Flash Ring */
+@keyframes radialShockwave {
+  0% {
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+    border-width: 8px;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  60% {
+    opacity: 0.9;
+    border-width: 4px;
+  }
+  100% {
+    width: min(1200px, 140vw);
+    height: min(1200px, 140vw);
+    opacity: 0;
+    border-width: 1px;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+.boom-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #FFE680;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+  pointer-events: none;
+  animation: radialShockwave 1.6s ease-out forwards;
+  z-index: 45;
+}
+
+/* White & Golden Flash Screen */
+@keyframes fullScreenFlash {
+  0% { opacity: 0; }
+  35% { opacity: 0.92; background: #FFF9E6; }
+  100% { opacity: 0; }
+}
+
+.boom-screen-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  animation: fullScreenFlash 1.4s ease-out forwards;
+  z-index: 50;
+}

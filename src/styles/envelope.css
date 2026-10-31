@@ -1,0 +1,402 @@
+/* ==========================================================================
+   3D Royal Envelope & Wax Seal Opening Experience
+   Gap-free geometric clip-paths, 3D card elevation, gold wax seal
+   ========================================================================== */
+
+#envelope-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #163224 0%, #06120b 100%);
+  overflow: hidden;
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.1s ease;
+}
+
+#envelope-modal-wrapper.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Background Ambient Radiance */
+.envelope-ambient-glow {
+  position: absolute;
+  width: min(650px, 95vw);
+  height: min(650px, 95vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.24) 0%, rgba(212, 175, 55, 0) 70%);
+  animation: pulseEnvelopeGlow 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes pulseEnvelopeGlow {
+  0% { transform: scale(0.9); opacity: 0.45; }
+  100% { transform: scale(1.18); opacity: 0.85; }
+}
+
+/* 3D Scene */
+.envelope-scene {
+  perspective: 1600px;
+  width: 90%;
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Top Instruction Banner */
+.envelope-instruction {
+  text-align: center;
+  color: #f3e5ab;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 22px;
+  font-size: clamp(0.78rem, 3.2vw, 0.98rem);
+  letter-spacing: clamp(1px, 0.4vw, 2.5px);
+  text-transform: uppercase;
+  animation: floatInstruction 3s ease-in-out infinite;
+  max-width: 100%;
+  padding: 0 8px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.envelope-instruction span {
+  display: block;
+  font-size: clamp(0.68rem, 2.4vw, 0.8rem);
+  color: #c9aa71;
+  letter-spacing: clamp(0.5px, 0.3vw, 1.2px);
+  margin-top: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-transform: none;
+}
+
+@keyframes floatInstruction {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ==========================================================================
+   MAIN 3D ENVELOPE CONTAINER
+   ========================================================================== */
+.envelope-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.45 / 1;
+  max-width: 430px;
+  max-height: 52vh;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.8));
+  margin: 0 auto;
+}
+
+.envelope-container:hover {
+  transform: translateY(-4px) scale(1.015);
+}
+
+/* Envelope Back */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #0e3d29, #09261a);
+  border-radius: 14px;
+  border: 2px solid #d4af37;
+  box-shadow: inset 0 0 45px rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+/* Inner gold lining border */
+.envelope-lining {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px dashed rgba(212, 175, 55, 0.45);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   INVITATION CARD (INSIDE ENVELOPE)
+   ========================================================================== */
+.envelope-card {
+  position: absolute;
+  top: 8px;
+  left: 3%;
+  width: 94%;
+  height: calc(100% - 16px);
+  background: linear-gradient(145deg, #0b3422 0%, #04180f 100%);
+  border: 1.5px solid #d4af37;
+  border-radius: 10px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 0 18px rgba(212, 175, 55, 0.15);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  transform: translateY(0);
+  overflow: hidden;
+  text-align: center;
+  pointer-events: none;
+}
+
+.envelope-card-om {
+  font-size: clamp(1.1rem, 3.8vw, 1.45rem);
+  color: #d4af37;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.envelope-card-header {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.25rem, 4.2vw, 1.8rem);
+  color: #fcf6ba;
+  margin-bottom: 2px;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.envelope-card-names {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.85rem, 3vw, 1.15rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.envelope-card-names .weds {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  color: #d4af37;
+  font-weight: normal;
+  margin: 0 4px;
+}
+
+.envelope-card-date {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.62rem, 2vw, 0.74rem);
+  letter-spacing: 0.5px;
+  color: #f3e5ab;
+  margin-top: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.envelope-card p {
+  font-size: clamp(0.6rem, 1.8vw, 0.72rem);
+  color: #dfdbd1;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-style: italic;
+  line-height: 1.35;
+  max-width: 92%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.envelope-card-venue {
+  font-size: clamp(0.58rem, 1.8vw, 0.7rem);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 9999px;
+  color: #fcf6ba;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   CLIP-PATH GEOMETRY FLAPS (100% GAP-FREE & CROSS-DEVICE)
+   ========================================================================== */
+
+/* Left Flap */
+.envelope-pocket-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: linear-gradient(135deg, #072317 0%, #0d3b27 100%);
+  clip-path: polygon(0 0, 53% 50%, 0 100%);
+  filter: drop-shadow(2px 0 6px rgba(0, 0, 0, 0.35));
+  border-radius: 14px 0 0 14px;
+  pointer-events: none;
+}
+
+/* Right Flap */
+.envelope-pocket-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: linear-gradient(-135deg, #072317 0%, #0d3b27 100%);
+  clip-path: polygon(100% 0, 47% 50%, 100% 100%);
+  filter: drop-shadow(-2px 0 6px rgba(0, 0, 0, 0.35));
+  border-radius: 0 14px 14px 0;
+  pointer-events: none;
+}
+
+/* Bottom Flap */
+.envelope-pocket-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background: linear-gradient(to top, #09281a 0%, #0e402b 100%);
+  clip-path: polygon(0 100%, 100% 100%, 50% 42%);
+  filter: drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.45));
+  border-radius: 0 0 14px 14px;
+  pointer-events: none;
+}
+
+/* Top Foldable Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 1.15s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.envelope-flap-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, #0e3d29 0%, #0a291c 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+  border-radius: 14px 14px 0 0;
+}
+
+/* Gold Lining on Top Flap */
+.envelope-flap-inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 98% 0, 50% 55.5%, 2% 0);
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.4), rgba(255, 215, 0, 0.9), rgba(212, 175, 55, 0.4));
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   WAX SEAL TRIGGER BADGE
+   ========================================================================== */
+.wax-seal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: clamp(62px, 17vw, 84px);
+  height: clamp(62px, 17vw, 84px);
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+}
+
+.wax-seal-wrapper:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.wax-seal-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.6);
+  border: 2px solid #ffd700;
+  animation: sealShine 3s infinite alternate;
+}
+
+@keyframes sealShine {
+  0% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.4); }
+  100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 215, 0, 0.95); }
+}
+
+.seal-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 215, 0, 0.65);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: sealWave 2.4s infinite;
+  pointer-events: none;
+}
+
+@keyframes sealWave {
+  0% { width: 90%; height: 90%; opacity: 0.95; }
+  100% { width: 180%; height: 180%; opacity: 0; }
+}
+
+/* ==========================================================================
+   ACTIVE OPENING STATE ANIMATIONS
+   ========================================================================== */
+.envelope-container.opening .wax-seal-wrapper {
+  transform: translate(-50%, -50%) scale(1.35);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-container.opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+  transition-delay: 0.2s;
+}
+
+.envelope-container.opening .envelope-card {
+  transform: translateY(calc(-45% - 8px)) scale(1.03);
+  z-index: 15;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
+  transition-delay: 0.75s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .envelope-scene {
+    width: 92%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 360px) {
+  .envelope-scene {
+    width: 95%;
+    max-width: 320px;
+  }
+}

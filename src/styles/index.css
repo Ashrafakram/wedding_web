@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './envelope.css';
+@import './heart-unbox.css';
+
+@theme inline {
+  --color-wedding-cream: #FBF7F0;
+  --color-wedding-ivory: #FFFDF9;
+  --color-wedding-parchment: #F5EFE3;
+  --color-wedding-gold: #C59B27;
+  --color-wedding-gold-dark: #9A7516;
+  --color-wedding-gold-light: #E7C979;
+  --color-wedding-green: #163224;
+  --color-wedding-green-deep: #0E2218;
+  --color-wedding-green-card: #142E21;
+  --color-wedding-green-light: #234E39;
+  --color-wedding-border: #E8DEC8;
+  --color-wedding-text: #2D261E;
+  --color-wedding-muted: #6B6255;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-cinzel: 'Cinzel', serif;
+  --font-tamil: 'Noto Serif Tamil', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(197, 155, 39, 0.35) transparent;
+  }
+
+  body {
+    background-color: var(--color-wedding-cream);
+    color: var(--color-wedding-text);
+    overflow-x: hidden;
+  }
+}
+
+/* Elegant, Ultra-Thin Page Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 155, 39, 0.35);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 155, 39, 0.7);
+}
+
+/* Hide Scrollbar Utility for Modals & Dialogs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Smooth Luxury Modal Animations */
+@keyframes modal-scale-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes modal-scale-out {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -47%) scale(0.95);
+  }
+}
+
+@keyframes backdrop-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-modal-in {
+  animation: modal-scale-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-modal-out {
+  animation: modal-scale-out 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-backdrop-in {
+  animation: backdrop-fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-backdrop-out {
+  animation: backdrop-fade-out 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating & Gentle Breathing Keyframes */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(197, 155, 39, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 12px rgba(197, 155, 39, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(197, 155, 39, 0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* Petal Flutter Physics */
+@keyframes petal-sway {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate3d(40px, 50vh, 0) rotate(180deg) scale(0.9);
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(-30px, 110vh, 0) rotate(360deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Card hover glow */
+.hover-card-glow {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-card-glow:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -12px rgba(197, 155, 39, 0.2), 0 4px 12px rgba(0, 0, 0, 0.04);
+  border-color: #C59B27;
+}

@@ -98,7 +98,7 @@ export function HeroSection() {
             {/* Names in Royal Wine & Shimmering Gold */}
             <div className="my-2 sm:my-3">
               <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-[#5C131E] tracking-tight leading-none mb-1">
-                Dr. Swetha
+                Er. Swetha
               </h1>
               
               {/* Ampersand Flourish with Gold Glow */}

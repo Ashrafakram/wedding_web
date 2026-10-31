@@ -107,7 +107,7 @@ export function WeddingInvitationReveal({
             {/* Couple Names */}
             <div className="my-1.5">
               <h3 className="text-xs sm:text-sm font-bold text-white font-cinzel leading-tight">
-                Dr. Swetha
+                Er. Swetha
                 <span className="text-[#F3D279] font-serif italic mx-1 font-normal text-xs">weds</span>
                 Er. Deepak Kumar
               </h3>

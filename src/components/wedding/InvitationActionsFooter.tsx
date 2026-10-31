@@ -94,7 +94,7 @@ export function InvitationActionsFooter({
 
           {/* Copyright / Monogram */}
           <p className="text-[10px] sm:text-xs text-zinc-400 font-cinzel tracking-widest uppercase">
-            Dr. Swetha &amp; Er. Deepak Kumar &bull; Wedding Celebration 2026
+            Er. Swetha &amp; Er. Deepak Kumar &bull; Wedding Celebration 2026
           </p>
 
         </div>

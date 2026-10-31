@@ -5,18 +5,21 @@ export function HeartfeltInvitation() {
   return (
     <section id="invitation" className="relative py-16 sm:py-20 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="relative rounded-3xl border border-[#E8DEC8] bg-[#FFFDF9] p-8 sm:p-12 shadow-sm overflow-hidden">
+        <div className="relative rounded-3xl border-2 border-[#D8C7A9] bg-gradient-to-b from-[#FFFDF9] to-[#FAF6EE] p-8 sm:p-12 shadow-md overflow-hidden">
           
           {/* Subtle Corner Florals */}
-          <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-20">
+          <div className="absolute top-0 right-0 w-28 h-28 pointer-events-none opacity-25">
             <svg viewBox="0 0 100 100" fill="none" className="w-full h-full text-[#C59B27]">
-              <path d="M100 0 Q 70 30, 0 100" stroke="currentColor" strokeWidth="1" />
+              <path d="M100 0 Q 70 30, 0 100" stroke="currentColor" strokeWidth="1.2" />
+              <circle cx="85" cy="15" r="4" fill="#C59B27" />
+              <circle cx="70" cy="30" r="3" fill="#E8C86A" />
             </svg>
           </div>
           
           <div className="text-center mb-8">
-            <h2 className="font-script text-4xl sm:text-5xl text-[#C59B27] font-normal leading-tight">
-              A Heartfelt Invitation
+            <div className="text-base sm:text-lg text-[#C59B27] font-serif mb-1">ௐ</div>
+            <h2 className="font-script text-4xl sm:text-6xl font-normal leading-tight">
+              <span className="gold-foil-text-rich">A Heartfelt Invitation</span>
             </h2>
             <GoldFloralDivider className="my-3" />
           </div>

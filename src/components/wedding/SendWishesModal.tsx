@@ -108,23 +108,23 @@ export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
           <div className="mx-auto size-11 rounded-full bg-[#FAF3DE] text-[#C59B27] flex items-center justify-center mb-1">
             <Heart className="w-5 h-5 fill-[#C59B27] animate-pulse" />
           </div>
-          <DialogTitle className="font-serif text-2xl sm:text-3xl text-[#163224]">
+          <DialogTitle className="font-serif text-2xl sm:text-3xl text-[#7E2E40]">
             Wedding Blessings &amp; Wishes
           </DialogTitle>
-          <DialogDescription className="text-xs text-[#7A6D5E]">
+          <DialogDescription className="text-xs text-[#8C3A4F]">
             Share your heartfelt love and blessings for Swetha &amp; Deepak Kumar
           </DialogDescription>
         </DialogHeader>
 
         {/* Tab Switcher */}
-        <div className="flex rounded-full bg-[#F3ECDD] p-1 my-1 border border-[#E5DAC3]">
+        <div className="flex rounded-full bg-[#FFF0F3] p-1 my-1 border border-[#E8C5CB]">
           <button
             type="button"
             onClick={() => setActiveTab('form')}
             className={`flex-1 py-1.5 text-xs font-cinzel uppercase tracking-wider font-semibold rounded-full transition-all duration-300 ${
               activeTab === 'form'
-                ? 'bg-[#163224] text-white shadow-xs'
-                : 'text-[#6B5E4F] hover:text-[#163224]'
+                ? 'bg-[#7E2E40] text-white shadow-xs'
+                : 'text-[#8C3A4F] hover:text-[#7E2E40]'
             }`}
           >
             Send Wishes
@@ -134,11 +134,11 @@ export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
             onClick={() => setActiveTab('wall')}
             className={`flex-1 py-1.5 text-xs font-cinzel uppercase tracking-wider font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 ${
               activeTab === 'wall'
-                ? 'bg-[#163224] text-white shadow-xs'
-                : 'text-[#6B5E4F] hover:text-[#163224]'
+                ? 'bg-[#7E2E40] text-white shadow-xs'
+                : 'text-[#8C3A4F] hover:text-[#7E2E40]'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#E7C979]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#F3D279]" />
             <span>Blessings Wall ({wishes.length})</span>
           </button>
         </div>
@@ -216,16 +216,16 @@ export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
                     placeholder="Write your wishes and blessings for the couple..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full rounded-xl border border-[#DCD0BA] bg-white p-2.5 text-xs text-[#163224] placeholder:text-[#A09585] focus:outline-hidden focus:border-[#C59B27] focus:ring-1 focus:ring-[#C59B27]"
+                    className="w-full rounded-xl border border-[#E8C5CB] bg-white p-2.5 text-xs text-[#7E2E40] placeholder:text-[#A09585] focus:outline-hidden focus:border-[#B5566A] focus:ring-1 focus:ring-[#B5566A]"
                   />
                 </div>
 
                 <Button
                   type="submit"
                   variant="default"
-                  className="w-full py-2.5 bg-[#163224] text-white rounded-full flex items-center justify-center gap-2 hover:bg-[#1E4331] text-xs font-semibold uppercase tracking-wider active:scale-98 transition-transform"
+                  className="w-full py-2.5 bg-[#7E2E40] hover:bg-[#9E3D52] text-white rounded-full flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider active:scale-98 transition-transform border border-[#E8C5CB] cursor-pointer"
                 >
-                  <Send className="w-3.5 h-3.5 text-[#E7C979]" />
+                  <Send className="w-3.5 h-3.5 text-[#F3D279]" />
                   <span>Send Blessings</span>
                 </Button>
               </form>
@@ -240,23 +240,23 @@ export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
               {wishes.map((w) => (
                 <div
                   key={w.id}
-                  className="p-3 rounded-2xl bg-[#FAF6EE] border border-[#EAE0CD] text-left text-xs space-y-1.5 transition-all duration-300 hover:border-[#C59B27]/60 shadow-2xs"
+                  className="p-3 rounded-2xl bg-[#FFF7F8] border border-[#E8C5CB] text-left text-xs space-y-1.5 transition-all duration-300 hover:border-[#B5566A]/60 shadow-2xs"
                 >
-                  <div className="flex items-center justify-between text-[#163224]">
-                    <span className="font-semibold text-xs text-[#163224]">{w.name}</span>
-                    <span className="text-[9px] uppercase font-cinzel text-[#8A7D6C] bg-white/90 px-2 py-0.5 rounded-full border border-[#E5DAC6]">
+                  <div className="flex items-center justify-between text-[#7E2E40]">
+                    <span className="font-semibold text-xs text-[#7E2E40]">{w.name}</span>
+                    <span className="text-[9px] uppercase font-cinzel text-[#8C3A4F] bg-white/90 px-2 py-0.5 rounded-full border border-[#E8C5CB]">
                       {w.relation}
                     </span>
                   </div>
                   <p className="text-[#554A3E] leading-relaxed font-sans text-xs">{w.message}</p>
-                  <div className="flex items-center justify-between pt-1 border-t border-[#F0E6D4]">
+                  <div className="flex items-center justify-between pt-1 border-t border-[#F7D6DC]">
                     <span className="text-[10px] text-[#A69784]">{w.timestamp}</span>
                     <button
                       type="button"
                       onClick={() => handleLike(w.id)}
-                      className="flex items-center gap-1 text-[11px] text-[#9A7516] hover:text-[#C59B27] active:scale-125 transition-transform"
+                      className="flex items-center gap-1 text-[11px] text-[#B5566A] hover:text-[#7E2E40] active:scale-125 transition-transform cursor-pointer"
                     >
-                      <Heart className="w-3 h-3 fill-[#C59B27] text-[#C59B27]" />
+                      <Heart className="w-3 h-3 fill-[#B5566A] text-[#B5566A]" />
                       <span>{w.likes}</span>
                     </button>
                   </div>
@@ -266,8 +266,7 @@ export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
 
             <Button
               onClick={() => setActiveTab('form')}
-              variant="creamOutline"
-              className="w-full mt-3 py-2 text-xs uppercase tracking-wider rounded-full border-[#C59B27] text-[#163224]"
+              className="w-full mt-3 py-2 text-xs uppercase tracking-wider rounded-full border border-[#E8C5CB] bg-[#FFF0F3] hover:bg-white text-[#7E2E40] font-cinzel font-semibold cursor-pointer"
             >
               + Write Another Blessing
             </Button>

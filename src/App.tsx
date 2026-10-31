@@ -15,15 +15,24 @@ import { SendWishesModal } from '@/components/wedding/SendWishesModal'
 import { SaveTheDateModal } from '@/components/wedding/SaveTheDateModal'
 import { ShareModal } from '@/components/wedding/ShareModal'
 import { NetworkShareModal } from '@/components/wedding/NetworkShareModal'
+import { RsvpModal } from '@/components/wedding/RsvpModal'
+import { ThemeColorModal } from '@/components/wedding/ThemeColorModal'
 import { downloadWeddingCalendarEvent } from '@/lib/calendar'
+import { getInitialTheme, applyTheme } from '@/lib/theme'
 
 export function App() {
+  // Apply initial theme (Beige & Pink) on mount
+  React.useEffect(() => {
+    const initialTheme = getInitialTheme()
+    applyTheme(initialTheme)
+  }, [])
+
   // Cinematic Character Animation Opening Experience:
   // Bride & Groom Walk -> Handover Thamboolam -> Elders Bless -> Elders Open Invitation Card -> Open Website
   const [isIntroOpen, setIsIntroOpen] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
-      return params.get('skip_intro') !== '1' && params.get('skip_splash') !== '1' && !window.location.hash
+      return params.get('skip_intro') !== '1' && params.get('skip_splash') !== '1'
     }
     return true
   })
@@ -33,6 +42,8 @@ export function App() {
   const [isSaveDateOpen, setIsSaveDateOpen] = useState(false)
   const [isShareOpen, setIsShareOpen] = useState(false)
   const [isNetworkShareOpen, setIsNetworkShareOpen] = useState(false)
+  const [isRsvpOpen, setIsRsvpOpen] = useState(false)
+  const [isThemeOpen, setIsThemeOpen] = useState(false)
 
   const handleAddToCalendar = () => {
     downloadWeddingCalendarEvent()
@@ -44,7 +55,19 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FBF7F0] text-[#1A2621] relative selection:bg-[#C59B27]/20 selection:text-[#163224]">
+    <div className="min-h-screen bg-gradient-to-b from-[#FAF5EE] via-[#FCECEF] via-35% to-[#FAF5EE] text-[var(--theme-primary,#2D1B22)] relative selection:bg-[#E8A5B2]/30 selection:text-[#7E2E40] transition-colors duration-500 overflow-x-hidden">
+      {/* Global Ambient Romantic Luxury Beige & Blush Pink Backdrop Glows */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Soft Cashmere Beige & Blush Rose Pink Base Gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(247,214,220,0.5)_0%,rgba(250,245,238,0.7)_40%,#FAF5EE_100%)]" />
+        {/* Warm Rose Radiance Floating Accent at Top Right */}
+        <div className="absolute top-10 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(232,165,178,0.25)_0%,transparent_70%)] rounded-full blur-3xl" />
+        {/* Warm Golden Sand Accent at Mid Left */}
+        <div className="absolute top-[40%] -left-32 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(243,210,121,0.18)_0%,transparent_70%)] rounded-full blur-3xl" />
+        {/* Soft Blush Rose Petal Accent at Bottom Right */}
+        <div className="absolute bottom-20 right-10 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(247,214,220,0.38)_0%,transparent_70%)] rounded-full blur-3xl" />
+      </div>
+
       {/* 1. Fullscreen Cinematic Character Animation & Tamil Traditional Wedding Card Intro */}
       <WeddingIntro
         isOpen={isIntroOpen}
@@ -52,19 +75,25 @@ export function App() {
       />
 
       {/* 2. Floating Wedding Music Equalizer & Replay Ceremony Controls (Bottom Left) */}
-      <FloatingAudioControls
-        onReopenEnvelope={handleReplayIntro}
-      />
+      {!isIntroOpen && (
+        <FloatingAudioControls
+          onReopenEnvelope={handleReplayIntro}
+        />
+      )}
 
       {/* 3. Background Floating Jasmine & Gold Petals Animation */}
       <FloatingPetals />
 
       {/* 4. Navigation Header */}
-      <Navbar
-        onSaveDateClick={() => setIsSaveDateOpen(true)}
-        onWishesClick={() => setIsWishesOpen(true)}
-        onNetworkShareClick={() => setIsNetworkShareOpen(true)}
-      />
+      {!isIntroOpen && (
+        <Navbar
+          onSaveDateClick={() => setIsSaveDateOpen(true)}
+          onWishesClick={() => setIsWishesOpen(true)}
+          onNetworkShareClick={() => setIsNetworkShareOpen(true)}
+          onRsvpClick={() => setIsRsvpOpen(true)}
+          onThemeClick={() => setIsThemeOpen(true)}
+        />
+      )}
 
       {/* 5. Main Content Flow with Smooth Scroll Reveal */}
       <main className="relative z-20">
@@ -97,6 +126,7 @@ export function App() {
             onOpenWishes={() => setIsWishesOpen(true)}
             onAddToCalendar={handleAddToCalendar}
             onShare={() => setIsShareOpen(true)}
+            onOpenRsvp={() => setIsRsvpOpen(true)}
           />
         </ScrollReveal>
       </main>
@@ -121,6 +151,11 @@ export function App() {
       </button>
 
       {/* Interactive Modals */}
+      <RsvpModal
+        isOpen={isRsvpOpen}
+        onClose={() => setIsRsvpOpen(false)}
+      />
+
       <WaxSealIntro
         isOpen={isWaxSealOpen}
         onClose={() => setIsWaxSealOpen(false)}
@@ -147,8 +182,14 @@ export function App() {
         isOpen={isNetworkShareOpen}
         onClose={() => setIsNetworkShareOpen(false)}
       />
+
+      <ThemeColorModal
+        isOpen={isThemeOpen}
+        onClose={() => setIsThemeOpen(false)}
+      />
     </div>
   )
 }
 
 export default App
+

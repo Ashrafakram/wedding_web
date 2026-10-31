@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { Calendar, QrCode, Menu, X, Wifi } from 'lucide-react'
+import { Calendar, QrCode, Menu, X, Volume2, VolumeX, CalendarCheck, Palette } from 'lucide-react'
 import { LotusLogo } from '@/components/common/Ornaments'
 import { Button } from '@/components/ui/button'
+import { weddingAudio } from '@/lib/weddingAudio'
 
 interface NavbarProps {
   onSaveDateClick: () => void
   onWishesClick: () => void
   onNetworkShareClick: () => void
+  onRsvpClick: () => void
+  onThemeClick?: () => void
 }
 
-export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: NavbarProps) {
+export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick, onRsvpClick, onThemeClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(weddingAudio.isPlaying)
+
+  useEffect(() => {
+    const unsub = weddingAudio.subscribe((playing) => {
+      setIsAudioPlaying(playing)
+    })
+    return () => unsub()
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,15 +36,20 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
     { label: 'Home', href: '#home' },
     { label: 'Wedding', href: '#wedding' },
     { label: 'Venues', href: '#venues' },
+    { label: 'RSVP', href: '#rsvp', onClick: onRsvpClick },
     { label: 'Wishes', href: '#wishes', onClick: onWishesClick },
     { label: 'Contact', href: '#contact' },
   ]
+
+  const handleToggleAudio = () => {
+    weddingAudio.toggle()
+  }
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#FBF7F0]/95 backdrop-blur-md shadow-xs py-2 sm:py-2.5 border-b border-[#E8DEC8]'
+          ? 'bg-[#FAF5EE]/95 backdrop-blur-md shadow-xs py-2 sm:py-2.5 border-b border-[#E8C5CB]/60'
           : 'bg-transparent py-3 sm:py-4'
       }`}
     >
@@ -41,7 +57,7 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
         {/* Brand / Monogram */}
         <a href="#home" className="flex items-center gap-2 group">
           <LotusLogo className="w-7 h-7 sm:w-8 sm:h-8 text-[#C59B27] transition-transform duration-300 group-hover:scale-110" />
-          <div className="flex items-center text-base sm:text-xl font-serif tracking-widest text-[#163224]">
+          <div className="flex items-center text-base sm:text-xl font-serif tracking-widest text-[#7E2E40]">
             <span className="font-semibold">S</span>
             <span className="mx-1 text-[#C59B27] font-light">|</span>
             <span className="font-semibold">D</span>
@@ -49,7 +65,7 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-8">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -68,7 +84,66 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
         </nav>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Visual Theme Color Palette Button */}
+          {onThemeClick && (
+            <button
+              onClick={onThemeClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#E8C5CB] bg-white/85 hover:bg-white text-[#7E2E40] text-xs font-cinzel transition-all shadow-2xs hover:border-[#D4AF37] cursor-pointer active:scale-95"
+              title="Preview Wedding Color Palettes"
+              aria-label="Change Theme Color"
+            >
+              <Palette className="w-3.5 h-3.5 text-[#C59B27]" />
+              <span className="hidden sm:inline text-[10px] tracking-wider uppercase font-semibold text-[#7E2E40]">
+                Colors
+              </span>
+            </button>
+          )}
+
+          {/* Top-Corner Floating Music Toggle Button */}
+          <button
+            onClick={handleToggleAudio}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all text-xs font-cinzel shadow-2xs cursor-pointer active:scale-95 ${
+              isAudioPlaying
+                ? 'bg-[#7E2E40] border-[#E8C5CB] text-[#FFF0F3]'
+                : 'bg-white/80 border-[#D8C7A9] text-[#6B5E4F] hover:border-[#D4AF37]'
+            }`}
+            title={isAudioPlaying ? 'Mute Music' : 'Play Auspicious Music'}
+            aria-label={isAudioPlaying ? 'Mute Music' : 'Play Music'}
+          >
+            {isAudioPlaying ? (
+              <>
+                <div className="flex items-end gap-0.5 h-3 w-2.5">
+                  <span className="w-0.5 bg-[#F3D279] rounded-full animate-[pulse_0.6s_ease-in-out_infinite] h-full" />
+                  <span className="w-0.5 bg-[#F3D279] rounded-full animate-[pulse_0.9s_ease-in-out_infinite_0.15s] h-2/3" />
+                  <span className="w-0.5 bg-[#F3D279] rounded-full animate-[pulse_0.75s_ease-in-out_infinite_0.3s] h-4/5" />
+                </div>
+                <Volume2 className="w-3.5 h-3.5 text-[#F3D279]" />
+                <span className="hidden sm:inline text-[10px] tracking-wider uppercase font-semibold">
+                  Music
+                </span>
+              </>
+            ) : (
+              <>
+                <VolumeX className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline text-[10px] tracking-wider uppercase">
+                  Muted
+                </span>
+              </>
+            )}
+          </button>
+
+          {/* Working RSVP Button */}
+          <Button
+            onClick={onRsvpClick}
+            variant="default"
+            size="sm"
+            className="hidden sm:inline-flex bg-[#7E2E40] hover:bg-[#9E3D52] text-[#FFF0F3] border border-[#E8C5CB] shadow-xs text-xs tracking-wider uppercase font-semibold py-1.5 px-4 gap-1.5 rounded-full active:scale-95 transition-transform"
+          >
+            <CalendarCheck className="w-3.5 h-3.5 text-[#F3D279]" />
+            <span>RSVP</span>
+          </Button>
+
           {/* QR / Open on Mobile button */}
           <button
             onClick={onNetworkShareClick}
@@ -78,20 +153,10 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
           >
             <QrCode className="w-4 h-4 text-[#C59B27]" />
             <span className="hidden lg:inline text-[11px] font-cinzel tracking-wider uppercase font-semibold">
-              Open on Phone
+
+              QR
             </span>
           </button>
-
-          {/* Save Date Button */}
-          <Button
-            onClick={onSaveDateClick}
-            variant="default"
-            size="sm"
-            className="hidden sm:inline-flex bg-[#163224] text-[#FBF7F0] border border-[#2B543D] hover:bg-[#1E4532] shadow-xs text-xs tracking-wider uppercase font-medium py-2 px-4 sm:px-5 gap-2 rounded-full active:scale-95 transition-transform"
-          >
-            <Calendar className="w-3.5 h-3.5 text-[#E7C979]" />
-            <span>Save the Date</span>
-          </Button>
 
           {/* Mobile hamburger */}
           <button
@@ -129,12 +194,24 @@ export function Navbar({ onSaveDateClick, onWishesClick, onNetworkShareClick }: 
               <Button
                 onClick={() => {
                   setMobileMenuOpen(false)
-                  onSaveDateClick()
+                  onRsvpClick()
                 }}
                 variant="default"
                 className="w-full bg-[#163224] text-[#FBF7F0] py-2.5 rounded-full flex items-center justify-center gap-2"
               >
-                <Calendar className="w-4 h-4 text-[#E7C979]" />
+                <CalendarCheck className="w-4 h-4 text-[#E7C979]" />
+                <span>Confirm RSVP</span>
+              </Button>
+
+              <Button
+                onClick={() => {
+                  setMobileMenuOpen(false)
+                  onSaveDateClick()
+                }}
+                variant="creamOutline"
+                className="w-full py-2.5 rounded-full flex items-center justify-center gap-2 border-[#D8C7A9] text-xs uppercase tracking-wider"
+              >
+                <Calendar className="w-4 h-4 text-[#C59B27]" />
                 <span>Save the Date</span>
               </Button>
 

@@ -49,13 +49,13 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-md p-6 bg-[#FAF5EB] border-[#D8C7A9]">
         <DialogHeader className="text-center">
-          <div className="mx-auto size-12 rounded-full bg-[#EAF2ED] text-[#25D366] flex items-center justify-center mb-1">
-            <Share2 className="w-6 h-6 text-[#163224]" />
+          <div className="mx-auto size-12 rounded-full bg-[#FFF0F3] text-[#7E2E40] flex items-center justify-center mb-1 border border-[#E8C5CB]">
+            <Share2 className="w-6 h-6 text-[#7E2E40]" />
           </div>
-          <DialogTitle className="font-serif text-3xl text-[#163224]">
+          <DialogTitle className="font-serif text-3xl text-[#7E2E40]">
             Share Invitation
           </DialogTitle>
-          <DialogDescription className="text-xs text-[#7A6D5E]">
+          <DialogDescription className="text-xs text-[#8C3A4F]">
             Share the joyful wedding invitation with friends and family.
           </DialogDescription>
         </DialogHeader>
@@ -65,7 +65,7 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
           <Button
             onClick={handleWhatsAppShare}
             variant="default"
-            className="w-full py-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full flex items-center justify-center gap-2 font-medium shadow-sm transition-transform active:scale-98"
+            className="w-full py-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full flex items-center justify-center gap-2 font-medium shadow-sm transition-transform active:scale-98 cursor-pointer"
           >
             <MessageCircle className="w-5 h-5 fill-white text-[#25D366]" />
             <span>Share via WhatsApp</span>
@@ -77,18 +77,16 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
               onClose()
               onOpenNetworkShare()
             }}
-            variant="creamOutline"
-            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border-[#C59B27] bg-[#FAF4E4] hover:bg-[#F3EACB] text-xs uppercase tracking-wider text-[#163224] transition-transform active:scale-98"
+            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border border-[#E8C5CB] bg-[#FFF0F3] hover:bg-white text-xs uppercase tracking-wider text-[#7E2E40] font-cinzel font-semibold transition-transform active:scale-98 cursor-pointer"
           >
-            <QrCode className="w-4 h-4 text-[#C59B27]" />
+            <QrCode className="w-4 h-4 text-[#B5566A]" />
             <span>Open on Mobile via QR Code / Wi-Fi</span>
           </Button>
 
           {/* Copy Full Invite & Link */}
           <Button
             onClick={handleCopyLink}
-            variant="creamOutline"
-            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border-[#D8C7A9] text-xs uppercase tracking-wider text-[#163224] transition-transform active:scale-98"
+            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border border-[#E8C5CB] bg-white hover:bg-[#FFF7F8] text-xs uppercase tracking-wider text-[#7E2E40] font-cinzel font-semibold transition-transform active:scale-98 cursor-pointer"
           >
             {copied ? (
               <>

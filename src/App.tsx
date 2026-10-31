@@ -8,7 +8,7 @@ import { VenuesSection } from '@/components/wedding/VenuesSection'
 import { InvitationActionsFooter } from '@/components/wedding/InvitationActionsFooter'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
-import { CinematicBlessingSplash } from '@/components/wedding/CinematicBlessingSplash'
+import { WeddingIntro } from '@/components/wedding-intro/WeddingIntro'
 import { FloatingAudioControls } from '@/components/wedding/FloatingAudioControls'
 import { WaxSealIntro } from '@/components/wedding/WaxSealIntro'
 import { SendWishesModal } from '@/components/wedding/SendWishesModal'
@@ -18,11 +18,12 @@ import { NetworkShareModal } from '@/components/wedding/NetworkShareModal'
 import { downloadWeddingCalendarEvent } from '@/lib/calendar'
 
 export function App() {
-  // Cinematic Animated Splash: They come -> Get blessings -> Invitation zooms out BOOM opens to website!
-  const [isSplashOpen, setIsSplashOpen] = useState(() => {
+  // Cinematic Character Animation Opening Experience:
+  // Bride & Groom Walk -> Handover Thamboolam -> Elders Bless -> Elders Open Invitation Card -> Open Website
+  const [isIntroOpen, setIsIntroOpen] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
-      return params.get('skip_splash') !== '1' && params.get('skip_envelope') !== '1' && !window.location.hash
+      return params.get('skip_intro') !== '1' && params.get('skip_splash') !== '1' && !window.location.hash
     }
     return true
   })
@@ -37,22 +38,22 @@ export function App() {
     downloadWeddingCalendarEvent()
   }
 
-  const handleReplaySplash = () => {
-    setIsSplashOpen(true)
+  const handleReplayIntro = () => {
+    setIsIntroOpen(true)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <div className="min-h-screen bg-[#FBF7F0] text-[#1A2621] relative selection:bg-[#C59B27]/20 selection:text-[#163224]">
-      {/* 1. Fullscreen Cinematic Animated Splash ("Come with silver plate -> Get blessing -> Invitation zooms out BOOM opens site") */}
-      <CinematicBlessingSplash
-        isOpen={isSplashOpen}
-        onComplete={() => setIsSplashOpen(false)}
+      {/* 1. Fullscreen Cinematic Character Animation & Tamil Traditional Wedding Card Intro */}
+      <WeddingIntro
+        isOpen={isIntroOpen}
+        onComplete={() => setIsIntroOpen(false)}
       />
 
       {/* 2. Floating Wedding Music Equalizer & Replay Ceremony Controls (Bottom Left) */}
       <FloatingAudioControls
-        onReopenEnvelope={handleReplaySplash}
+        onReopenEnvelope={handleReplayIntro}
       />
 
       {/* 3. Background Floating Jasmine & Gold Petals Animation */}
@@ -102,7 +103,7 @@ export function App() {
 
       {/* Floating Interactive Wax Seal Monogram Button (Bottom Right) */}
       <button
-        onClick={handleReplaySplash}
+        onClick={handleReplayIntro}
         className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 group flex items-center gap-2 bg-[#FAF5EB] pl-1.5 pr-3.5 sm:pr-4 py-1.5 rounded-full shadow-lg border border-[#D8C7A9] hover:border-[#C59B27] active:scale-90 transition-all duration-300 animate-pulse-ring cursor-pointer"
         title="Replay Blessing & Invitation Ceremony"
         aria-label="Replay Blessing & Invitation Ceremony"

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Volume2, VolumeX, Heart, Sparkles } from 'lucide-react'
+import { Volume2, VolumeX, MailOpen } from 'lucide-react'
 import { weddingAudio } from '@/lib/weddingAudio'
-import { launchHeartAndMultiShapeBurst } from '@/lib/confetti'
 
 interface FloatingAudioControlsProps {
   onReopenEnvelope: () => void
@@ -24,13 +23,9 @@ export function FloatingAudioControls({ onReopenEnvelope }: FloatingAudioControl
     weddingAudio.toggle()
   }
 
-  const handleShowerHearts = () => {
-    launchHeartAndMultiShapeBurst()
-  }
-
   return (
     <aside
-      aria-label="Audio, heart, and ceremony controls"
+      aria-label="Audio and envelope controls"
       className="fixed bottom-5 left-5 z-40 flex items-center gap-2"
     >
       {/* 1. Audio Mute / Unmute Player Button */}
@@ -67,27 +62,14 @@ export function FloatingAudioControls({ onReopenEnvelope }: FloatingAudioControl
         )}
       </button>
 
-      {/* 2. Re-open Sacred Heart Locket Unboxing Button */}
+      {/* 2. Re-open Royal Envelope Button */}
       <button
         onClick={onReopenEnvelope}
         className="group flex items-center justify-center size-10 rounded-full bg-[#163224]/90 hover:bg-[#163224] backdrop-blur-md border border-[#D4AF37]/60 hover:border-[#F3D279] text-[#F3D279] shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-        title="Re-open Sacred Heart Ceremony"
-        aria-label="Re-open Sacred Heart Ceremony"
+        title="Re-open Royal Envelope Ceremony"
+        aria-label="Re-open Royal Envelope Ceremony"
       >
-        <Heart className="size-4 text-[#F3D279] fill-[#F3D279]/50 group-hover:scale-115 transition-transform animate-pulse" />
-      </button>
-
-      {/* 3. Interactive Shower Hearts Button */}
-      <button
-        onClick={handleShowerHearts}
-        className="group hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#163224]/90 hover:bg-[#163224] backdrop-blur-md border border-[#D4AF37]/50 text-[#F3D279] shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-        title="Shower Multi-Shape Hearts & Confetti"
-        aria-label="Shower Multi-Shape Hearts & Confetti"
-      >
-        <Sparkles className="size-3.5 text-[#F3D279]" />
-        <span className="text-[11px] font-cinzel uppercase tracking-wider text-[#F3D279]">
-          Shower Hearts 💖
-        </span>
+        <MailOpen className="size-4 text-[#F3D279] group-hover:scale-110 transition-transform" />
       </button>
     </aside>
   )

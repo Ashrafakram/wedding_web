@@ -21,13 +21,9 @@ export function CelebrationsSection() {
         {/* Celebrations Grid: Day 1 & Day 2 Side-by-Side Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           
-          {/* Day 1: Reception Card (Sculptural Arch & Heart Keystone) */}
-          <div className="relative rounded-t-[48px] rounded-b-3xl border-2 border-[#E8DEC8] bg-[#FFFDF9] p-6 sm:p-7 shadow-lg hover-card-glow transition-all duration-500">
-            {/* Top Heart Badge */}
-            <div className="absolute -top-3.5 left-8 px-3 py-0.5 rounded-full bg-[#163224] text-[#F3D279] text-[10px] font-cinzel font-semibold tracking-wider uppercase border border-[#C59B27] shadow-sm flex items-center gap-1">
-              <span>💖 Day 1</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center pt-2">
+          {/* Day 1: Reception Card */}
+          <div className="relative rounded-3xl border border-[#E8DEC8] bg-[#FFFDF9] p-6 sm:p-7 shadow-xs hover-card-glow transition-all duration-500">
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
               
               {/* Arched Kuthuvilakku Diya Lamp Image */}
               <div className="sm:col-span-5 flex justify-center">
@@ -85,13 +81,9 @@ export function CelebrationsSection() {
             </div>
           </div>
 
-          {/* Day 2: Wedding Card (Sculptural Arch & Heart Badge) */}
-          <div className="relative rounded-t-[48px] rounded-b-3xl border-2 border-[#E8DEC8] bg-[#FFFDF9] p-6 sm:p-7 shadow-lg hover-card-glow transition-all duration-500">
-            {/* Top Heart Badge */}
-            <div className="absolute -top-3.5 left-8 px-3 py-0.5 rounded-full bg-[#163224] text-[#F3D279] text-[10px] font-cinzel font-semibold tracking-wider uppercase border border-[#C59B27] shadow-sm flex items-center gap-1">
-              <span>💖 Day 2</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center pt-2">
+          {/* Day 2: Wedding Card */}
+          <div className="relative rounded-3xl border border-[#E8DEC8] bg-[#FFFDF9] p-6 sm:p-7 shadow-xs hover-card-glow transition-all duration-500">
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
               
               {/* Arched Temple Gateway Image */}
               <div className="sm:col-span-5 flex justify-center">
@@ -122,7 +114,7 @@ export function CelebrationsSection() {
 
                 {/* Event Name */}
                 <h3 className="font-serif text-2xl sm:text-3xl text-[#163224] font-normal tracking-wide mt-1">
-                  Wedding
+                  Wedding (Muhurtham)
                 </h3>
                 <div className="font-tamil text-base sm:text-lg text-[#9A7516] font-medium my-0.5">
                   திருமண விழா
@@ -132,10 +124,7 @@ export function CelebrationsSection() {
                 <div className="space-y-2 mt-4 text-xs sm:text-sm">
                   <div className="flex items-center justify-center sm:justify-start gap-2 text-[#163224]">
                     <Clock className="w-4 h-4 text-[#C59B27] shrink-0" />
-                    <div>
-                      <span className="text-[#6B5E4F]">Muhurtham:</span>{' '}
-                      <span className="font-semibold text-[#9A7516]">4:00 AM – 6:00 AM</span>
-                    </div>
+                    <span className="font-medium">4:00 AM – 6:00 AM</span>
                   </div>
 
                   <div className="flex items-start justify-center sm:justify-start gap-2 text-[#4A4237]">
@@ -154,13 +143,10 @@ export function CelebrationsSection() {
 
         </div>
 
-        {/* Welcoming Banner (as seen in Screenshot 1 & 3) */}
-        <div className="mt-8 rounded-2xl bg-[#FAF5EB] border border-[#E6DAC3] p-4 sm:p-5 flex items-center justify-center text-center gap-3 shadow-xs hover:border-[#C59B27]/50 transition-colors">
-          <Utensils className="w-5 h-5 text-[#C59B27] shrink-0 hidden sm:block animate-pulse" />
-          <p className="font-sans text-xs sm:text-sm text-[#4D4336] leading-relaxed">
-            After the wedding ceremony, we look forward to welcoming you at{' '}
-            <span className="font-semibold text-[#163224]">AVVS Mahal, Ammapet, Salem</span>.
-          </p>
+        {/* Traditional Feast Note */}
+        <div className="mt-8 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#6B5E4F] font-cinzel tracking-wider text-center bg-[#F4ECDC]/60 py-3 px-6 rounded-full max-w-lg mx-auto border border-[#E8DEC8]">
+          <Utensils className="w-4 h-4 text-[#C59B27] shrink-0" />
+          <span>Auspicious Wedding Feast (Kalyana Virundhu) follows</span>
         </div>
 
       </div>

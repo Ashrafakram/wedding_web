@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Heart } from 'lucide-react'
 import { Navbar } from '@/components/layout/Navbar'
 import { HeroSection } from '@/components/wedding/HeroSection'
 import { HeartfeltInvitation } from '@/components/wedding/HeartfeltInvitation'
@@ -9,7 +8,7 @@ import { VenuesSection } from '@/components/wedding/VenuesSection'
 import { InvitationActionsFooter } from '@/components/wedding/InvitationActionsFooter'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
-import { RoyalHeartUnbox } from '@/components/wedding/RoyalHeartUnbox'
+import { RoyalEnvelopeUnbox } from '@/components/wedding/RoyalEnvelopeUnbox'
 import { FloatingAudioControls } from '@/components/wedding/FloatingAudioControls'
 import { WaxSealIntro } from '@/components/wedding/WaxSealIntro'
 import { SendWishesModal } from '@/components/wedding/SendWishesModal'
@@ -19,7 +18,7 @@ import { NetworkShareModal } from '@/components/wedding/NetworkShareModal'
 import { downloadWeddingCalendarEvent } from '@/lib/calendar'
 
 export function App() {
-  // Royal 3D Beating Heart Locket Unboxing defaults to OPEN on load
+  // Royal 3D Envelope Unboxing Overlay defaults to OPEN on load, exactly like reference site
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
@@ -45,18 +44,18 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#FBF7F0] text-[#1A2621] relative selection:bg-[#C59B27]/20 selection:text-[#163224]">
-      {/* 1. 3D Royal Beating Heart Locket Unboxing Ceremony (Full-screen on page load) */}
-      <RoyalHeartUnbox
+      {/* 1. Royal 3D Envelope & Wax Seal Opening Ceremony (Full-screen on page load) */}
+      <RoyalEnvelopeUnbox
         isOpen={isEnvelopeOpen}
         onClose={() => setIsEnvelopeOpen(false)}
       />
 
-      {/* 2. Floating Wedding Music Equalizer, Heart Reopen & Shower Hearts Controls (Bottom Left) */}
+      {/* 2. Floating Wedding Music Equalizer & Re-open Envelope Controls (Bottom Left) */}
       <FloatingAudioControls
         onReopenEnvelope={handleReopenEnvelope}
       />
 
-      {/* 3. Background Multi-Shape Floating Particles (Hearts, Stars, Diamonds, Petals) */}
+      {/* 3. Background Floating Jasmine & Gold Petals Animation */}
       <FloatingPetals />
 
       {/* 4. Navigation Header */}
@@ -68,7 +67,7 @@ export function App() {
 
       {/* 5. Main Content Flow with Smooth Scroll Reveal */}
       <main className="relative z-20">
-        {/* Hero Section with Anime Couple on Top in Arched Palace Frame */}
+        {/* Hero Section with Anime Couple on Top */}
         <HeroSection />
 
         {/* Heartfelt Bilingual Invitation */}
@@ -76,12 +75,12 @@ export function App() {
           <HeartfeltInvitation />
         </ScrollReveal>
 
-        {/* The Countdown with Unique Multi-Shapes (Heart, Circle, Diamond, Star) */}
+        {/* The Countdown to Our Forever */}
         <ScrollReveal direction="up" delayMs={80}>
           <CountdownSection />
         </ScrollReveal>
 
-        {/* Our Wedding Celebrations with Sculpted Arches & Heart Badges */}
+        {/* Our Wedding Celebrations (Day 1 & Day 2) */}
         <ScrollReveal direction="up" delayMs={100}>
           <CelebrationsSection />
         </ScrollReveal>
@@ -101,19 +100,22 @@ export function App() {
         </ScrollReveal>
       </main>
 
-      {/* Floating Interactive Sacred Heart Seal Monogram Button (Bottom Right) */}
+      {/* Floating Interactive Wax Seal Monogram Button (Bottom Right) */}
       <button
         onClick={handleReopenEnvelope}
         className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 group flex items-center gap-2 bg-[#FAF5EB] pl-1.5 pr-3.5 sm:pr-4 py-1.5 rounded-full shadow-lg border border-[#D8C7A9] hover:border-[#C59B27] active:scale-90 transition-all duration-300 animate-pulse-ring cursor-pointer"
-        title="Open Royal Sacred Heart Locket"
-        aria-label="Open Royal Sacred Heart Locket"
+        title="Open Royal Envelope Ceremony"
+        aria-label="Open Royal Envelope Ceremony"
       >
-        <div className="size-7 sm:size-8 rounded-full overflow-hidden shadow-xs border border-[#C59B27]/60 flex items-center justify-center bg-[#163224]">
-          <Heart className="size-4 text-[#F3D279] fill-[#F3D279] animate-pulse" />
+        <div className="size-7 sm:size-8 rounded-full overflow-hidden shadow-xs border border-[#C59B27]/60">
+          <img
+            src="/assets/seal_stamp.jpg"
+            alt="S|D Seal"
+            className="w-full h-full object-cover"
+          />
         </div>
-        <span className="text-[10px] sm:text-[11px] font-cinzel uppercase tracking-[0.16em] text-[#163224] font-semibold flex items-center gap-1">
-          <span>Open Heart</span>
-          <span className="text-xs">💖</span>
+        <span className="text-[10px] sm:text-[11px] font-cinzel uppercase tracking-[0.16em] text-[#163224] font-semibold">
+          Open Seal
         </span>
       </button>
 

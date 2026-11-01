@@ -25,20 +25,20 @@ interface AmbientPetal {
   delay: number
 }
 
-// Generate static ambient petals for background floating
+// ChungDoi authentic ambient falling flowers
 const AMBIENT_PETALS: AmbientPetal[] = [
-  { id: 1, x: 73, color: '#ab7a45', size: 24, sway: 22, duration: 23, delay: -9 },
-  { id: 2, x: 50, color: '#ab7a45', size: 13, sway: -10, duration: 21, delay: -14 },
-  { id: 3, x: 90, color: '#f7e3cd', size: 14, sway: -3, duration: 23, delay: -12 },
-  { id: 4, x: 52, color: '#e0698f', size: 18, sway: 1, duration: 21, delay: -1.5 },
-  { id: 5, x: 49, color: '#f7e3cd', size: 22, sway: -8, duration: 20, delay: -0.5 },
-  { id: 6, x: 32, color: '#f7e3cd', size: 16, sway: -25, duration: 24, delay: -12 },
-  { id: 7, x: 63, color: '#f7e3cd', size: 19, sway: 4, duration: 21, delay: -4.5 },
-  { id: 8, x: 16, color: '#d8407a', size: 21, sway: 16, duration: 22, delay: -15 },
-  { id: 9, x: 88, color: '#f7e3cd', size: 14, sway: -18, duration: 23, delay: -8 },
-  { id: 10, x: 6, color: '#f7e3cd', size: 12, sway: -14, duration: 21, delay: -11 },
-  { id: 11, x: 37, color: '#e0698f', size: 20, sway: -12, duration: 21, delay: -6 },
-  { id: 12, x: 24, color: '#d8407a', size: 23, sway: -24, duration: 24, delay: -13 },
+  { id: 1, x: 73.05, color: '#ab7a45', size: 23.85, sway: 22.1, duration: 22.9, delay: -9.3 },
+  { id: 2, x: 50.1, color: '#ab7a45', size: 12.83, sway: -9.6, duration: 21.6, delay: -14.0 },
+  { id: 3, x: 90.62, color: '#f7e3cd', size: 13.16, sway: -2.6, duration: 23.2, delay: -12.9 },
+  { id: 4, x: 52.18, color: '#e0698f', size: 18.8, sway: 0.84, duration: 20.8, delay: -1.47 },
+  { id: 5, x: 49.04, color: '#f7e3cd', size: 21.77, sway: -8.4, duration: 20.8, delay: -0.52 },
+  { id: 6, x: 32.84, color: '#f7e3cd', size: 16.92, sway: -25.7, duration: 23.9, delay: -12.36 },
+  { id: 7, x: 63.3, color: '#f7e3cd', size: 19.46, sway: 3.89, duration: 21.75, delay: -4.56 },
+  { id: 8, x: 15.98, color: '#d8407a', size: 20.95, sway: -27.06, duration: 19.3, delay: -2.52 },
+  { id: 9, x: 88.18, color: '#f7e3cd', size: 14.13, sway: 8.96, duration: 23.11, delay: -5.68 },
+  { id: 10, x: 5.61, color: '#f7e3cd', size: 11.85, sway: -7.08, duration: 20.5, delay: -14.8 },
+  { id: 11, x: 36.98, color: '#e0698f', size: 19.62, sway: -26.32, duration: 21.23, delay: -12.6 },
+  { id: 12, x: 23.97, color: '#d8407a', size: 23.26, sway: 12.02, duration: 24.29, delay: -8.95 },
 ]
 
 export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
@@ -48,7 +48,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
   const handleOpen = () => {
     if (animationState !== 'idle') return
 
-    // Create particle burst
+    // Create particle burst on seal break
     const colors = ['#ab7a45', '#f7e3cd', '#e0698f', '#640e1b', '#ffd700']
     const newParticles: Particle[] = Array.from({ length: 32 }).map((_, i) => ({
       id: i,
@@ -75,15 +75,16 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden cursor-pointer select-none"
+      data-landing-screenshot-id="invite-envelope"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none"
       style={{
         background:
-          'linear-gradient(to bottom right, rgba(100,14,27,0.88), rgba(140,45,45,0.84), rgba(171,122,69,0.82)), url(/images/themes/mahal-gold/paper.webp) center / cover',
+          'linear-gradient(to bottom right, rgba(100,14,27,0.86), rgba(140,45,45,0.82), rgba(171,122,69,0.80)), url(/images/themes/mahal-gold/paper.webp) center / cover',
       }}
       onClick={handleOpen}
     >
       {/* 1. Ambient Falling Floral Petals */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]">
+      <div style={{ zIndex: 1 }} className="absolute inset-0 pointer-events-none overflow-hidden">
         {AMBIENT_PETALS.map((petal) => (
           <div
             key={petal.id}
@@ -116,7 +117,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
 
       {/* 2. Burst Particles on Seal Break */}
       {particles.length > 0 && (
-        <div className="absolute inset-0 pointer-events-none z-[100]">
+        <div style={{ zIndex: 100 }} className="absolute inset-0 pointer-events-none">
           {particles.map((p) => (
             <div
               key={p.id}
@@ -152,143 +153,165 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
 
       {/* 3. The Royal Parchment Envelope Card */}
       <div
-        className="relative z-10 transition-transform duration-700"
         style={{
+          zIndex: 10,
           animation: animationState === 'away' ? 'envelope-away 0.85s ease-in forwards' : undefined,
         }}
+        className="relative"
       >
-        <div className="relative w-[315px] sm:w-[350px] md:w-[480px] lg:w-[540px]">
-          {/* Top Wax Seal */}
+        <div className="relative w-[310px] sm:w-[340px] md:w-[520px] lg:w-[600px]">
+          {/* Top Wax Seal - Authentic Burgundy with White Heart */}
           <div
-            className="absolute left-1/2 z-20"
             style={{
-              top: '40px',
-              width: '58px',
-              height: '58px',
+              top: '50px',
+              width: '56px',
+              height: '56px',
               transform: 'translate(-50%, -50%)',
+              background: 'radial-gradient(circle at 30% 30%, #640e1b, rgb(70, 0, 0))',
+              boxShadow:
+                '0 4px 20px rgba(100, 14, 27, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
+              zIndex: 30,
               animation:
                 animationState === 'breaking'
                   ? 'seal-break 0.6s ease-out forwards'
-                  : 'seal-pulse 2.2s ease-in-out infinite',
+                  : 'seal-pulse 2s ease-in-out infinite',
             }}
+            className="absolute left-1/2 rounded-full flex items-center justify-center cursor-pointer"
           >
-            <div
-              className="w-full h-full rounded-full flex items-center justify-center text-white text-xl shadow-2xl border border-[#ab7a45]/40"
-              style={{
-                background: 'radial-gradient(circle at 35% 35%, #c9933b, #7d521d, #4d2f09)',
-                boxShadow: '0 6px 20px rgba(171, 122, 69, 0.55)',
-              }}
+            <svg
+              style={{ fill: '#ffffff' }}
+              viewBox="0 0 24 24"
+              className="w-7 h-7"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#fff8f0]">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-            </div>
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
           </div>
 
           {/* Envelope Card Body */}
           <div
-            className="relative rounded-[16px] overflow-hidden"
             style={{
-              background: 'rgba(247, 227, 205, 0.98)',
-              border: '1px solid rgba(171, 122, 69, 0.25)',
               boxShadow:
-                '0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 40px rgba(171, 122, 69, 0.2)',
+                '0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 40px rgba(171, 122, 69, 0.15)',
             }}
+            className="relative rounded-lg"
           >
-            {/* Top Right Corner Flower Decoration */}
-            <img
-              src="/images/themes/mahal-gold/flower1.webp"
-              alt=""
-              aria-hidden="true"
-              className="absolute -top-6 -right-6 w-[42%] md:w-[35%] max-w-[190px] pointer-events-none select-none opacity-90"
-            />
+            {/* Background & Floral Corner Decorations (Top-Left & Bottom-Right) */}
+            <div
+              style={{
+                background: 'rgba(247, 227, 205, 0.98)',
+                border: '1px solid rgba(171, 122, 69, 0.15)',
+                clipPath: 'inset(0 round 8px)',
+              }}
+              className="absolute inset-0 rounded-lg overflow-hidden"
+            >
+              {/* Top-Left Bougainvillea Branch */}
+              <img
+                src="/images/themes/mahal-gold/flower1.webp"
+                alt=""
+                aria-hidden="true"
+                className="absolute pointer-events-none w-[46%] md:w-[38%] max-w-[220px] top-0 left-0 -translate-x-[22%] -translate-y-[24%] -scale-x-100"
+              />
+              {/* Bottom-Right Bougainvillea Branch */}
+              <img
+                src="/images/themes/mahal-gold/flower1.webp"
+                alt=""
+                aria-hidden="true"
+                className="absolute pointer-events-none w-[42%] md:w-[34%] max-w-[200px] bottom-0 right-0 translate-x-[20%] translate-y-[18%] -scale-y-100"
+              />
+            </div>
 
-            <div className="relative z-10 text-center px-6 pt-24 pb-12 md:pt-24 md:pb-14">
-              {/* Couple Names */}
-              <h1 className="mb-4">
+            {/* Card Content */}
+            <div className="relative z-10 text-center px-6 pt-28 pb-14 md:pt-24 md:pb-8">
+              {/* Names */}
+              <h1
+                style={{
+                  color: '#640e1b',
+                  fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
+                }}
+                className="mb-2 flex flex-col items-center leading-tight text-3xl sm:text-4xl"
+              >
                 <span
-                  className="block text-[#640e1b] font-normal leading-[1.1]"
-                  style={{
-                    fontFamily: '"The Nautigal", cursive',
-                    fontSize: 'clamp(42px, 12vw, 68px)',
-                  }}
+                  style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
+                  className="block w-full text-center"
                 >
                   Deepak Kumar
                 </span>
                 <span
-                  className="block my-1 text-[#640e1b]"
-                  style={{
-                    fontFamily: '"Alex Brush", cursive',
-                    fontSize: 'clamp(24px, 6vw, 36px)',
-                  }}
+                  style={{ fontFamily: '"Alex Brush", ChungDoiIndic, cursive' }}
+                  className="block w-full text-center text-lg leading-none sm:text-xl"
                 >
                   &amp;
                 </span>
                 <span
-                  className="block text-[#640e1b] font-normal leading-[1.1]"
-                  style={{
-                    fontFamily: '"The Nautigal", cursive',
-                    fontSize: 'clamp(42px, 12vw, 68px)',
-                  }}
+                  style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
+                  className="block w-full text-center"
                 >
                   Swetha
                 </span>
               </h1>
 
-              {/* Divider with ❦ */}
-              <div className="flex items-center justify-center gap-3 mb-4">
+              {/* Gold Ornament Divider */}
+              <div className="flex items-center justify-center gap-3 mb-2">
                 <div
-                  className="w-12 h-px"
                   style={{ background: 'linear-gradient(to right, transparent, #ab7a45)' }}
+                  className="w-10 h-px"
                 />
-                <span className="text-[#ab7a45] text-base opacity-80">❦</span>
+                <span style={{ color: '#ab7a45', opacity: 0.7 }} className="text-sm">
+                  ❦
+                </span>
                 <div
-                  className="w-12 h-px"
                   style={{ background: 'linear-gradient(to left, transparent, #ab7a45)' }}
+                  className="w-10 h-px"
                 />
               </div>
 
               {/* Date */}
               <div
-                className="text-[17px] md:text-[19px] mb-4 text-[#640e1b]/80 font-normal tracking-wide"
-                style={{ fontFamily: '"Lora", serif' }}
+                style={{
+                  color: 'rgba(100, 14, 27, 0.72)',
+                  fontFamily: '"Lora", "Times New Roman", ChungDoiIndic, serif',
+                }}
+                className="text-[18px] mb-5 flex flex-col items-center"
               >
-                November 20, 2026
+                <span dir="auto">November 20, 2026</span>
               </div>
 
               {/* Cordially Invites */}
-              <div className="mb-7">
+              <div className="mb-6">
                 <p
-                  className="text-[16px] md:text-[18px] font-light text-[#640e1b]/75 italic"
-                  style={{ fontFamily: '"Lora", serif' }}
+                  style={{
+                    color: 'rgba(100, 14, 27, 0.72)',
+                    fontFamily: '"Lora", "Times New Roman", ChungDoiIndic, serif',
+                  }}
+                  className="text-[18px] font-light mb-2"
                 >
-                  Cordially Invites
+                  <span dir="auto">Cordially Invites</span>
                 </p>
               </div>
 
-              {/* Open Pill Button */}
+              {/* Open Button with Shimmer Sweep */}
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation()
                   handleOpen()
                 }}
-                className="relative px-10 py-3 text-lg font-medium text-white rounded-full shadow-lg overflow-hidden flex items-center justify-center mx-auto transition-transform hover:scale-105 active:scale-95"
                 style={{
                   backgroundColor: '#640e1b',
-                  boxShadow: '0 6px 20px rgba(100, 14, 27, 0.45)',
-                  fontFamily: '"Lora", serif',
+                  color: '#ffffff',
+                  boxShadow: '0 4px 14px rgba(100, 14, 27, 0.35)',
+                  fontFamily: '"Lora", "Times New Roman", ChungDoiIndic, serif',
                 }}
+                className="relative px-8 py-2.5 text-lg font-semibold sm:font-medium rounded-full shadow-lg cursor-pointer flex w-fit items-center justify-center mx-auto overflow-hidden hover:scale-105 active:scale-95 transition-transform"
               >
-                <span className="relative z-10 tracking-wider">Open</span>
-                {/* Shimmer Sweep Animation */}
+                <span dir="auto">Open</span>
                 <div
-                  className="absolute top-0 h-full w-12 pointer-events-none"
                   style={{
                     background:
-                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent)',
-                    animation: 'shine 2.8s ease-in-out infinite',
+                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                    animation: 'shine 3s ease-in-out infinite',
                   }}
+                  className="absolute top-0 h-full w-8 pointer-events-none"
                 />
               </button>
             </div>
@@ -299,3 +322,4 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
   )
 }
 
+export default RoyalEnvelope

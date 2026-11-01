@@ -3,6 +3,7 @@ import { RoyalEnvelope } from '@/components/wedding/RoyalEnvelope'
 import { MahalGoldInvitation } from '@/components/wedding/MahalGoldInvitation'
 import { MahalAudioPlayer } from '@/components/wedding/MahalAudioPlayer'
 import { RsvpModal } from '@/components/wedding/RsvpModal'
+import { FlowerRain } from '@/components/wedding/FlowerRain'
 
 export function App() {
   const [isEnvelopeOpened, setIsEnvelopeOpened] = useState(false)
@@ -15,19 +16,22 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
       {/* 1. Fullscreen Authentic Wax Seal Envelope Opening Animation */}
       {!isEnvelopeOpened && <RoyalEnvelope onOpen={handleOpenEnvelope} />}
 
-      {/* 2. Authentic 1:1 Mahal Gold Invitation Template */}
+      {/* 2. Romantic Falling Flower Rain Animation */}
+      {isEnvelopeOpened && <FlowerRain />}
+
+      {/* 3. Authentic 1:1 Mahal Gold Invitation Template */}
       <main className="min-h-screen w-full">
         <MahalGoldInvitation onRsvpClick={() => setIsRsvpOpen(true)} />
       </main>
 
-      {/* 3. Floating Music Disc Player */}
+      {/* 4. Floating Music Disc Player */}
       <MahalAudioPlayer autoPlayTrigger={musicStarted} />
 
-      {/* 4. Interactive Attendance Modal */}
+      {/* 5. Interactive Attendance Modal */}
       <RsvpModal isOpen={isRsvpOpen} onClose={() => setIsRsvpOpen(false)} />
     </div>
   )

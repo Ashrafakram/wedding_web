@@ -138,7 +138,7 @@ export const MahalCelebrationEvents: React.FC = () => {
 
             <div className="mt-5 pt-4 border-t border-[#ab7a45]/20 flex justify-end">
               <a
-                href="https://maps.app.goo.gl/LZ5V1XntHBmdKdMs6?g_st=aw"
+                href="https://maps.app.goo.gl/sCgGJjSqNen6hpFx9?g_st=aw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs md:text-sm font-semibold text-[#640e1b] hover:text-[#ab7a45] flex items-center gap-1.5 underline underline-offset-4"

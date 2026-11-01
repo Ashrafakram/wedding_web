@@ -38,8 +38,8 @@ const WEDDING_EVENTS: WeddingEvent[] = [
     time: '4:00 AM – 6:00 AM',
     venueName: 'Arulmigu Senraya Perumal Temple',
     address: 'Odayapatti, Salem, Tamil Nadu',
-    mapQuery: '11.6627405,78.2091834',
-    googleMapsUrl: 'https://maps.app.goo.gl/LZ5V1XntHBmdKdMs6?g_st=aw',
+    mapQuery: '11.6603322,78.2101632',
+    googleMapsUrl: 'https://maps.app.goo.gl/sCgGJjSqNen6hpFx9?g_st=aw',
   },
 ]
 

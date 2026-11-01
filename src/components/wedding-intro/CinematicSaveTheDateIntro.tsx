@@ -92,14 +92,7 @@ export function CinematicSaveTheDateIntro({
     if (timerRef.current) clearTimeout(timerRef.current)
 
     // Trigger celebration effects for specific scenes
-    if (activeScene === 3) {
-      // Calendar heart scene
-      setTimeout(() => {
-        try {
-          weddingAudio.playTempleBellChime()
-        } catch (_) {}
-      }, 700)
-    } else if (activeScene === 5) {
+    if (activeScene === 5) {
       // Thank you scene
       launchPetalShower()
       launchHeartAndMultiShapeBurst()
@@ -159,7 +152,6 @@ export function CinematicSaveTheDateIntro({
     if (isDoorOpen) return
     setIsDoorOpen(true)
     try {
-      weddingAudio.playTempleBellChime()
       if (!weddingAudio.isPlaying) weddingAudio.start()
     } catch (_) {}
     launchHeartAndMultiShapeBurst()
@@ -174,6 +166,7 @@ export function CinematicSaveTheDateIntro({
     setActiveScene(0)
     setIsPlaying(true)
     setProgressPct(0)
+    if (!weddingAudio.isPlaying) weddingAudio.start()
   }
 
   const handleToggleAudio = (e: React.MouseEvent) => {
@@ -190,11 +183,15 @@ export function CinematicSaveTheDateIntro({
     if (!isDoorOpen) setIsDoorOpen(true)
     setActiveScene(idx)
     setIsPlaying(true)
+    if (!weddingAudio.isPlaying) weddingAudio.start()
   }
 
   return (
     <aside
-      className="wedding-intro-root relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FAF5EE] text-[#3D1E24] overflow-hidden select-none"
+      onClick={() => {
+        if (!weddingAudio.isPlaying) weddingAudio.start()
+      }}
+      className="wedding-intro-root relative flex flex-col items-center justify-center min-h-screen w-full bg-[#FAF5EE] text-[#3D1E24] overflow-hidden select-none cursor-pointer"
       aria-label="Save The Date Cinematic Video Invitation"
     >
       {/* =========================================================================
@@ -488,7 +485,7 @@ export function CinematicSaveTheDateIntro({
                   </div>
 
                   {/* Calendar Numbers Grid (Nov 1 is Sunday, Nov 20 is Friday) */}
-                  <div className="grid grid-cols-7 gap-y-1 gap-x-1 text-[10px] sm:text-[11px] font-serif text-[#3D1E24] w-full text-center font-medium">
+                  <div className="grid grid-cols-7 gap-y-1.5 gap-x-1 text-[10px] sm:text-[11px] font-serif text-[#3D1E24] w-full text-center font-medium">
                     {[...Array(30)].map((_, i) => {
                       const day = i + 1
                       const isWeddingDay = day === 20
@@ -496,33 +493,35 @@ export function CinematicSaveTheDateIntro({
                       return (
                         <div
                           key={day}
-                          className={`relative flex items-center justify-center h-5 ${
-                            isWeddingDay
-                              ? 'font-bold text-[#7E2E40] z-10 animate-date-pulse'
-                              : 'opacity-85'
+                          className={`relative flex items-center justify-center h-6 ${
+                            isWeddingDay ? 'z-20 font-bold' : 'opacity-85'
                           }`}
                         >
-                          {isWeddingDay && (
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                              <div className="size-6.5 sm:size-7 flex items-center justify-center translate-y-[2px]">
+                          {isWeddingDay ? (
+                            <div className="relative flex items-center justify-center w-full h-full">
+                              {/* Glowing Romantic Heart Highlight */}
+                              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                 <svg
-                                  viewBox="0 0 100 100"
-                                  className="w-full h-full text-rose-500 filter drop-shadow-[0_0_8px_rgba(244,63,94,0.9)] overflow-visible"
+                                  viewBox="0 0 24 24"
+                                  className="size-7 sm:size-7.5 overflow-visible filter drop-shadow-[0_2px_8px_rgba(225,29,72,0.75)] animate-pulse"
                                 >
                                   <path
-                                    d="M50 88 C20 62 10 44 10 30 A18 18 0 0 1 50 22 A18 18 0 0 1 90 30 C90 44 80 62 50 88 Z"
-                                    fill="none"
-                                    stroke="#F43F5E"
-                                    strokeWidth="7"
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                    fill="rgba(225, 29, 72, 0.25)"
+                                    stroke="#E11D48"
+                                    strokeWidth="2.2"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    className="heart-draw-anim"
                                   />
                                 </svg>
                               </div>
+                              <span className="relative z-10 text-[11px] sm:text-xs font-bold text-[#9F1239] drop-shadow-xs">
+                                {day}
+                              </span>
                             </div>
+                          ) : (
+                            <span className="relative z-10 leading-none">{day}</span>
                           )}
-                          <span className="relative z-10 leading-none">{day}</span>
                         </div>
                       )
                     })}

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Sparkles, ChevronLeft, ChevronRight, Eye } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { Sparkles, ChevronLeft, ChevronRight, Eye, X } from 'lucide-react'
 import { GoldFloralDivider, AnimatedKolamDivider } from '@/components/common/Ornaments'
 import { Card3DTilt } from '@/components/common/Card3DTilt'
 
@@ -58,6 +58,28 @@ export function GlimpsesSection() {
   ]
 
   const [activeImage, setActiveImage] = useState<GlimpseItem | null>(null)
+
+  // Keyboard navigation (Esc to close, Left/Right arrows to cycle)
+  useEffect(() => {
+    if (!activeImage) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveImage(null)
+      } else if (e.key === 'ArrowLeft') {
+        const currentIdx = glimpses.findIndex((g) => g.id === activeImage.id)
+        const prevIdx = (currentIdx - 1 + glimpses.length) % glimpses.length
+        setActiveImage(glimpses[prevIdx])
+      } else if (e.key === 'ArrowRight') {
+        const currentIdx = glimpses.findIndex((g) => g.id === activeImage.id)
+        const nextIdx = (currentIdx + 1) % glimpses.length
+        setActiveImage(glimpses[nextIdx])
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeImage, glimpses])
 
   return (
     <section id="gallery" className="relative py-16 sm:py-24 px-4 sm:px-6 bg-[#FAF5EB]">
@@ -134,39 +156,93 @@ export function GlimpsesSection() {
         {/* Modal Lightbox for Full View */}
         {activeImage && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-backdrop-in"
+            className="fixed inset-0 z-50 flex flex-col justify-between p-3 sm:p-6 bg-black/92 backdrop-blur-xl animate-in fade-in duration-300"
             onClick={() => setActiveImage(null)}
           >
+            {/* Top Bar: Category, Counter & Close Button */}
             <div
-              className="relative max-w-3xl w-full bg-[#3E0C13] rounded-3xl overflow-hidden border-2 border-[#C59B27] shadow-2xl p-4 sm:p-6"
+              className="w-full max-w-5xl mx-auto flex items-center justify-between z-10 py-1"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full max-h-[70vh] rounded-2xl overflow-hidden mb-4 border border-[#F3D279]/30">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className="text-[10px] sm:text-xs font-cinzel uppercase tracking-widest text-[#F3D279] bg-[#3E0C13]/90 border border-[#D4AF37]/50 px-3 py-1 rounded-full shadow-md">
+                  {activeImage.category}
+                </span>
+                <span className="text-[11px] font-cinzel text-zinc-400 tracking-wider">
+                  {glimpses.findIndex((g) => g.id === activeImage.id) + 1} / {glimpses.length}
+                </span>
+              </div>
+
+              {/* Prominent Close (X) Button */}
+              <button
+                onClick={() => setActiveImage(null)}
+                className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#3E0C13]/90 hover:bg-[#5C131E] border border-[#D4AF37]/70 text-[#F3D279] shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                title="Close (Esc)"
+                aria-label="Close image viewer"
+              >
+                <X className="size-4 group-hover:rotate-90 transition-transform duration-300" />
+                <span className="text-[11px] font-cinzel tracking-wider uppercase font-semibold">
+                  Close
+                </span>
+              </button>
+            </div>
+
+            {/* Center Stage: Prev Button + Hero Image + Next Button */}
+            <div
+              className="relative flex-1 flex items-center justify-center my-2 sm:my-3 w-full max-w-5xl mx-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Previous Image Arrow */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const currentIdx = glimpses.findIndex((g) => g.id === activeImage.id)
+                  const prevIdx = (currentIdx - 1 + glimpses.length) % glimpses.length
+                  setActiveImage(glimpses[prevIdx])
+                }}
+                className="absolute left-1 sm:left-3 z-20 flex items-center justify-center size-10 sm:size-12 rounded-full bg-black/60 hover:bg-[#5C131E] border border-[#D4AF37]/50 text-[#F3D279] backdrop-blur-md shadow-xl hover:scale-110 active:scale-90 transition-all cursor-pointer"
+                title="Previous Image (Left Arrow)"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="size-5 sm:size-6" />
+              </button>
+
+              {/* The Hero Image Frame (fits both portrait and landscape beautifully) */}
+              <div className="relative max-h-[68vh] sm:max-h-[74vh] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/50 shadow-[0_0_50px_rgba(0,0,0,0.85)] bg-black/40 flex items-center justify-center">
                 <img
                   src={activeImage.src}
                   alt={activeImage.title}
-                  className="w-full h-full object-contain max-h-[70vh] mx-auto"
+                  className="max-h-[66vh] sm:max-h-[72vh] max-w-[85vw] sm:max-w-[75vw] w-auto h-auto object-contain transition-all duration-300 select-none"
                 />
               </div>
 
-              <div className="text-center">
-                <p className="text-[10px] font-cinzel uppercase tracking-widest text-[#F3D279]">
-                  {activeImage.category}
-                </p>
-                <h3 className="font-serif text-xl sm:text-2xl text-white font-normal mt-0.5">
-                  {activeImage.title}
-                </h3>
-                <p className="text-xs text-zinc-300 mt-1 max-w-md mx-auto">
-                  {activeImage.subtitle}
-                </p>
+              {/* Next Image Arrow */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const currentIdx = glimpses.findIndex((g) => g.id === activeImage.id)
+                  const nextIdx = (currentIdx + 1) % glimpses.length
+                  setActiveImage(glimpses[nextIdx])
+                }}
+                className="absolute right-1 sm:right-3 z-20 flex items-center justify-center size-10 sm:size-12 rounded-full bg-black/60 hover:bg-[#5C131E] border border-[#D4AF37]/50 text-[#F3D279] backdrop-blur-md shadow-xl hover:scale-110 active:scale-90 transition-all cursor-pointer"
+                title="Next Image (Right Arrow)"
+                aria-label="Next image"
+              >
+                <ChevronRight className="size-5 sm:size-6" />
+              </button>
+            </div>
 
-                <button
-                  onClick={() => setActiveImage(null)}
-                  className="mt-4 px-6 py-2 rounded-full bg-[#5C131E] border border-[#F3D279] text-[#F3D279] font-cinzel text-xs uppercase tracking-wider hover:bg-[#7A1D2B] transition-colors"
-                >
-                  Close
-                </button>
-              </div>
+            {/* Bottom Caption Bar */}
+            <div
+              className="w-full max-w-2xl mx-auto text-center px-4 py-2 rounded-2xl bg-[#3E0C13]/70 backdrop-blur-md border border-[#D4AF37]/30 shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="font-serif text-base sm:text-xl text-[#FAF7F0] font-normal leading-snug drop-shadow-sm">
+                {activeImage.title}
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#D8CEBF] font-sans mt-0.5 line-clamp-2">
+                {activeImage.subtitle}
+              </p>
             </div>
           </div>
         )}

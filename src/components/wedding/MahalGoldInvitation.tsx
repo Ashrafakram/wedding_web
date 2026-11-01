@@ -99,9 +99,9 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     touchStartX.current = null
   }
 
-  // Auto-shift Book timer (6.5 seconds per page)
-  const PAGE_DURATION = 6500
-  const TICK_INTERVAL = 65
+  // Auto-shift Book timer (11.0 seconds per page - comfortable normal reading speed)
+  const PAGE_DURATION = 11000
+  const TICK_INTERVAL = 55
 
   const scrollToCardTop = () => {
     if (cardRef.current) {
@@ -244,8 +244,8 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
   // SECTION RENDERERS (Clean & 100% Faithful)
   // ----------------------------------------------------
   const renderSection1 = () => (
-    <section dir="ltr" className="relative isolate w-full overflow-hidden pt-[13.2%] pb-[16.6%]">
-          <div className="relative mx-auto w-full max-w-[480px] md:max-w-[680px]">
+    <section dir="ltr" className="relative isolate w-full overflow-hidden pt-[11%] pb-[13%]">
+          <div className="relative mx-auto w-full max-w-[480px]">
             {/* Bells */}
             <div
               aria-hidden="true"
@@ -729,12 +729,12 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
 
             {/* 3D Perspective Card Swiper */}
             <div
-              className="mt-6 w-full max-w-[432px] md:max-w-[600px] group"
+              className="mt-4 sm:mt-6 w-full max-w-[440px] group"
               onMouseEnter={() => setIsCarouselHovered(true)}
               onMouseLeave={() => setIsCarouselHovered(false)}
             >
               <div
-                className="relative h-[340px] md:h-[520px] touch-pan-y select-none"
+                className="relative h-[320px] sm:h-[350px] touch-pan-y select-none"
                 onTouchStart={(e) => {
                   setIsCarouselHovered(true)
                   handleTouchStart(e)
@@ -1375,11 +1375,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
 
   return (
     <div className="flex w-full justify-center overflow-x-clip bg-transparent overflow-clip scrollbar-none" data-testid="mahal-gold-template">
-      {/* Root Card Container */}
+      {/* Root Card Container - Optimally scaled for 1:1 book viewing on both system and mobile */}
       <div
         ref={cardRef}
         data-showcase-root=""
-        className="relative w-full max-w-[480px] md:max-w-[900px] md:mx-auto overflow-hidden md:border-x md:border-[#ab7a4533] isolate !overflow-hidden shadow-2xl"
+        className="relative w-full max-w-[450px] sm:max-w-[480px] md:max-w-[490px] mx-auto overflow-hidden border-x border-[#ab7a4533] isolate !overflow-hidden shadow-2xl"
         style={{ backgroundColor: '#f7e3cd', color: '#ab7a45' }}
       >
         {/* Paper Texture Background */}
@@ -1500,22 +1500,22 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                   width: '100%',
                 }}
               >
-                <div className="w-full shrink-0 min-w-full">
+                <div className="w-full shrink-0 min-w-full max-h-[calc(100vh-112px)] overflow-y-auto scrollbar-none">
                   {renderSection1()}
                 </div>
-                <div className="w-full shrink-0 min-w-full">
+                <div className="w-full shrink-0 min-w-full max-h-[calc(100vh-112px)] overflow-y-auto scrollbar-none">
                   {renderSection2()}
                 </div>
-                <div className="w-full shrink-0 min-w-full">
+                <div className="w-full shrink-0 min-w-full max-h-[calc(100vh-112px)] overflow-y-auto scrollbar-none">
                   {renderSection3()}
                 </div>
-                <div className="w-full shrink-0 min-w-full">
+                <div className="w-full shrink-0 min-w-full max-h-[calc(100vh-112px)] overflow-y-auto scrollbar-none">
                   {renderSection4()}
                 </div>
-                <div className="w-full shrink-0 min-w-full">
+                <div className="w-full shrink-0 min-w-full max-h-[calc(100vh-112px)] overflow-y-auto scrollbar-none">
                   {renderSection5()}
                 </div>
-                <div className="w-full shrink-0 min-w-full">
+                <div className="w-full shrink-0 min-w-full max-h-[calc(100vh-112px)] overflow-y-auto scrollbar-none">
                   {renderSection6()}
                 </div>
               </div>

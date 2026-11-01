@@ -7,7 +7,7 @@ export function VenuesSection() {
   const avvsMapsUrl =
     'https://www.google.com/maps/search/?api=1&query=Vasavi+Garden+AVVS+Hall+Ammapet+Salem+Tamil+Nadu+636003'
   const templeMapsUrl =
-    'https://www.google.com/maps/search/?api=1&query=Senraya+Perumal+Temple+Odayapatti+Salem+Tamil+Nadu'
+    'https://maps.app.goo.gl/LZ5V1XntHBmdKdMs6?g_st=aw'
 
   return (
     <section id="venues" className="relative py-16 sm:py-24 px-4 sm:px-6 bg-[#FAF5EB]">

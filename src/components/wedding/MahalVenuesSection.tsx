@@ -94,7 +94,7 @@ export const MahalVenuesSection: React.FC = () => {
               <div className="flex items-center justify-between pt-3 border-t border-[#ab7a45]/20">
                 <span className="text-xs text-[#ab7a45] font-semibold">20 Nov • 4:00 AM</span>
                 <a
-                  href="https://maps.google.com/?q=Senraya+Perumal+Temple+Salem"
+                  href="https://maps.app.goo.gl/LZ5V1XntHBmdKdMs6?g_st=aw"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-[#ab7a45] hover:bg-[#8f642e] transition-colors"

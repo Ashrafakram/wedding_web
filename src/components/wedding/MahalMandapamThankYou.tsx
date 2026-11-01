@@ -25,10 +25,13 @@ export const MahalMandapamThankYou: React.FC = () => {
       {/* Signature Couple Name */}
       <div className="relative z-10 -mt-5 sm:-mt-8 pb-10 text-center flex flex-col items-center">
         <span
-          className="text-3xl sm:text-4xl text-[#640e1b]"
+          className="text-3xl sm:text-4xl text-[#640e1b] inline-flex items-center justify-center gap-2"
           style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
         >
-          Swetha &amp; Deepak Kumar
+          <span>Swetha &amp; Deepak Kumar</span>
+          <span className="font-sans text-2xl sm:text-3xl not-italic select-none" role="img" aria-label="blessings">
+            🙏
+          </span>
         </span>
         <span
           className="text-[11px] uppercase tracking-widest text-[#ab7a45] mt-1 font-serif"

@@ -31,6 +31,30 @@ const GALLERY_IMAGES = [
   },
 ]
 
+const DEFAULT_INITIAL_WISHES: Wish[] = [
+  {
+    id: 'w-1',
+    name: 'Ramesh & Geetha',
+    message:
+      'Wishing dear Swetha and Deepak a blissful married life filled with endless joy and love! May Lord Senraya Perumal shower all divine blessings.',
+    date: '1 hour ago',
+  },
+  {
+    id: 'w-2',
+    name: 'Suresh Kumar & Family',
+    message:
+      'Heartiest congratulations to the lovely couple! Looking forward to celebrating with you at AVVS Mahal on the 19th.',
+    date: '3 hours ago',
+  },
+  {
+    id: 'w-3',
+    name: 'Priya & Karthik',
+    message:
+      'So happy for you both, Swetha & Deepak! May your life together be as radiant as your wedding day.',
+    date: 'Yesterday',
+  },
+]
+
 export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvpClick }) => {
   // Parallax scroll state
   const [scrollY, setScrollY] = useState(0)
@@ -108,12 +132,19 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
   const [wishes, setWishes] = useState<Wish[]>(() => {
     try {
       const saved = localStorage.getItem('swetha_deepak_guestbook')
-      if (saved) return JSON.parse(saved)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed
+      }
     } catch {}
-    return []
+    return DEFAULT_INITIAL_WISHES
   })
   const [guestName, setGuestName] = useState('')
   const [guestMsg, setGuestMsg] = useState('')
+  const [isWishesModalOpen, setIsWishesModalOpen] = useState(false)
+  const [wishesSearch, setWishesSearch] = useState('')
+  const [wishesPage, setWishesPage] = useState(1)
+  const [wishSentSuccess, setWishSentSuccess] = useState(false)
 
   const handleGuestSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -131,7 +162,32 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     } catch {}
     setGuestName('')
     setGuestMsg('')
+    setWishSentSuccess(true)
+    setTimeout(() => setWishSentSuccess(false), 3500)
   }
+
+  // Close wishes modal on Escape
+  useEffect(() => {
+    if (!isWishesModalOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsWishesModalOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isWishesModalOpen])
+
+  // Pagination for scalable wishes list (1K+ wishes support)
+  const WISHES_PER_PAGE = 6
+  const filteredWishes = wishes.filter(
+    (w) =>
+      w.name.toLowerCase().includes(wishesSearch.toLowerCase()) ||
+      w.message.toLowerCase().includes(wishesSearch.toLowerCase())
+  )
+  const totalWishesPages = Math.max(1, Math.ceil(filteredWishes.length / WISHES_PER_PAGE))
+  const paginatedWishes = filteredWishes.slice(
+    (wishesPage - 1) * WISHES_PER_PAGE,
+    wishesPage * WISHES_PER_PAGE
+  )
 
   // Days in Nov 2026 (Nov 1 is Sunday)
   const weekdays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
@@ -1192,32 +1248,162 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 className="w-full px-4 py-2 rounded-lg border border-[#ab7a45]/40 bg-white/70 text-[#640e1b] text-sm focus:outline-none focus:ring-1 focus:ring-[#640e1b] resize-none"
               />
             </div>
-            <button
-              type="submit"
-              className="px-6 py-2 rounded-full text-xs md:text-sm font-semibold text-white bg-[#640e1b] hover:bg-[#7d1222] self-center shadow transition-all active:scale-95"
-            >
-              Send wish
-            </button>
-          </form>
+            {wishSentSuccess && (
+              <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs text-center font-medium animate-fade-in">
+                ✨ Thank you! Your warm wish has been added to Swetha &amp; Deepak&apos;s guestbook. 🙏
+              </div>
+            )}
 
-          {/* Wishes List */}
-          {wishes.length > 0 && (
-            <div className="mt-8 space-y-3 max-w-[420px] mx-auto text-left">
-              {wishes.map((w) => (
-                <div
-                  key={w.id}
-                  className="p-3.5 rounded-lg border border-[#ab7a45]/25 bg-white/50 text-xs md:text-sm shadow-sm"
-                >
-                  <div className="flex justify-between items-center mb-1">
-                    <strong className="text-[#640e1b]">{w.name}</strong>
-                    <span className="text-[10px] text-[#ab7a45]/70">{w.date}</span>
-                  </div>
-                  <p className="text-[#640e1b]/80">&ldquo;{w.message}&rdquo;</p>
-                </div>
-              ))}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+              <button
+                type="submit"
+                className="px-6 py-2.5 rounded-full text-xs md:text-sm font-semibold text-white bg-[#640e1b] hover:bg-[#7d1222] shadow transition-all active:scale-95 cursor-pointer"
+              >
+                Send wish
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setWishesPage(1)
+                  setIsWishesModalOpen(true)
+                }}
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold text-[#640e1b] bg-white/85 hover:bg-white border border-[#ab7a45]/50 shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <span>💌</span>
+                <span>View Wishes ({wishes.length})</span>
+              </button>
             </div>
-          )}
+          </form>
         </section>
+
+        {/* ======================================================== */}
+        {/* PROFESSIONAL WISHES MODAL (SCALABLE FOR 1K+ GUESTS)      */}
+        {/* ======================================================== */}
+        {isWishesModalOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
+            onClick={() => setIsWishesModalOpen(false)}
+          >
+            <div
+              className="relative w-full max-w-[560px] max-h-[88vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col p-5 md:p-6 text-left"
+              style={{
+                background: '#fcf8f2',
+                border: '2px solid #ab7a45',
+                boxShadow: '0 25px 60px rgba(0, 0, 0, 0.45)',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-start justify-between gap-4 pb-3 border-b border-[#ab7a45]/30">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">💌</span>
+                    <h3
+                      className="text-lg md:text-xl font-bold text-[#640e1b]"
+                      style={{ fontFamily: '"Times New Roman", Times, serif' }}
+                    >
+                      Heartfelt Wishes &amp; Blessings
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#ab7a45] mt-0.5">
+                    For Swetha &amp; Deepak Kumar • {wishes.length} {wishes.length === 1 ? 'Wish' : 'Wishes'} received
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsWishesModalOpen(false)}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#640e1b] bg-[#ab7a45]/20 hover:bg-[#ab7a45]/40 transition-colors shrink-0 font-bold"
+                  aria-label="Close wishes modal"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Search Bar for 1K+ wishes */}
+              <div className="pt-3 pb-2">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={wishesSearch}
+                    onChange={(e) => {
+                      setWishesSearch(e.target.value)
+                      setWishesPage(1)
+                    }}
+                    placeholder="Search wishes by name or message..."
+                    className="w-full pl-9 pr-4 py-2 rounded-lg border border-[#ab7a45]/40 bg-white/90 text-[#640e1b] text-xs md:text-sm placeholder-[#ab7a45]/60 focus:outline-none focus:ring-1 focus:ring-[#640e1b]"
+                  />
+                  <span className="absolute left-3 top-2.5 text-[#ab7a45] text-xs">🔍</span>
+                  {wishesSearch && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setWishesSearch('')
+                        setWishesPage(1)
+                      }}
+                      className="absolute right-3 top-2 text-xs text-[#ab7a45] hover:text-[#640e1b]"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Scrollable / Paginated List */}
+              <div className="flex-1 overflow-y-auto max-h-[50vh] pr-1 my-2 space-y-3">
+                {paginatedWishes.length === 0 ? (
+                  <div className="py-12 text-center text-[#ab7a45] text-sm">
+                    {wishesSearch ? 'No wishes found matching your search.' : 'No wishes yet. Be the first to send your blessings!'}
+                  </div>
+                ) : (
+                  paginatedWishes.map((w) => (
+                    <div
+                      key={w.id}
+                      className="p-3.5 rounded-xl border border-[#ab7a45]/30 bg-white/80 shadow-sm transition-all hover:bg-white"
+                    >
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="font-semibold text-sm text-[#640e1b] flex items-center gap-1.5">
+                          <span>❤️</span>
+                          <span>{w.name}</span>
+                        </span>
+                        <span className="text-[10px] text-[#ab7a45]/80 font-medium">{w.date}</span>
+                      </div>
+                      <p className="text-xs md:text-sm text-[#640e1b]/85 leading-relaxed font-serif italic">
+                        &ldquo;{w.message}&rdquo;
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Modal Footer with Pagination Controls */}
+              <div className="pt-3 border-t border-[#ab7a45]/30 flex items-center justify-between gap-3 text-xs">
+                <span className="text-[#ab7a45] font-medium">
+                  Page {totalWishesPages > 0 ? wishesPage : 0} of {totalWishesPages} ({filteredWishes.length} wishes)
+                </span>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    disabled={wishesPage <= 1}
+                    onClick={() => setWishesPage((p) => Math.max(1, p - 1))}
+                    className="px-3 py-1.5 rounded-lg border border-[#ab7a45]/40 bg-white text-[#640e1b] font-medium disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#ab7a45]/15 transition-colors cursor-pointer"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    type="button"
+                    disabled={wishesPage >= totalWishesPages}
+                    onClick={() => setWishesPage((p) => Math.min(totalWishesPages, p + 1))}
+                    className="px-3 py-1.5 rounded-lg border border-[#ab7a45]/40 bg-white text-[#640e1b] font-medium disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#ab7a45]/15 transition-colors cursor-pointer"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* FOOTER THANK YOU SECTION (REVERSIBLE TOGGLE) */}
         {SHOW_TRADITIONAL_MANDAPAM_THANK_YOU ? (

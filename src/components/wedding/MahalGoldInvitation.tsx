@@ -1278,13 +1278,9 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
           </form>
 
           {/* Wishes List */}
-          <div className="mt-8 space-y-3 max-w-[420px] mx-auto text-left">
-            {wishes.length === 0 ? (
-              <p className="text-center text-xs md:text-sm text-[#ab7a45]/75 italic py-4">
-                No wishes yet. Be the first to send your blessings!
-              </p>
-            ) : (
-              wishes.map((w) => (
+          {wishes.length > 0 && (
+            <div className="mt-8 space-y-3 max-w-[420px] mx-auto text-left">
+              {wishes.map((w) => (
                 <div
                   key={w.id}
                   className="p-3.5 rounded-lg border border-[#ab7a45]/25 bg-white/50 text-xs md:text-sm shadow-sm"
@@ -1295,9 +1291,9 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                   </div>
                   <p className="text-[#640e1b]/80">&ldquo;{w.message}&rdquo;</p>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* FOOTER THANK YOU SECTION (REVERSIBLE TOGGLE) */}

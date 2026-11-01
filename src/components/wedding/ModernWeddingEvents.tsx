@@ -400,3 +400,4 @@ export const ModernWeddingEvents: React.FC = () => {
 }
 
 export default ModernWeddingEvents
+

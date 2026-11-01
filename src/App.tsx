@@ -16,7 +16,15 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div
+      className="min-h-screen relative overflow-x-hidden selection:bg-[#ab7a45]/20 selection:text-[#640e1b]"
+      style={{
+        backgroundColor: '#f7e3cd',
+        backgroundImage: 'url(/images/themes/mahal-gold/paper.webp)',
+        backgroundSize: '100% auto',
+        backgroundRepeat: 'repeat-y',
+      }}
+    >
       {/* 1. Fullscreen Authentic Wax Seal Envelope Opening Animation */}
       {!isEnvelopeOpened && <RoyalEnvelope onOpen={handleOpenEnvelope} />}
 

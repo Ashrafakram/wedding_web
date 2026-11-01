@@ -140,11 +140,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
   const novDays = Array.from({ length: 30 }, (_, i) => i + 1)
 
   return (
-    <div className="flex w-full justify-center overflow-x-clip bg-white overflow-clip scrollbar-none" data-testid="mahal-gold-template">
+    <div className="flex w-full justify-center overflow-x-clip bg-transparent overflow-clip scrollbar-none" data-testid="mahal-gold-template">
       {/* Root Card Container with exact width max-w-[480px] md:max-w-[900px] */}
       <div
         data-showcase-root=""
-        className="relative w-full max-w-[480px] md:max-w-[900px] md:mx-auto overflow-hidden md:border md:border-[#ab7a4533] isolate !overflow-hidden shadow-2xl"
+        className="relative w-full max-w-[480px] md:max-w-[900px] md:mx-auto overflow-hidden md:border-x md:border-[#ab7a4533] isolate !overflow-hidden shadow-2xl"
         style={{ backgroundColor: '#f7e3cd', color: '#ab7a45' }}
       >
         {/* Paper Texture Background */}
@@ -919,28 +919,84 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 2026
               </div>
 
-              {/* Countdown Ticker */}
-              <div className="flex items-center justify-center flex-col mt-4">
-                <h2
-                  className="text-[15px] md:text-[17px] uppercase flex flex-col items-center text-center tracking-[0.06em]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#ab7a45',
-                  }}
-                >
-                  <span dir="auto">Countdown</span>
-                </h2>
-                <div
-                  className="text-center mt-2 text-sm md:text-lg flex items-center gap-4"
-                  style={{
-                    color: '#640e1b',
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                  }}
-                >
-                  <span><strong>{countdown.days}</strong> Days</span>
-                  <span><strong>{countdown.hours}</strong> Hrs</span>
-                  <span><strong>{countdown.minutes}</strong> Mins</span>
-                  <span><strong>{countdown.seconds}</strong> Secs</span>
+              {/* Highlighted Royal Countdown Timer Plaque */}
+              <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-6 mb-2">
+                <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-[#ab7a45]/30 via-[#d4af37]/70 to-[#ab7a45]/30 shadow-[0_12px_32px_rgba(100,14,27,0.14)] animate-royal-glow">
+                  <div className="rounded-[14px] bg-[#fff9f0]/95 backdrop-blur-xs px-3.5 py-4 md:px-5 md:py-5 border border-[#ab7a45]/35">
+                    {/* Header with Fleur-de-lis / Royal Accents */}
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <span className="text-[#ab7a45] text-xs">⚜</span>
+                      <h2
+                        className="text-[11px] md:text-[13px] font-bold tracking-[0.2em] uppercase text-center"
+                        style={{
+                          fontFamily: '"Cinzel", "Times New Roman", serif',
+                          color: '#640e1b',
+                        }}
+                      >
+                        Countdown to the Big Day
+                      </h2>
+                      <span className="text-[#ab7a45] text-xs">⚜</span>
+                    </div>
+
+                    {/* 4 Regal Counter Boxes */}
+                    <div className="grid grid-cols-4 gap-2 md:gap-3">
+                      {/* Days */}
+                      <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
+                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
+                        <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
+                          {String(countdown.days).padStart(2, '0')}
+                        </span>
+                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
+                          Days
+                        </span>
+                      </div>
+
+                      {/* Hours */}
+                      <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
+                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
+                        <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
+                          {String(countdown.hours).padStart(2, '0')}
+                        </span>
+                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
+                          Hours
+                        </span>
+                      </div>
+
+                      {/* Minutes */}
+                      <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
+                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
+                        <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
+                          {String(countdown.minutes).padStart(2, '0')}
+                        </span>
+                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
+                          Mins
+                        </span>
+                      </div>
+
+                      {/* Seconds (Active Gold Highlight) */}
+                      <div className="relative rounded-xl bg-gradient-to-b from-[#7a1223] via-[#640e1b] to-[#450a13] p-2 md:p-3 text-center shadow-md border-2 border-[#d4af37] overflow-hidden">
+                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent animate-gold-shimmer" />
+                        <span className="block text-2xl md:text-3xl font-bold text-[#ffd700] font-serif tracking-tight drop-shadow-sm">
+                          {String(countdown.seconds).padStart(2, '0')}
+                        </span>
+                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-bold text-white mt-0.5">
+                          Secs
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Auspicious Date Subtitle */}
+                    <div className="text-center mt-2.5 pt-2 border-t border-[#ab7a45]/20">
+                      <span
+                        className="text-[11px] md:text-[12px] italic text-[#640e1b]/80"
+                        style={{
+                          fontFamily: '"Baskerville", "Times New Roman", serif',
+                        }}
+                      >
+                        Friday, 20 November 2026 • 6:00 PM Reception
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

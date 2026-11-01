@@ -102,7 +102,7 @@ export function RoyalSealFloralIntro({ isOpen, onComplete }: RoyalSealFloralIntr
             />
           </div>
           <span className="text-[11px] sm:text-xs tracking-wider text-[#F3D279] font-medium">
-            Deepak &amp; Swetha
+            Swetha &amp; Deepak
           </span>
         </div>
 
@@ -167,7 +167,7 @@ export function RoyalSealFloralIntro({ isOpen, onComplete }: RoyalSealFloralIntr
                 ROYAL WEDDING INVITATION
               </h1>
               <p className="text-[11px] sm:text-xs text-[#F3D279]/90 tracking-widest mt-0.5 font-light">
-                Deepak &amp; Swetha • 20 November 2026
+                Swetha &amp; Deepak • 20 November 2026
               </p>
             </div>
 
@@ -217,7 +217,7 @@ export function RoyalSealFloralIntro({ isOpen, onComplete }: RoyalSealFloralIntr
               {/* Card Image */}
               <img
                 src="/assets/deepak_swetha_invite_card.jpg"
-                alt="Wedding celebration of Deepak & Swetha"
+                alt="Wedding celebration of Swetha & Deepak"
                 className="w-full h-auto object-cover max-h-[68vh] sm:max-h-[72vh] mx-auto block"
               />
 

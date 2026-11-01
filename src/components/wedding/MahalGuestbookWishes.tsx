@@ -140,7 +140,7 @@ export const MahalGuestbookWishes: React.FC = () => {
               rows={3}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Write your wishes for Deepak & Swetha..."
+              placeholder="Write your wishes for Swetha & Deepak..."
               className="w-full px-3.5 py-2.5 rounded-lg border border-[#ab7a45]/35 bg-white text-sm text-[#640e1b] focus:outline-none focus:ring-2 focus:ring-[#ab7a45] resize-none"
             />
           </div>

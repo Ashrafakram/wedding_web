@@ -7,7 +7,7 @@ export const MahalMandapamThankYou: React.FC = () => {
       <div className="relative w-full">
         <img
           src="/images/themes/mahal-gold/traditional_couple_mandapam.jpg"
-          alt="Deepak Kumar & Swetha - Traditional Wedding Blessing"
+          alt="Swetha & Deepak Kumar - Traditional Wedding Blessing"
           className="w-full h-auto object-cover block"
           loading="eager"
         />
@@ -20,6 +20,22 @@ export const MahalMandapamThankYou: React.FC = () => {
               'linear-gradient(to bottom, rgba(253, 247, 238, 0.6) 0%, rgba(253, 247, 238, 0.15) 60%, transparent 100%)',
           }}
         />
+      </div>
+
+      {/* Signature Couple Name */}
+      <div className="relative z-10 -mt-5 sm:-mt-8 pb-10 text-center flex flex-col items-center">
+        <span
+          className="text-3xl sm:text-4xl text-[#640e1b]"
+          style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
+        >
+          Swetha &amp; Deepak Kumar
+        </span>
+        <span
+          className="text-[11px] uppercase tracking-widest text-[#ab7a45] mt-1 font-serif"
+          style={{ fontFamily: '"Cormorant Garamond", "Times New Roman", serif' }}
+        >
+          With Love &amp; Gratitude
+        </span>
       </div>
     </div>
   )

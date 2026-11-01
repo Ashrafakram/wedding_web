@@ -16,7 +16,7 @@ export function GlimpsesSection() {
     {
       id: 'reception_pink',
       title: 'Tender Cheek Pinch in Dusty Pink Attire',
-      subtitle: 'Deepak & Swetha Reception Art with Lotus Blossoms',
+      subtitle: 'Swetha & Deepak Reception Art with Lotus Blossoms',
       src: '/assets/reception_couple_pinch_pink.jpg',
       category: 'Reception Artwork',
     },

@@ -312,7 +312,7 @@ export function CinematicBlessingSplash({ isOpen, onComplete }: CinematicBlessin
               Step 1: The Arrival • தட்டளித்தல்
             </span>
             <p className="text-xs sm:text-sm text-[#E8DEC8] font-light mb-3">
-              Deepak Kumar &amp; Swetha arrive holding the sacred silver plate with fruits &amp; invitation.
+              Swetha &amp; Deepak Kumar arrive holding the sacred silver plate with fruits &amp; invitation.
             </p>
             <button
               onClick={(e) => {

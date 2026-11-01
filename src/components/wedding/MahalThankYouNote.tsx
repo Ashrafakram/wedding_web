@@ -39,7 +39,7 @@ export const MahalThankYouNote: React.FC = () => {
             className="text-2xl md:text-3xl text-[#640e1b]"
             style={{ fontFamily: '"The Nautigal", cursive' }}
           >
-            Deepak Kumar &amp; Swetha
+            Swetha &amp; Deepak Kumar
           </span>
           <span className="text-xs uppercase tracking-widest text-[#ab7a45] mt-1">
             November 2026 • Salem

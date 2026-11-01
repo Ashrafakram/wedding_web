@@ -234,7 +234,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                   style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
                   className="block w-full text-center"
                 >
-                  Deepak Kumar
+                  Swetha
                 </span>
                 <span
                   style={{ fontFamily: '"Alex Brush", ChungDoiIndic, cursive' }}
@@ -246,7 +246,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                   style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
                   className="block w-full text-center"
                 >
-                  Swetha
+                  Deepak Kumar
                 </span>
               </h1>
 
@@ -273,7 +273,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                 }}
                 className="text-[18px] mb-5 flex flex-col items-center"
               >
-                <span dir="auto">November 20, 2026</span>
+                <span dir="auto">November 19, 20, 2026</span>
               </div>
 
               {/* Cordially Invites */}

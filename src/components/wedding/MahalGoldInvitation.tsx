@@ -19,15 +19,15 @@ interface Wish {
 const GALLERY_IMAGES = [
   {
     src: '/images/gallery/couple-1.jpg',
-    alt: 'Wedding photo 1',
+    alt: 'Swetha & Deepak Kumar Wedding Save The Date',
   },
   {
     src: '/images/gallery/couple-2.jpg',
-    alt: 'Wedding photo 2',
+    alt: 'Swetha & Deepak Kumar Loving Portrait',
   },
   {
     src: '/images/gallery/couple-3.jpg',
-    alt: 'Wedding photo 3',
+    alt: 'Swetha & Deepak Kumar Wedding Celebration',
   },
 ]
 
@@ -79,7 +79,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     touchStartX.current = null
   }
 
-  // Countdown timer to November 20, 2026, 18:00
+  // Countdown timer to November 19, 2026, 18:00 (Reception Commencement)
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -88,7 +88,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
   })
 
   useEffect(() => {
-    const target = new Date('2026-11-20T18:00:00+05:30').getTime()
+    const target = new Date('2026-11-19T18:00:00+05:30').getTime()
     const timer = setInterval(() => {
       const now = new Date().getTime()
       const diff = target - now
@@ -107,7 +107,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
   // Guestbook wishes
   const [wishes, setWishes] = useState<Wish[]>(() => {
     try {
-      const saved = localStorage.getItem('deepak_swetha_guestbook')
+      const saved = localStorage.getItem('swetha_deepak_guestbook')
       if (saved) return JSON.parse(saved)
     } catch {}
     return []
@@ -127,7 +127,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     const updated = [newWish, ...wishes]
     setWishes(updated)
     try {
-      localStorage.setItem('deepak_swetha_guestbook', JSON.stringify(updated))
+      localStorage.setItem('swetha_deepak_guestbook', JSON.stringify(updated))
     } catch {}
     setGuestName('')
     setGuestMsg('')
@@ -211,7 +211,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                       fontSize: 'clamp(30px, 12.5vw, 55px)',
                     }}
                   >
-                    Deepak Kumar
+                    Swetha
                   </span>
                 </div>
                 <span
@@ -233,7 +233,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                       fontSize: 'clamp(30px, 12.5vw, 55px)',
                     }}
                   >
-                    Swetha
+                    Deepak Kumar
                   </span>
                 </div>
               </div>
@@ -346,108 +346,10 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               <span dir="auto">CEREMONY INFO</span>
             </h2>
 
-            {/* Parents Grid */}
-            <div
-              className="grid w-full grid-cols-[1fr_auto_1fr] grid-rows-[repeat(4,auto)] justify-center gap-x-3 gap-y-1 md:gap-x-7"
-              style={{
-                color: '#640e1b',
-                fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-              }}
-            >
-              {/* Groom's Parents */}
-              <div className="row-span-4 grid grid-rows-subgrid justify-items-center justify-self-center min-w-0 max-w-[170px] text-center md:max-w-[270px]">
-                <span className="text-[12px] md:text-[15px] mb-[2px]" style={{ color: '#ab7a45' }}>
-                  <span dir="auto">Mr. &amp; Mrs.</span>
-                </span>
-                <span
-                  className="font-semibold [overflow-wrap:anywhere]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#640e1b',
-                    fontSize: '12px',
-                  }}
-                >
-                  <span dir="auto">Groom&apos;s Father</span>
-                </span>
-                <span
-                  className="font-semibold [overflow-wrap:anywhere]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#640e1b',
-                    fontSize: '12px',
-                  }}
-                >
-                  <span dir="auto">Groom&apos;s Mother</span>
-                </span>
-              </div>
-
-              {/* Vertical Divider */}
-              <div
-                className="row-span-4 h-[50px] w-[1px] self-center md:h-[70px]"
-                style={{ backgroundColor: '#ab7a45', opacity: 0.6 }}
-              />
-
-              {/* Bride's Parents */}
-              <div className="row-span-4 grid grid-rows-subgrid justify-items-center justify-self-center min-w-0 max-w-[170px] text-center md:max-w-[270px]">
-                <span className="text-[12px] md:text-[15px] mb-[2px]" style={{ color: '#ab7a45' }}>
-                  <span dir="auto">Mr. &amp; Mrs.</span>
-                </span>
-                <span
-                  className="font-semibold [overflow-wrap:anywhere]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#640e1b',
-                    fontSize: '12px',
-                  }}
-                >
-                  <span dir="auto">Bride&apos;s Father</span>
-                </span>
-                <span
-                  className="font-semibold [overflow-wrap:anywhere]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#640e1b',
-                    fontSize: '12px',
-                  }}
-                >
-                  <span dir="auto">Bride&apos;s Mother</span>
-                </span>
-              </div>
-            </div>
-
-            {/* Couple Announcement */}
-            <div data-showcase-keep="" className="w-full min-w-0 relative flex flex-col items-center text-center gap-3 md:gap-4">
+            {/* Couple Announcement (Bride first, parents removed per request) */}
+            <div data-showcase-keep="" className="w-full min-w-0 relative flex flex-col items-center text-center gap-3 md:gap-4 mt-2 mb-4">
               <h3
-                className="w-[80%] min-h-[80px] flex items-center justify-center leading-[50px] md:leading-[68px] whitespace-nowrap"
-                style={{
-                  fontSize: '43px',
-                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                  color: '#640e1b',
-                }}
-              >
-                Deepak Kumar
-              </h3>
-              <div
-                className="text-xs uppercase tracking-[0.2em]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
-                  letterSpacing: '0.16em',
-                }}
-              >
-                <span dir="auto">Groom</span>
-              </div>
-              <div
-                className="text-[30px] md:text-[38px]"
-                style={{
-                  color: '#640e1b',
-                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                }}
-              >
-                &amp;
-              </div>
-              <h3
-                className="w-[80%] min-h-[80px] flex items-center justify-center leading-[50px] md:leading-[68px] whitespace-nowrap"
+                className="w-[80%] min-h-[70px] flex items-center justify-center leading-[50px] md:leading-[68px] whitespace-nowrap"
                 style={{
                   fontSize: '43px',
                   fontFamily: '"EB Garamond", ChungDoiIndic, serif',
@@ -466,86 +368,41 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               >
                 <span dir="auto">Bride</span>
               </div>
-            </div>
-
-            {/* Event 1: Wedding Ceremony */}
-            <div className="relative w-full">
               <div
-                className="relative flex flex-col items-center gap-4 md:gap-5 text-center"
+                className="text-[28px] md:text-[36px]"
                 style={{
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                  color: '#640e1b',
+                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
                 }}
               >
-                <div style={{ color: '#ab7a45' }}>
-                  <span dir="auto" className="whitespace-pre-line font-normal text-[16px] md:text-[20px] text-center">
-                    WEDDING CEREMONY
-                  </span>
-                </div>
-                <p className="font-normal text-[14px] md:text-[15px] text-center uppercase tracking-wide" style={{ color: '#ab7a45' }}>
-                  AT 4:00 AM – 6:00 AM (MUHURTHAM)
-                </p>
-                <div className="flex items-center gap-6" style={{ color: '#640e1b' }}>
-                  <span
-                    className="text-[12px] md:text-[16px]"
-                    style={{
-                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                      textAlign: 'right',
-                    }}
-                  >
-                    <span dir="auto">FRIDAY</span>
-                  </span>
-                  <span
-                    className="flex items-center justify-center text-[20px] leading-none md:text-[26px]"
-                    style={{
-                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                      color: '#ab7a45',
-                      opacity: 0.7,
-                    }}
-                  >
-                    |
-                  </span>
-                  <span
-                    className="text-[30px] md:text-[40px]"
-                    style={{
-                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    }}
-                  >
-                    20
-                  </span>
-                  <span
-                    className="flex items-center justify-center text-[20px] leading-none md:text-[26px]"
-                    style={{
-                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                      color: '#ab7a45',
-                      opacity: 0.7,
-                    }}
-                  >
-                    |
-                  </span>
-                  <span
-                    className="text-[12px] md:text-[16px]"
-                    style={{
-                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                      textAlign: 'left',
-                    }}
-                  >
-                    <span dir="auto">NOVEMBER</span>
-                  </span>
-                </div>
-                <div
-                  className="text-[18px] md:text-[24px]"
-                  style={{
-                    color: '#640e1b',
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                  }}
-                >
-                  2026
-                </div>
+                &amp;
               </div>
-
-              {/* Event 2: Wedding Reception */}
+              <h3
+                className="w-[80%] min-h-[70px] flex items-center justify-center leading-[50px] md:leading-[68px] whitespace-nowrap"
+                style={{
+                  fontSize: '43px',
+                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
+                  color: '#640e1b',
+                }}
+              >
+                Deepak Kumar
+              </h3>
               <div
-                className="relative flex flex-col items-center gap-4 md:gap-5 text-center mt-8 md:mt-10"
+                className="text-xs uppercase tracking-[0.2em]"
+                style={{
+                  color: '#ab7a45',
+                  fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
+                  letterSpacing: '0.16em',
+                }}
+              >
+                <span dir="auto">Groom</span>
+              </div>
+            </div>
+
+            {/* Event 1 (First): Wedding Reception */}
+            <div className="relative w-full">
+              <div
+                className="relative flex flex-col items-center gap-4 md:gap-5 text-center mt-4"
                 style={{
                   fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
                 }}
@@ -585,6 +442,80 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     }}
                   >
                     19
+                  </span>
+                  <span
+                    className="flex items-center justify-center text-[20px] leading-none md:text-[26px]"
+                    style={{
+                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                      color: '#ab7a45',
+                      opacity: 0.7,
+                    }}
+                  >
+                    |
+                  </span>
+                  <span
+                    className="text-[12px] md:text-[16px]"
+                    style={{
+                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                      textAlign: 'left',
+                    }}
+                  >
+                    <span dir="auto">NOVEMBER</span>
+                  </span>
+                </div>
+                <div
+                  className="text-[18px] md:text-[24px]"
+                  style={{
+                    color: '#640e1b',
+                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                  }}
+                >
+                  2026
+                </div>
+              </div>
+
+              {/* Event 2 (Second): Wedding Ceremony */}
+              <div
+                className="relative flex flex-col items-center gap-4 md:gap-5 text-center mt-8 md:mt-10"
+                style={{
+                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                }}
+              >
+                <div style={{ color: '#ab7a45' }}>
+                  <span dir="auto" className="whitespace-pre-line font-normal text-[16px] md:text-[20px] text-center">
+                    WEDDING CEREMONY
+                  </span>
+                </div>
+                <p className="font-normal text-[14px] md:text-[15px] text-center uppercase tracking-wide" style={{ color: '#ab7a45' }}>
+                  AT 4:00 AM – 6:00 AM (MUHURTHAM)
+                </p>
+                <div className="flex items-center gap-6" style={{ color: '#640e1b' }}>
+                  <span
+                    className="text-[12px] md:text-[16px]"
+                    style={{
+                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                      textAlign: 'right',
+                    }}
+                  >
+                    <span dir="auto">FRIDAY</span>
+                  </span>
+                  <span
+                    className="flex items-center justify-center text-[20px] leading-none md:text-[26px]"
+                    style={{
+                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                      color: '#ab7a45',
+                      opacity: 0.7,
+                    }}
+                  >
+                    |
+                  </span>
+                  <span
+                    className="text-[30px] md:text-[40px]"
+                    style={{
+                      fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                    }}
+                  >
+                    20
                   </span>
                   <span
                     className="flex items-center justify-center text-[20px] leading-none md:text-[26px]"
@@ -841,11 +772,12 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 textTransform: 'uppercase',
               }}
             >
-              <span dir="auto">WEDDING </span>
+              <span dir="auto">WEDDING CELEBRATIONS</span>
             </h2>
 
+            {/* Event 1 (First): Reception */}
             <div
-              className="mt-6 flex w-full flex-col items-center gap-6 md:mt-8"
+              className="mt-6 flex w-full flex-col items-center gap-3 md:mt-8"
               style={{
                 fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
                 color: '#ab7a45',
@@ -863,13 +795,96 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 <span dir="auto">The reception will take place at:</span>
               </h3>
               <div
-                className="text-[20px] md:text-[30px]"
+                className="text-[20px] md:text-[28px]"
                 style={{
                   color: '#ab7a45',
                   fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
                 }}
               >
                 6:00 PM
+              </div>
+
+              <div
+                className="flex items-center gap-6"
+                style={{
+                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                }}
+              >
+                <span
+                  className="text-[12px] md:text-[16px] uppercase"
+                  style={{
+                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                    textAlign: 'right',
+                  }}
+                >
+                  <span dir="auto">THURSDAY</span>
+                </span>
+                <div className="h-6 w-[1px] md:h-8" style={{ backgroundColor: '#ab7a45' }} />
+                <span
+                  className="text-[30px] md:text-[40px]"
+                  style={{
+                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                    color: '#640e1b',
+                  }}
+                >
+                  19
+                </span>
+                <div className="h-6 w-[1px] md:h-8" style={{ backgroundColor: '#ab7a45' }} />
+                <span
+                  className="text-[12px] md:text-[16px] uppercase"
+                  style={{
+                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                    textAlign: 'left',
+                  }}
+                >
+                  <span dir="auto">NOVEMBER</span>
+                </span>
+              </div>
+
+              <div
+                className="text-[18px] md:text-[24px]"
+                style={{
+                  color: '#ab7a45',
+                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                }}
+              >
+                2026
+              </div>
+            </div>
+
+            {/* Elegant Divider between Reception and Wedding Ceremony */}
+            <div className="flex items-center justify-center gap-3 my-5">
+              <div className="w-12 h-px" style={{ background: 'linear-gradient(to right, transparent, #ab7a45)' }} />
+              <span className="text-sm select-none" style={{ color: '#ab7a45' }}>❦</span>
+              <div className="w-12 h-px" style={{ background: 'linear-gradient(to left, transparent, #ab7a45)' }} />
+            </div>
+
+            {/* Event 2 (Second): Wedding Ceremony */}
+            <div
+              className="flex w-full flex-col items-center gap-3"
+              style={{
+                fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                color: '#ab7a45',
+              }}
+            >
+              <h3
+                className="text-[16px] md:text-[20px] uppercase flex flex-col items-center text-center tracking-[0.04em]"
+                style={{
+                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                  color: '#640e1b',
+                  fontWeight: 600,
+                }}
+              >
+                <span dir="auto">The wedding ceremony will take place at:</span>
+              </h3>
+              <div
+                className="text-[20px] md:text-[28px]"
+                style={{
+                  color: '#ab7a45',
+                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
+                }}
+              >
+                4:00 AM – 6:00 AM (MUHURTHAM)
               </div>
 
               <div
@@ -918,84 +933,84 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               >
                 2026
               </div>
+            </div>
 
-              {/* Highlighted Royal Countdown Timer Plaque */}
-              <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-6 mb-2">
-                <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-[#ab7a45]/30 via-[#d4af37]/70 to-[#ab7a45]/30 shadow-[0_12px_32px_rgba(100,14,27,0.14)] animate-royal-glow">
-                  <div className="rounded-[14px] bg-[#fff9f0]/95 backdrop-blur-xs px-3.5 py-4 md:px-5 md:py-5 border border-[#ab7a45]/35">
-                    {/* Header with Fleur-de-lis / Royal Accents */}
-                    <div className="flex items-center justify-center gap-2 mb-3">
-                      <span className="text-[#ab7a45] text-xs">⚜</span>
-                      <h2
-                        className="text-[11px] md:text-[13px] font-bold tracking-[0.2em] uppercase text-center"
-                        style={{
-                          fontFamily: '"Cinzel", "Times New Roman", serif',
-                          color: '#640e1b',
-                        }}
-                      >
-                        Countdown to the Big Day
-                      </h2>
-                      <span className="text-[#ab7a45] text-xs">⚜</span>
-                    </div>
+            {/* Highlighted Royal Countdown Timer Plaque */}
+            <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-7 mb-2">
+              <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-[#ab7a45]/30 via-[#d4af37]/70 to-[#ab7a45]/30 shadow-[0_12px_32px_rgba(100,14,27,0.14)] animate-royal-glow">
+                <div className="rounded-[14px] bg-[#fff9f0]/95 backdrop-blur-xs px-3.5 py-4 md:px-5 md:py-5 border border-[#ab7a45]/35">
+                  {/* Header with Fleur-de-lis / Royal Accents */}
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <span className="text-[#ab7a45] text-xs">⚜</span>
+                    <h2
+                      className="text-[11px] md:text-[13px] font-bold tracking-[0.2em] uppercase text-center"
+                      style={{
+                        fontFamily: '"Cinzel", "Times New Roman", serif',
+                        color: '#640e1b',
+                      }}
+                    >
+                      Countdown to the Big Day
+                    </h2>
+                    <span className="text-[#ab7a45] text-xs">⚜</span>
+                  </div>
 
-                    {/* 4 Regal Counter Boxes */}
-                    <div className="grid grid-cols-4 gap-2 md:gap-3">
-                      {/* Days */}
-                      <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
-                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
-                        <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
-                          {String(countdown.days).padStart(2, '0')}
-                        </span>
-                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
-                          Days
-                        </span>
-                      </div>
-
-                      {/* Hours */}
-                      <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
-                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
-                        <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
-                          {String(countdown.hours).padStart(2, '0')}
-                        </span>
-                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
-                          Hours
-                        </span>
-                      </div>
-
-                      {/* Minutes */}
-                      <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
-                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
-                        <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
-                          {String(countdown.minutes).padStart(2, '0')}
-                        </span>
-                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
-                          Mins
-                        </span>
-                      </div>
-
-                      {/* Seconds (Active Gold Highlight) */}
-                      <div className="relative rounded-xl bg-gradient-to-b from-[#7a1223] via-[#640e1b] to-[#450a13] p-2 md:p-3 text-center shadow-md border-2 border-[#d4af37] overflow-hidden">
-                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent animate-gold-shimmer" />
-                        <span className="block text-2xl md:text-3xl font-bold text-[#ffd700] font-serif tracking-tight drop-shadow-sm">
-                          {String(countdown.seconds).padStart(2, '0')}
-                        </span>
-                        <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-bold text-white mt-0.5">
-                          Secs
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Auspicious Date Subtitle */}
-                    <div className="text-center mt-2.5 pt-2 border-t border-[#ab7a45]/20">
-                      <span
-                        className="text-[11px] md:text-[12px] italic text-[#640e1b]/80"
-                        style={{
-                          fontFamily: '"Baskerville", "Times New Roman", serif',
-                        }}
-                      >
-                        Friday, 20 November 2026 • 6:00 PM Reception
+                  {/* 4 Regal Counter Boxes */}
+                  <div className="grid grid-cols-4 gap-2 md:gap-3">
+                    {/* Days */}
+                    <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
+                      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
+                      <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
+                        {String(countdown.days).padStart(2, '0')}
+                      </span>
+                      <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
+                        Days
                       </span>
                     </div>
+
+                    {/* Hours */}
+                    <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
+                      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
+                      <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
+                        {String(countdown.hours).padStart(2, '0')}
+                      </span>
+                      <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
+                        Hours
+                      </span>
+                    </div>
+
+                    {/* Minutes */}
+                    <div className="relative rounded-xl bg-gradient-to-b from-[#640e1b] via-[#520b16] to-[#3a070f] p-2 md:p-3 text-center shadow-md border border-[#ab7a45]/50 overflow-hidden">
+                      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
+                      <span className="block text-2xl md:text-3xl font-bold text-white font-serif tracking-tight drop-shadow-sm">
+                        {String(countdown.minutes).padStart(2, '0')}
+                      </span>
+                      <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-semibold text-[#ffd700] mt-0.5">
+                        Mins
+                      </span>
+                    </div>
+
+                    {/* Seconds (Active Gold Highlight) */}
+                    <div className="relative rounded-xl bg-gradient-to-b from-[#7a1223] via-[#640e1b] to-[#450a13] p-2 md:p-3 text-center shadow-md border-2 border-[#d4af37] overflow-hidden">
+                      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent animate-gold-shimmer" />
+                      <span className="block text-2xl md:text-3xl font-bold text-[#ffd700] font-serif tracking-tight drop-shadow-sm">
+                        {String(countdown.seconds).padStart(2, '0')}
+                      </span>
+                      <span className="block text-[9px] md:text-[10px] uppercase tracking-wider font-bold text-white mt-0.5">
+                        Secs
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Auspicious Date Subtitle */}
+                  <div className="text-center mt-2.5 pt-2 border-t border-[#ab7a45]/20">
+                    <span
+                      className="text-[11px] md:text-[12px] italic text-[#640e1b]/80"
+                      style={{
+                        fontFamily: '"Baskerville", "Times New Roman", serif',
+                      }}
+                    >
+                      19 Nov: Reception (6:00 PM) • 20 Nov: Muhurtham (4:00 AM)
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1053,7 +1068,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
 
                     {/* Days */}
                     {novDays.map((d) => {
-                      if (d === 20) {
+                      if (d === 19 || d === 20) {
                         return (
                           <div key={d} className="flex items-center justify-center h-[28px] md:h-[32px]">
                             <div className="relative w-[26px] h-[24px] md:w-[30px] md:h-[28px] flex items-center justify-center">
@@ -1061,7 +1076,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                                 <path d="M12 21C12 21 1.5 13.5 1.5 7.5C1.5 4.46 3.96 2 7 2C8.76 2 10.35 2.81 11.4 4.09L12 4.8L12.6 4.09C13.65 2.81 15.24 2 17 2C20.04 2 22.5 4.46 22.5 7.5C22.5 13.5 12 21 12 21Z" />
                               </svg>
                               <span className="relative z-10 text-[11px] md:text-[12px] font-bold" style={{ color: '#fff' }}>
-                                20
+                                {d}
                               </span>
                             </div>
                           </div>
@@ -1081,7 +1096,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             {/* Add to Calendar Link */}
             <div className="mt-3 flex justify-center">
               <a
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Deepak%20Kumar%20%26%20Swetha%27s%20Wedding&dates=20261120T123000Z/20261120T153000Z&details=Join%20us%20to%20celebrate%20the%20wedding%20of%20Deepak%20Kumar%20%26%20Swetha%20at%2013%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003&location=13%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Swetha%20%26%20Deepak%20Kumar%27s%20Wedding&dates=20261119T123000Z/20261120T153000Z&details=Join%20us%20to%20celebrate%20the%20wedding%20of%20Swetha%20%26%20Deepak%20Kumar%20on%2019%20%26%2020%20November%202026%20at%20AVVS%20Mahal%20%26%20Senraya%20Perumal%20Temple%2C%20Salem.&location=13%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center text-[13px] underline decoration-1 underline-offset-4 transition-opacity hover:opacity-70 md:text-[15px]"
@@ -1173,7 +1188,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 rows={3}
                 value={guestMsg}
                 onChange={(e) => setGuestMsg(e.target.value)}
-                placeholder="Send a wish to Deepak & Swetha..."
+                placeholder="Send a wish to Swetha & Deepak..."
                 className="w-full px-4 py-2 rounded-lg border border-[#ab7a45]/40 bg-white/70 text-[#640e1b] text-sm focus:outline-none focus:ring-1 focus:ring-[#640e1b] resize-none"
               />
             </div>

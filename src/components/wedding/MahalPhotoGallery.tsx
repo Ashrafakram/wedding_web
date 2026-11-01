@@ -4,17 +4,17 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 const GALLERY_IMAGES = [
   {
     src: '/images/gallery/couple-1.jpg',
-    alt: 'Deepak Kumar & Swetha in Traditional Silk Attire',
+    alt: 'Swetha & Deepak Kumar in Traditional Silk Attire',
     caption: 'Moments of Love & Devotion',
   },
   {
     src: '/images/gallery/couple-2.jpg',
-    alt: 'Deepak Kumar & Swetha Elegant Portrait',
+    alt: 'Swetha & Deepak Kumar Elegant Portrait',
     caption: 'Together Forever',
   },
   {
     src: '/images/gallery/couple-3.jpg',
-    alt: 'Deepak Kumar & Swetha Wedding Portrait',
+    alt: 'Swetha & Deepak Kumar Wedding Portrait',
     caption: 'A Beautiful New Beginning',
   },
 ]

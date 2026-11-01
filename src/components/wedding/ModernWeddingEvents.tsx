@@ -14,7 +14,7 @@ export interface WeddingEvent {
   googleMapsUrl: string
 }
 
-export const WEDDING_EVENTS: WeddingEvent[] = [
+const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: 'reception',
     title: 'Wedding Reception',

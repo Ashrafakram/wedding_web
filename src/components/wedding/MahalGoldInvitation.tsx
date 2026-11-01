@@ -16,15 +16,6 @@ interface Wish {
   date: string
 }
 
-const BOOK_PAGES = [
-  { id: 'cover', title: 'Royal Invitation', subtitle: 'Ganesha & Lake Palace' },
-  { id: 'ceremony', title: 'Ceremony Info', subtitle: 'Family & Timings' },
-  { id: 'gallery', title: 'Photo Gallery', subtitle: '3D Couple Moments' },
-  { id: 'countdown', title: 'Save the Date', subtitle: 'Countdown & Calendar' },
-  { id: 'events', title: 'Events & Venues', subtitle: 'Reception & Muhurtham Maps' },
-  { id: 'blessing', title: 'Blessings & Wishes', subtitle: 'Guestbook & Mandapam' },
-]
-
 const GALLERY_IMAGES = [
   {
     src: '/images/gallery/couple-1.jpg',
@@ -41,18 +32,7 @@ const GALLERY_IMAGES = [
 ]
 
 export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvpClick }) => {
-  // View mode: 'book' (default auto-shift flipbook) or 'scroll' (continuous vertical scroll)
-  const [viewMode, setViewMode] = useState<'book' | 'scroll'>('book')
-  const [currentPage, setCurrentPage] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [isUserPaused, setIsUserPaused] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [isCardHovered, setIsCardHovered] = useState(false)
-  const [isTypingWish, setIsTypingWish] = useState(false)
-  const cardRef = useRef<HTMLDivElement>(null)
-  const bookTouchStartX = useRef<number | null>(null)
-
-  // Parallax scroll state (for scroll mode)
+  // Parallax scroll state
   const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
@@ -97,88 +77,6 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     if (diff > 40) handleNextPhoto()
     else if (diff < -40) handlePrevPhoto()
     touchStartX.current = null
-  }
-
-  // Auto-shift Book timer (6.5 seconds per page)
-  const PAGE_DURATION = 6500
-  const TICK_INTERVAL = 65
-
-  const scrollToCardTop = () => {
-    if (cardRef.current) {
-      cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  const goToPage = (pageIdx: number) => {
-    setCurrentPage(pageIdx)
-    setProgress(0)
-    scrollToCardTop()
-  }
-
-  const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % BOOK_PAGES.length)
-    setProgress(0)
-    scrollToCardTop()
-  }
-
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + BOOK_PAGES.length) % BOOK_PAGES.length)
-    setProgress(0)
-    scrollToCardTop()
-  }
-
-  useEffect(() => {
-    if (
-      viewMode !== 'book' ||
-      !isAutoPlaying ||
-      isUserPaused ||
-      isCardHovered ||
-      lightboxOpen ||
-      isTypingWish
-    ) {
-      return
-    }
-
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          setCurrentPage((curr) => (curr + 1) % BOOK_PAGES.length)
-          scrollToCardTop()
-          return 0
-        }
-        return prev + (TICK_INTERVAL / PAGE_DURATION) * 100
-      })
-    }, TICK_INTERVAL)
-
-    return () => clearInterval(timer)
-  }, [viewMode, isAutoPlaying, isUserPaused, isCardHovered, lightboxOpen, isTypingWish])
-
-  // Keyboard navigation for Book View (Left / Right Arrow keys)
-  useEffect(() => {
-    if (viewMode !== 'book') return
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxOpen || isTypingWish) return
-      if (e.key === 'ArrowRight') nextPage()
-      if (e.key === 'ArrowLeft') prevPage()
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [viewMode, lightboxOpen, isTypingWish])
-
-  // Touch swipe gestures for Book View
-  const handleBookTouchStart = (e: React.TouchEvent) => {
-    bookTouchStartX.current = e.touches[0].clientX
-  }
-
-  const handleBookTouchEnd = (e: React.TouchEvent) => {
-    if (bookTouchStartX.current === null) return
-    const diff = bookTouchStartX.current - e.changedTouches[0].clientX
-    if (diff > 50) {
-      nextPage()
-    } else if (diff < -50) {
-      prevPage()
-    }
-    bookTouchStartX.current = null
   }
 
   // Countdown timer to November 20, 2026, 18:00
@@ -237,14 +135,34 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
 
   // Days in Nov 2026 (Nov 1 is Sunday)
   const weekdays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+  // Nov 1 = Sun, so in Mo-Su order, Sunday is col 7 (empty 6 slots before Nov 1)
   const calendarPadding = 6
   const novDays = Array.from({ length: 30 }, (_, i) => i + 1)
 
-  // ----------------------------------------------------
-  // SECTION RENDERERS (Clean & 100% Faithful)
-  // ----------------------------------------------------
-  const renderSection1 = () => (
-    <section dir="ltr" className="relative isolate w-full overflow-hidden pt-[13.2%] pb-[16.6%]">
+  return (
+    <div className="flex w-full justify-center overflow-x-clip bg-transparent overflow-clip scrollbar-none" data-testid="mahal-gold-template">
+      {/* Root Card Container with exact width max-w-[480px] md:max-w-[900px] */}
+      <div
+        data-showcase-root=""
+        className="relative w-full max-w-[480px] md:max-w-[900px] md:mx-auto overflow-hidden md:border-x md:border-[#ab7a4533] isolate !overflow-hidden shadow-2xl"
+        style={{ backgroundColor: '#f7e3cd', color: '#ab7a45' }}
+      >
+        {/* Paper Texture Background */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-20 mix-blend-darken"
+          style={{
+            backgroundImage: 'url(/images/themes/mahal-gold/paper.webp)',
+            backgroundSize: '100% auto',
+            backgroundRepeat: 'repeat-y',
+            opacity: 0.4,
+          }}
+        />
+
+        {/* ======================================================== */}
+        {/* SECTION 1: HERO ARCH, BELLS, FLOWERS, GANESHA, COUPLE   */}
+        {/* ======================================================== */}
+        <section dir="ltr" className="relative isolate w-full overflow-hidden pt-[13.2%] pb-[16.6%]">
           <div className="relative mx-auto w-full max-w-[480px] md:max-w-[680px]">
             {/* Bells */}
             <div
@@ -367,10 +285,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             </div>
           </div>
         </section>
-  )
 
-  const renderSection2 = () => (
-    <section className="relative isolate z-10 w-full px-[8.5%] pt-[5.2%] md:px-[12%] md:pt-[5.2%]">
+        {/* ======================================================== */}
+        {/* SECTION 2: CEREMONY INFO, FAMILY, AND TWO EVENTS         */}
+        {/* ======================================================== */}
+        <section className="relative isolate z-10 w-full px-[8.5%] pt-[5.2%] md:px-[12%] md:pt-[5.2%]">
           {/* Parallax Castle 2 Background */}
           <div
             aria-hidden="true"
@@ -710,10 +629,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             </div>
           </div>
         </section>
-  )
 
-  const renderSection3 = () => (
-    <section className="relative isolate z-10 w-full px-[9%] pt-[7%] pb-[10.9%] md:px-[12%] md:pt-[4%] md:pb-[7%]">
+        {/* ======================================================== */}
+        {/* SECTION 3: PHOTO GALLERY WITH 3D PERSPECTIVE CAROUSEL    */}
+        {/* ======================================================== */}
+        <section className="relative isolate z-10 w-full px-[9%] pt-[7%] pb-[10.9%] md:px-[12%] md:pt-[4%] md:pb-[7%]">
           <div className="relative z-10 flex w-full flex-col items-center">
             <h2
               className="font-bold text-[20px] md:text-[26px] text-center uppercase tracking-[0.04em] mb-5"
@@ -863,10 +783,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             </div>
           </div>
         </section>
-  )
 
-  const renderSection4 = () => (
-    <section className="relative isolate z-10 w-full px-[8%] pt-[13%] md:px-[12%] md:pt-[9%]">
+        {/* ======================================================== */}
+        {/* SECTION 4: RECEPTION COUNTDOWN & ROYAL CALENDAR FRAME    */}
+        {/* ======================================================== */}
+        <section className="relative isolate z-10 w-full px-[8%] pt-[13%] md:px-[12%] md:pt-[9%]">
           {/* Parallax Castle 2 Background */}
           <div
             aria-hidden="true"
@@ -1192,10 +1113,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             </div>
           </div>
         </section>
-  )
 
-  const renderSection5 = () => (
-    <div className="relative isolate z-10 w-full pt-[4%] md:pt-[2%]">
+        {/* ======================================================== */}
+        {/* SECTION 5: MODERN WEDDING EVENTS & VENUE MAP MODAL       */}
+        {/* ======================================================== */}
+        <div className="relative isolate z-10 w-full pt-[4%] md:pt-[2%]">
           <ModernWeddingEvents />
           <img
             src="/images/themes/mahal-gold/gold-line.webp"
@@ -1206,14 +1128,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             decoding="async"
           />
         </div>
-  )
 
-  const renderSection6 = () => (
-    <div
-      onFocus={() => setIsTypingWish(true)}
-      onBlur={() => setIsTypingWish(false)}
-    >
-      <section
+        {/* ======================================================== */}
+        {/* SECTION 6: GUESTBOOK & AUTHENTIC FOOTER                  */}
+        {/* ======================================================== */}
+        <section
           className="relative z-10 px-[9%] pt-[6%] pb-[5%] md:px-[14%]"
           style={{
             backgroundColor: 'transparent',
@@ -1320,286 +1239,62 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             />
           </div>
         )}
-    </div>
-  )
 
-  const renderLightbox = () => (
-    <div
-      className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-between p-4"
-      onClick={() => setLightboxOpen(false)}
-    >
-      <div className="w-full flex justify-between items-center text-white px-2 pt-2">
-        <span className="bg-black/50 px-3 py-1 rounded-full text-xs">
-          {lightboxIdx + 1} / {GALLERY_IMAGES.length}
-        </span>
-        <button
-          type="button"
-          onClick={() => setLightboxOpen(false)}
-          className="text-white hover:text-white/70 text-2xl p-1"
-          aria-label="Close lightbox"
-        >
-          ✕
-        </button>
-      </div>
-
-      <div
-        className="relative max-h-[72vh] max-w-full flex items-center justify-center"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <img
-          src={GALLERY_IMAGES[lightboxIdx].src}
-          alt={GALLERY_IMAGES[lightboxIdx].alt}
-          className="max-h-[70vh] max-w-full rounded-xl object-contain shadow-2xl"
-        />
-      </div>
-
-      <div
-        className="flex gap-2 overflow-x-auto py-2 px-3 bg-black/40 rounded-xl backdrop-blur-md max-w-[90vw]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {GALLERY_IMAGES.map((thumb, tIdx) => (
-          <button
-            key={tIdx}
-            type="button"
-            onClick={() => setLightboxIdx(tIdx)}
-            className={`h-12 w-12 rounded-lg overflow-hidden shrink-0 transition-transform ${
-              tIdx === lightboxIdx ? 'ring-2 ring-[#640e1b] scale-105' : 'opacity-60'
-            }`}
+        {/* Fullscreen Lightbox Dialog */}
+        {lightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-between p-4"
+            onClick={() => setLightboxOpen(false)}
           >
-            <img src={thumb.src} alt="" className="w-full h-full object-cover" />
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-
-  return (
-    <div className="flex w-full justify-center overflow-x-clip bg-transparent overflow-clip scrollbar-none" data-testid="mahal-gold-template">
-      {/* Root Card Container */}
-      <div
-        ref={cardRef}
-        data-showcase-root=""
-        className="relative w-full max-w-[480px] md:max-w-[900px] md:mx-auto overflow-hidden md:border-x md:border-[#ab7a4533] isolate !overflow-hidden shadow-2xl"
-        style={{ backgroundColor: '#f7e3cd', color: '#ab7a45' }}
-      >
-        {/* Paper Texture Background */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-20 mix-blend-darken"
-          style={{
-            backgroundImage: 'url(/images/themes/mahal-gold/paper.webp)',
-            backgroundSize: '100% auto',
-            backgroundRepeat: 'repeat-y',
-            opacity: 0.4,
-          }}
-        />
-
-        {viewMode === 'book' ? (
-          <>
-            {/* Top Book View Navigation & Control Bar */}
-            <div className="sticky top-0 z-40 w-full bg-[#f7e3cd]/95 backdrop-blur-md border-b border-[#ab7a45]/30 shadow-xs px-3 py-2 md:px-5 md:py-2.5 flex items-center justify-between">
-              {/* Left: Royal Monogram / Title */}
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <span className="text-[#640e1b] text-xs md:text-sm">⚜</span>
-                <span
-                  className="text-xs md:text-sm font-semibold tracking-wider uppercase text-[#640e1b]"
-                  style={{ fontFamily: '"Cinzel", "Times New Roman", serif' }}
-                >
-                  Deepak &amp; Swetha
-                </span>
-              </div>
-
-              {/* Center: Current Page Badge */}
-              <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#640e1b]/10 border border-[#ab7a45]/30">
-                <span className="text-[11px] md:text-xs font-serif font-bold text-[#640e1b]">
-                  Page {currentPage + 1} of {BOOK_PAGES.length}: {BOOK_PAGES[currentPage].title}
-                </span>
-              </div>
-
-              {/* Right: Controls (Play/Pause & View Toggle) */}
-              <div className="flex items-center gap-1.5 md:gap-2">
-                {/* Auto-shift Play/Pause */}
-                <button
-                  type="button"
-                  onClick={() => setIsUserPaused((p) => !p)}
-                  className="p-1.5 rounded-full border border-[#ab7a45]/40 hover:bg-[#640e1b]/10 text-[#640e1b] transition-colors text-xs flex items-center gap-1 cursor-pointer"
-                  title={isUserPaused ? 'Resume auto-shift' : 'Pause auto-shift'}
-                  aria-label={isUserPaused ? 'Resume auto-shift' : 'Pause auto-shift'}
-                >
-                  {isUserPaused ? (
-                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                    </svg>
-                  )}
-                  <span className="text-[10px] hidden md:inline font-serif font-medium">
-                    {isUserPaused ? 'Play' : 'Pause'}
-                  </span>
-                </button>
-
-                {/* View Mode Toggle Button */}
-                <button
-                  type="button"
-                  onClick={() => setViewMode('scroll')}
-                  className="px-2.5 py-1 rounded-full bg-[#640e1b] text-white hover:bg-[#7e1423] transition-colors text-[10px] md:text-xs font-serif tracking-wider shadow-xs flex items-center gap-1 cursor-pointer"
-                  title="Switch to continuous scroll view"
-                >
-                  <span>📜 Scroll View</span>
-                </button>
-              </div>
+            {/* Top Bar with Counter and Close */}
+            <div className="w-full flex justify-between items-center text-white px-2 pt-2">
+              <span className="bg-black/50 px-3 py-1 rounded-full text-xs">
+                {lightboxIdx + 1} / {GALLERY_IMAGES.length}
+              </span>
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(false)}
+                className="text-white hover:text-white/70 text-2xl p-1"
+                aria-label="Close lightbox"
+              >
+                ✕
+              </button>
             </div>
 
-            {/* Auto-Shift Golden Progress Bar */}
-            <div className="relative w-full h-[3px] bg-[#ab7a45]/20 overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-[#ab7a45] via-[#ffd700] to-[#640e1b] transition-all duration-100 ease-linear"
-                style={{ width: `${progress}%` }}
+            {/* Main Center Image */}
+            <div
+              className="relative max-h-[72vh] max-w-full flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={GALLERY_IMAGES[lightboxIdx].src}
+                alt={GALLERY_IMAGES[lightboxIdx].alt}
+                className="max-h-[70vh] max-w-full rounded-xl object-contain shadow-2xl"
               />
             </div>
 
-            {/* Book Slide Stage with Side Navigation Chevrons */}
+            {/* Thumbnail Strip */}
             <div
-              className="relative w-full overflow-hidden min-h-[580px]"
-              onTouchStart={handleBookTouchStart}
-              onTouchEnd={handleBookTouchEnd}
-              onMouseEnter={() => setIsCardHovered(true)}
-              onMouseLeave={() => setIsCardHovered(false)}
+              className="flex gap-2 overflow-x-auto py-2 px-3 bg-black/40 rounded-xl backdrop-blur-md max-w-[90vw]"
+              onClick={(e) => e.stopPropagation()}
             >
-              {/* Side Floating Previous Button */}
-              <button
-                type="button"
-                onClick={prevPage}
-                aria-label="Previous Page"
-                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#640e1b]/85 hover:bg-[#640e1b] text-white border border-[#ffd700]/70 shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-xs"
-              >
-                <svg className="w-4 h-4 md:w-5 md:h-5 stroke-current" fill="none" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </button>
-
-              {/* Side Floating Next Button */}
-              <button
-                type="button"
-                onClick={nextPage}
-                aria-label="Next Page"
-                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#640e1b]/85 hover:bg-[#640e1b] text-white border border-[#ffd700]/70 shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-xs"
-              >
-                <svg className="w-4 h-4 md:w-5 md:h-5 stroke-current" fill="none" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </button>
-
-              {/* Horizontal Slide Track */}
-              <div
-                className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] items-start"
-                style={{
-                  transform: `translateX(-${currentPage * 100}%)`,
-                  width: '100%',
-                }}
-              >
-                <div className="w-full shrink-0 min-w-full">
-                  {renderSection1()}
-                </div>
-                <div className="w-full shrink-0 min-w-full">
-                  {renderSection2()}
-                </div>
-                <div className="w-full shrink-0 min-w-full">
-                  {renderSection3()}
-                </div>
-                <div className="w-full shrink-0 min-w-full">
-                  {renderSection4()}
-                </div>
-                <div className="w-full shrink-0 min-w-full">
-                  {renderSection5()}
-                </div>
-                <div className="w-full shrink-0 min-w-full">
-                  {renderSection6()}
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Book Navigation Bar */}
-            <div className="sticky bottom-0 z-30 w-full bg-[#f7e3cd]/95 backdrop-blur-md border-t border-[#ab7a45]/30 px-3 py-2.5 md:px-6 md:py-3 flex flex-col items-center gap-1.5 shadow-lg">
-              <div className="flex items-center justify-between w-full max-w-[460px]">
+              {GALLERY_IMAGES.map((thumb, tIdx) => (
                 <button
+                  key={tIdx}
                   type="button"
-                  onClick={prevPage}
-                  className="text-xs md:text-sm font-serif tracking-wider font-semibold text-[#640e1b] hover:text-[#8e1728] transition-colors flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-[#640e1b]/10 cursor-pointer"
+                  onClick={() => setLightboxIdx(tIdx)}
+                  className={`h-12 w-12 rounded-lg overflow-hidden shrink-0 transition-transform ${
+                    tIdx === lightboxIdx ? 'ring-2 ring-[#640e1b] scale-105' : 'opacity-60'
+                  }`}
                 >
-                  <span>❮ Prev</span>
+                  <img src={thumb.src} alt="" className="w-full h-full object-cover" />
                 </button>
-
-                <div className="flex items-center gap-1.5 md:gap-2">
-                  {BOOK_PAGES.map((page, idx) => (
-                    <button
-                      key={page.id}
-                      type="button"
-                      onClick={() => goToPage(idx)}
-                      aria-label={`Go to ${page.title}`}
-                      className={`h-2.5 rounded-full transition-all duration-500 cursor-pointer ${
-                        idx === currentPage
-                          ? 'w-7 md:w-9 bg-[#640e1b] ring-2 ring-[#d4af37]'
-                          : 'w-2.5 bg-[#ab7a45]/40 hover:bg-[#ab7a45]/70'
-                      }`}
-                      title={`Page ${idx + 1}: ${page.title}`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={nextPage}
-                  className="text-xs md:text-sm font-serif tracking-wider font-semibold text-[#640e1b] hover:text-[#8e1728] transition-colors flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-[#640e1b]/10 cursor-pointer"
-                >
-                  <span>Next ❯</span>
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2 text-[10px] md:text-[11px] text-[#640e1b]/70 font-serif">
-                <span>
-                  {currentPage + 1} of {BOOK_PAGES.length} • {BOOK_PAGES[currentPage].title} ({BOOK_PAGES[currentPage].subtitle})
-                </span>
-                {isUserPaused && <span className="text-[#ab7a45] font-sans font-bold">(Auto-shift Paused)</span>}
-              </div>
+              ))}
             </div>
-          </>
-        ) : (
-          <>
-            {/* Top Scroll View Switch Bar */}
-            <div className="sticky top-0 z-40 w-full bg-[#f7e3cd]/95 backdrop-blur-md border-b border-[#ab7a45]/30 px-3 py-2 md:px-5 md:py-2.5 flex items-center justify-between shadow-xs">
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <span className="text-[#640e1b] text-xs">⚜</span>
-                <span className="text-xs font-semibold tracking-wider uppercase text-[#640e1b]" style={{ fontFamily: '"Cinzel", "Times New Roman", serif' }}>
-                  Deepak &amp; Swetha
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setViewMode('book')}
-                className="px-3 py-1 rounded-full bg-[#640e1b] text-white hover:bg-[#7e1423] transition-colors text-xs font-serif tracking-wider shadow-xs flex items-center gap-1.5 cursor-pointer"
-              >
-                <span>📖 Switch to Book View</span>
-              </button>
-            </div>
-
-            {/* Vertical Scroll Sections */}
-            {renderSection1()}
-            {renderSection2()}
-            {renderSection3()}
-            {renderSection4()}
-            {renderSection5()}
-            {renderSection6()}
-          </>
+          </div>
         )}
-
-        {/* Fullscreen Lightbox Dialog */}
-        {lightboxOpen && renderLightbox()}
       </div>
     </div>
   )
 }
 
-export default MahalGoldInvitation

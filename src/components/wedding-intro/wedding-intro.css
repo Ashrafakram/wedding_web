@@ -24,7 +24,7 @@
 .wedding-ambient-glow {
   position: absolute;
   inset: -20%;
-  background: radial-gradient(circle at 50% 50%, rgba(197, 155, 39, 0.22), rgba(92, 19, 30, 0.3) 50%, #060303 85%);
+  background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.25), rgba(43, 8, 12, 0.45) 50%, #0c0204 85%);
   filter: blur(50px);
   pointer-events: none;
   z-index: 0;
@@ -43,8 +43,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, rgba(62, 12, 19, 0.96) 0%, rgba(16, 4, 6, 0.98) 100%);
-  backdrop-filter: blur(12px);
+  background: radial-gradient(circle at center, rgba(43, 8, 12, 0.97) 0%, rgba(15, 3, 5, 0.99) 100%);
+  backdrop-filter: blur(14px);
   padding: 16px;
   overflow-y: auto;
   box-sizing: border-box;
@@ -56,11 +56,65 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+/* Cinematic Couple Avatar Sliding Entrance */
+@keyframes groomSlideIn {
+  0% {
+    transform: translateX(-160px) scale(0.75);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(10px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes brideSlideIn {
+  0% {
+    transform: translateX(160px) scale(0.75);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-10px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes avatarsMeetGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), 0 0 45px rgba(243, 210, 121, 0.3);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.9), 0 0 65px rgba(243, 210, 121, 0.6);
+  }
+}
+
+.avatar-slide-groom {
+  animation: groomSlideIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.avatar-slide-bride {
+  animation: brideSlideIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.avatar-meeting-halo {
+  animation: avatarsMeetGlow 2.5s ease-in-out infinite;
+}
+
 /* 3D Scene Wrapper */
 .wedding-envelope-scene {
   perspective: 1400px;
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +134,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1.45 / 1;
-  max-width: 380px;
+  max-width: 390px;
   transform-style: preserve-3d;
   transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
   cursor: pointer;
@@ -92,22 +146,22 @@
   transform: translateY(-4px) scale(1.02);
 }
 
-/* Envelope Back Shell */
+/* Envelope Back Shell in Deep Royal Maroon (#2b080c) and Antique Gold (#d4af37) */
 .wedding-envelope-back {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #4A0E17 0%, #2D080E 100%);
-  border-radius: 14px;
-  border: 1.5px solid #C59B27;
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(145deg, #2B080C 0%, #170305 100%);
+  border-radius: 16px;
+  border: 1.8px solid #D4AF37;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
   z-index: 1;
 }
 
 .wedding-envelope-lining {
   position: absolute;
   inset: 6px;
-  border: 1px dashed rgba(243, 210, 121, 0.4);
-  border-radius: 10px;
+  border: 1px dashed rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
   pointer-events: none;
 }
 
@@ -118,16 +172,16 @@
   left: 3%;
   width: 94%;
   height: calc(100% - 16px);
-  background: linear-gradient(145deg, #5C131E 0%, #380B12 100%);
-  border: 1.5px solid #F3D279;
-  border-radius: 10px;
+  background: linear-gradient(145deg, #2B080C 0%, #1A0407 100%);
+  border: 1.8px solid #D4AF37;
+  border-radius: 12px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 0 16px rgba(243, 210, 121, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(212, 175, 55, 0.25);
   transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.1s ease;
   transform: translateY(0);
   overflow: hidden;
@@ -135,7 +189,7 @@
   pointer-events: none;
 }
 
-/* Flaps Geometry */
+/* Flaps Geometry in Royal Maroon */
 .wedding-pocket-left {
   position: absolute;
   top: 0;
@@ -143,10 +197,10 @@
   width: 100%;
   height: 100%;
   z-index: 3;
-  background: linear-gradient(135deg, #380B12 0%, #520F19 100%);
+  background: linear-gradient(135deg, #1C0407 0%, #2B080C 100%);
   clip-path: polygon(0 0, 53% 50%, 0 100%);
-  border-radius: 14px 0 0 14px;
-  filter: drop-shadow(2px 0 6px rgba(0, 0, 0, 0.4));
+  border-radius: 16px 0 0 16px;
+  filter: drop-shadow(2px 0 6px rgba(0, 0, 0, 0.5));
   pointer-events: none;
 }
 
@@ -157,10 +211,10 @@
   width: 100%;
   height: 100%;
   z-index: 3;
-  background: linear-gradient(-135deg, #380B12 0%, #520F19 100%);
+  background: linear-gradient(-135deg, #1C0407 0%, #2B080C 100%);
   clip-path: polygon(100% 0, 47% 50%, 100% 100%);
-  border-radius: 0 14px 14px 0;
-  filter: drop-shadow(-2px 0 6px rgba(0, 0, 0, 0.4));
+  border-radius: 0 16px 16px 0;
+  filter: drop-shadow(-2px 0 6px rgba(0, 0, 0, 0.5));
   pointer-events: none;
 }
 
@@ -171,14 +225,14 @@
   width: 100%;
   height: 100%;
   z-index: 4;
-  background: linear-gradient(to top, #30080F 0%, #4E0E18 100%);
+  background: linear-gradient(to top, #160205 0%, #2B080C 100%);
   clip-path: polygon(0 100%, 100% 100%, 50% 42%);
-  border-radius: 0 0 14px 14px;
-  filter: drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.5));
+  border-radius: 0 0 16px 16px;
+  filter: drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.6));
   pointer-events: none;
 }
 
-/* Folding Top Flap */
+/* Folding Top Flap in Royal Maroon */
 .wedding-folding-flap {
   position: absolute;
   top: 0;
@@ -198,10 +252,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(to bottom, #5C131E 0%, #3D0B12 100%);
+  background: linear-gradient(to bottom, #2B080C 0%, #1A0407 100%);
   clip-path: polygon(0 0, 100% 0, 50% 58%);
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65));
-  border-radius: 14px 14px 0 0;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7));
+  border-radius: 16px 16px 0 0;
 }
 
 .wedding-folding-flap-shape::after {
@@ -212,9 +266,10 @@
   width: 100%;
   height: 100%;
   clip-path: polygon(0 0, 50% 58%, 100% 0, 98% 0, 50% 55.5%, 2% 0);
-  background: linear-gradient(to right, rgba(197, 155, 39, 0.4), #F3D279, rgba(197, 155, 39, 0.4));
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.4), #D4AF37, rgba(212, 175, 55, 0.4));
   pointer-events: none;
 }
+
 
 /* Auspicious Wax Seal Badge in Center */
 .wedding-seal-wrapper {
@@ -335,3 +390,353 @@
   0%, 60% { transform: rotate(35deg) translateX(-100%); }
   100% { transform: rotate(35deg) translateX(100%); }
 }
+
+/* Cinematic Slow Zoom & Pan for Ceremonial Scenes */
+@keyframes mandapamZoom {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-mandapam-zoom {
+  animation: mandapamZoom 12s ease-out forwards;
+}
+
+@keyframes ceremonyPan {
+  0% {
+    transform: scale(1.02) translateY(0);
+  }
+  50% {
+    transform: scale(1.06) translateY(-1%);
+  }
+  100% {
+    transform: scale(1.03) translateY(0);
+  }
+}
+
+.animate-ceremony-pan {
+  animation: ceremonyPan 10s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   5–10s CINEMATIC VIDEO ANIMATION: GATEFOLD REVEAL + MOUNTAIN SWING SANCTUARY
+   ========================================================================== */
+
+/* 3D Gatefold Stage Container */
+.cinematic-gatefold-stage {
+  perspective: 1800px;
+  transform-style: preserve-3d;
+  box-shadow: 0 30px 90px -10px rgba(0, 0, 0, 0.95),
+              0 0 45px rgba(212, 175, 55, 0.35),
+              inset 0 0 0 1.5px rgba(212, 175, 55, 0.6);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background: #080304;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.cinematic-gatefold-stage:hover {
+  box-shadow: 0 35px 105px -10px rgba(0, 0, 0, 0.98),
+              0 0 60px rgba(212, 175, 55, 0.5),
+              inset 0 0 0 1.5px rgba(243, 210, 121, 0.85);
+}
+
+/* Left Scalloped French Gatefold Door */
+.cinematic-door-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50.1%;
+  height: 100%;
+  transform-origin: left center;
+  transition: transform 1.8s cubic-bezier(0.25, 1, 0.45, 1);
+  overflow: hidden;
+  z-index: 30;
+  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.75);
+  backface-visibility: hidden;
+  border-right: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.cinematic-door-left.is-open {
+  transform: rotateY(-122deg);
+}
+
+/* Right Scalloped French Gatefold Door */
+.cinematic-door-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50.1%;
+  height: 100%;
+  transform-origin: right center;
+  transition: transform 1.8s cubic-bezier(0.25, 1, 0.45, 1);
+  overflow: hidden;
+  z-index: 30;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.75);
+  backface-visibility: hidden;
+  border-left: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.cinematic-door-right.is-open {
+  transform: rotateY(122deg);
+}
+
+/* Center Silk Ribbon & Wax Seal Trigger */
+.cinematic-ribbon-seal {
+  position: absolute;
+  top: 49.5%;
+  left: 50.8%;
+  transform: translate(-50%, -50%);
+  z-index: 40;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cinematic-ribbon-seal.is-open {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.2);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Realistic Romantic Thoori (Swing) Up and Down Animation
+   Smooth vertical oscillation (-20px to +10px) with harmonic pendulum tilt
+   ========================================================================== */
+@keyframes thooriSwingMotion {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1.08);
+  }
+  25% {
+    transform: translateY(-22px) rotate(-2deg) scale(1.095);
+  }
+  50% {
+    transform: translateY(10px) rotate(0deg) scale(1.07);
+  }
+  75% {
+    transform: translateY(-22px) rotate(2deg) scale(1.095);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1.08);
+  }
+}
+
+.animate-thoori-swing {
+  animation: thooriSwingMotion 5.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  transform-origin: 50% 5%;
+  will-change: transform;
+}
+
+@keyframes thooriShadowPulse {
+  0% {
+    transform: scale(1.0) translateY(0);
+    opacity: 0.35;
+  }
+  25% {
+    transform: scale(0.8) translateY(8px);
+    opacity: 0.16;
+  }
+  50% {
+    transform: scale(1.2) translateY(-2px);
+    opacity: 0.48;
+  }
+  75% {
+    transform: scale(0.8) translateY(8px);
+    opacity: 0.16;
+  }
+  100% {
+    transform: scale(1.0) translateY(0);
+  }
+}
+
+.animate-thoori-shadow {
+  animation: thooriShadowPulse 5.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform, opacity;
+}
+
+/* Backwards compatibility */
+@keyframes swingMotion {
+  0% {
+    transform: rotate(-1.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(1.5deg) translateY(-8px);
+  }
+  100% {
+    transform: rotate(-1.5deg) translateY(0);
+  }
+}
+
+.animate-swing-gentle {
+  animation: swingMotion 5.2s ease-in-out infinite;
+  transform-origin: 50% 10%;
+}
+
+/* Crystal Chandelier Glint */
+@keyframes chandelierGlint {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 18px rgba(255, 245, 195, 0.95));
+  }
+}
+
+.animate-chandelier-glint {
+  animation: chandelierGlint 3.5s ease-in-out infinite;
+}
+
+/* Subtle Star Sparkle Glint */
+@keyframes starGlint {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+
+.animate-star-glint {
+  animation: starGlint 2.8s ease-in-out infinite;
+}
+
+/* Smooth Camera Dolly In */
+@keyframes cameraDolly {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-camera-dolly {
+  animation: cameraDolly 10s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating Gold Particle Drift */
+@keyframes goldDustDrift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-80px) translateX(25px);
+    opacity: 0;
+  }
+}
+
+.animate-gold-dust {
+  animation: goldDustDrift 6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   PINTEREST VIDEO ANIMATION SYSTEM (MATCHING https://pin.it/1ExJqK7mC)
+   ========================================================================== */
+
+/* Hand-drawn SVG Crimson Heart Animation on Calendar Day 20 */
+@keyframes drawHeart {
+  0% {
+    stroke-dashoffset: 320;
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 320;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.heart-draw-anim {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: drawHeart 1.6s cubic-bezier(0.35, 1, 0.4, 1) forwards;
+  transform-origin: center;
+}
+
+/* Day 20 pulse once circled */
+@keyframes datePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+.animate-date-pulse {
+  animation: datePulse 2s ease-in-out infinite 1.4s;
+}
+
+/* Monogram Wreath Gentle Rotation & Glow */
+@keyframes wreathGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.45));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(243, 210, 121, 0.85));
+    transform: scale(1.03);
+  }
+}
+
+.animate-wreath-glow {
+  animation: wreathGlow 4s ease-in-out infinite;
+}
+
+/* Smooth Storyboard Scene Fade In / Up */
+@keyframes sceneFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-scene-entry {
+  animation: sceneFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Butterfly gentle flight flutter */
+@keyframes butterflyFlutter {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(0.9);
+  }
+  25% {
+    transform: translate(12px, -8px) rotate(6deg) scale(1);
+  }
+  50% {
+    transform: translate(20px, -2px) rotate(-4deg) scale(0.95);
+  }
+  75% {
+    transform: translate(8px, 6px) rotate(3deg) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(0.9);
+  }
+}
+
+.animate-butterfly {
+  animation: butterflyFlutter 6s ease-in-out infinite;
+}
+

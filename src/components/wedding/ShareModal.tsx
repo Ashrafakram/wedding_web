@@ -19,11 +19,11 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
   const [copied, setCopied] = useState(false)
 
   const shareUrl = React.useMemo(() => {
-    if (typeof window === 'undefined') return 'http://192.168.1.7:5174/'
+    if (typeof window === 'undefined') return 'http://192.168.1.6:5174/'
     const hostname = window.location.hostname
     const port = window.location.port ? `:${window.location.port}` : ''
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      return `http://192.168.1.7${port}/`
+      return `http://192.168.1.6${port}/`
     }
     return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
   }, [isOpen])

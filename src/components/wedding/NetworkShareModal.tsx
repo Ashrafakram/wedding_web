@@ -17,14 +17,14 @@ interface NetworkShareModalProps {
 export function NetworkShareModal({ isOpen, onClose }: NetworkShareModalProps) {
   const [copied, setCopied] = useState(false)
 
-  // Compute shareable URL: if on localhost use actual active Wi-Fi LAN IP (192.168.1.7)
+  // Compute shareable URL: if on localhost use actual active Wi-Fi LAN IP (192.168.1.6)
   // If accessed via LAN IP or public server domain, use window.location.origin
   const networkUrl = React.useMemo(() => {
-    if (typeof window === 'undefined') return 'http://192.168.1.7:5174/'
+    if (typeof window === 'undefined') return 'http://192.168.1.6:5174/'
     const hostname = window.location.hostname
     const port = window.location.port ? `:${window.location.port}` : ''
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      return `http://192.168.1.7${port}/`
+      return `http://192.168.1.6${port}/`
     }
     return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
   }, [isOpen])

@@ -10,11 +10,16 @@ interface PetalItem {
   rotation: number
 }
 
-export function FloatingPetals() {
+interface FloatingPetalsProps {
+  count?: number
+  zIndexClass?: string
+}
+
+export function FloatingPetals({ count = 18, zIndexClass = 'z-10' }: FloatingPetalsProps = {}) {
   const [petals, setPetals] = useState<PetalItem[]>([])
 
   useEffect(() => {
-    const list: PetalItem[] = Array.from({ length: 18 }).map((_, i) => ({
+    const list: PetalItem[] = Array.from({ length: count }).map((_, i) => ({
       id: i,
       left: Math.random() * 96,
       size: Math.random() * 8 + 10,
@@ -27,7 +32,7 @@ export function FloatingPetals() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden" aria-hidden="true">
+    <div className={`fixed inset-0 pointer-events-none ${zIndexClass} overflow-hidden`} aria-hidden="true">
       {petals.map((p) => (
         <div
           key={p.id}

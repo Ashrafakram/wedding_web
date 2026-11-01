@@ -254,6 +254,53 @@ class RoyalWeddingAudio {
     osc.start(now)
     osc.stop(now + duration + 0.1)
   }
+
+  /**
+   * Synthesizes an authentic auspicious South Indian brass temple bell chime
+   * with natural metallic strike and lingering resonant hum.
+   */
+  public playTempleBellChime() {
+    try {
+      this.initAudioContext()
+      if (!this.audioCtx) return
+
+      const now = this.audioCtx.currentTime
+      const baseFreq = 587.33 // D5 auspicious temple fundamental
+
+      // Non-harmonic metallic partials of a sacred bronze/brass bell
+      const bellPartials = [
+        { ratio: 1.0, gain: 0.35, decay: 2.8 },
+        { ratio: 1.503, gain: 0.22, decay: 2.2 },
+        { ratio: 2.0, gain: 0.28, decay: 1.6 },
+        { ratio: 2.76, gain: 0.18, decay: 1.2 },
+        { ratio: 3.42, gain: 0.12, decay: 0.8 },
+        { ratio: 5.15, gain: 0.08, decay: 0.4 },
+      ]
+
+      bellPartials.forEach((p) => {
+        if (!this.audioCtx) return
+        const osc = this.audioCtx.createOscillator()
+        const gain = this.audioCtx.createGain()
+
+        osc.type = 'sine'
+        osc.frequency.setValueAtTime(baseFreq * p.ratio, now)
+
+        // Instant metallic strike, exponential natural decay
+        gain.gain.setValueAtTime(0, now)
+        gain.gain.linearRampToValueAtTime(p.gain, now + 0.005)
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + p.decay)
+
+        osc.connect(gain)
+        if (this.masterGain) gain.connect(this.masterGain)
+        if (this.delay) gain.connect(this.delay)
+
+        osc.start(now)
+        osc.stop(now + p.decay + 0.05)
+      })
+    } catch (e) {
+      console.warn('Temple bell chime error:', e)
+    }
+  }
 }
 
 export const weddingAudio = new RoyalWeddingAudio()

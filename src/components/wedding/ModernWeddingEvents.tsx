@@ -56,14 +56,15 @@ export const ModernWeddingEvents: React.FC = () => {
   }
 
   return (
-    <section className="relative flex w-full flex-col items-center px-4 md:px-8 py-8 md:py-12">
-      {/* Section Header */}
+    <section className="relative flex w-full flex-col items-center px-4 md:px-8 py-6 md:py-10">
+      {/* Royal Section Header */}
       <div className="text-center mb-8 md:mb-10 max-w-[480px]">
         <h2
-          className="font-bold text-[22px] md:text-[28px] uppercase tracking-[0.05em] mb-2"
+          className="font-bold text-[22px] md:text-[28px] uppercase tracking-[0.06em] mb-2"
           style={{
             color: '#640e1b',
             fontFamily: '"Times New Roman", Times, ChungDoiIndic, serif',
+            textShadow: '0 1px 2px rgba(171, 122, 69, 0.2)',
           }}
         >
           Wedding Events
@@ -81,60 +82,88 @@ export const ModernWeddingEvents: React.FC = () => {
         {/* Gold Ornament Divider */}
         <div className="flex items-center justify-center gap-3 mt-3">
           <div
-            className="w-12 h-px"
+            className="w-14 h-px"
             style={{ background: 'linear-gradient(to right, transparent, #ab7a45)' }}
           />
-          <span className="text-sm" style={{ color: '#ab7a45' }}>
+          <span className="text-sm select-none" style={{ color: '#ab7a45' }}>
             ❦
           </span>
           <div
-            className="w-12 h-px"
+            className="w-14 h-px"
             style={{ background: 'linear-gradient(to left, transparent, #ab7a45)' }}
           />
         </div>
       </div>
 
-      {/* Events Grid */}
-      <div className="w-full max-w-[460px] md:max-w-[560px] flex flex-col gap-8 md:gap-10">
+      {/* Royal Events Grid */}
+      <div className="w-full max-w-[450px] md:max-w-[540px] flex flex-col gap-8 md:gap-10">
         {WEDDING_EVENTS.map((event) => (
           <div
             key={event.id}
-            className="relative rounded-2xl overflow-hidden p-6 md:p-7 shadow-lg transition-all duration-300 hover:shadow-xl"
+            className="relative rounded-2xl overflow-hidden p-6 md:p-8 animate-royal-glow hover:-translate-y-1.5 transition-all duration-500 group"
             style={{
               background:
-                'linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(247, 227, 205, 0.45) 100%)',
-              border: '1.5px solid rgba(171, 122, 69, 0.35)',
-              boxShadow: '0 10px 30px rgba(100, 14, 27, 0.08)',
+                'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 247, 238, 0.92) 50%, rgba(247, 227, 205, 0.6) 100%)',
+              border: '2px solid rgba(171, 122, 69, 0.45)',
+              boxShadow:
+                '0 12px 35px rgba(100, 14, 27, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.8)',
             }}
           >
-            {/* Corner Filigree Accents */}
-            <div className="absolute top-2 left-2 text-[#ab7a45]/30 text-xs select-none">❧</div>
-            <div className="absolute top-2 right-2 text-[#ab7a45]/30 text-xs select-none rotate-90">❧</div>
-            <div className="absolute bottom-2 left-2 text-[#ab7a45]/30 text-xs select-none -rotate-90">❧</div>
-            <div className="absolute bottom-2 right-2 text-[#ab7a45]/30 text-xs select-none rotate-180">❧</div>
+            {/* Ambient Gold Shimmer Beam */}
+            <div
+              className="absolute top-0 bottom-0 w-24 pointer-events-none animate-gold-shimmer"
+              style={{
+                background:
+                  'linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.18), transparent)',
+              }}
+            />
 
-            {/* Event Badge Header */}
-            <div className="flex justify-center mb-5">
+            {/* Intricate Royal Filigree Corners */}
+            <div className="absolute top-2 left-2 text-[#ab7a45]/40 text-sm select-none pointer-events-none group-hover:text-[#ab7a45]/70 transition-colors">
+              ⚜
+            </div>
+            <div className="absolute top-2 right-2 text-[#ab7a45]/40 text-sm select-none pointer-events-none group-hover:text-[#ab7a45]/70 transition-colors">
+              ⚜
+            </div>
+            <div className="absolute bottom-2 left-2 text-[#ab7a45]/40 text-sm select-none pointer-events-none group-hover:text-[#ab7a45]/70 transition-colors">
+              ⚜
+            </div>
+            <div className="absolute bottom-2 right-2 text-[#ab7a45]/40 text-sm select-none pointer-events-none group-hover:text-[#ab7a45]/70 transition-colors">
+              ⚜
+            </div>
+
+            {/* Event Badge Header with Filigree Wings */}
+            <div className="flex items-center justify-center gap-2 mb-5">
+              <span className="text-[#ab7a45]/60 text-xs hidden sm:inline select-none">❖</span>
               <div
-                className="px-6 py-2 rounded-full shadow-md text-center inline-flex items-center justify-center"
+                className="relative px-7 py-2.5 rounded-full shadow-lg text-center overflow-hidden inline-flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
                 style={{
                   background: 'linear-gradient(135deg, #7d1222 0%, #640e1b 100%)',
-                  border: '1px solid rgba(247, 227, 205, 0.5)',
-                  boxShadow: '0 4px 15px rgba(100, 14, 27, 0.3)',
+                  border: '1px solid rgba(247, 227, 205, 0.6)',
+                  boxShadow: '0 4px 18px rgba(100, 14, 27, 0.35)',
                 }}
               >
                 <span
-                  className="text-white text-xs md:text-sm font-bold tracking-[0.08em] uppercase"
+                  className="text-white text-xs md:text-sm font-bold tracking-[0.1em] uppercase relative z-10"
                   style={{
                     fontFamily: '"Times New Roman", Times, serif',
                   }}
                 >
                   {event.badgeText}
                 </span>
+                {/* Subtle shine on badge */}
+                <div
+                  className="absolute top-0 h-full w-8 pointer-events-none animate-shine"
+                  style={{
+                    background:
+                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                  }}
+                />
               </div>
+              <span className="text-[#ab7a45]/60 text-xs hidden sm:inline select-none">❖</span>
             </div>
 
-            {/* Date & Time with Icons */}
+            {/* Date & Time */}
             <div className="flex flex-col items-center gap-2 mb-4 text-[#640e1b]">
               {/* Date */}
               <div className="flex items-center gap-2.5">
@@ -151,7 +180,7 @@ export const ModernWeddingEvents: React.FC = () => {
                   <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
                 <span
-                  className="text-base md:text-lg font-semibold"
+                  className="text-base md:text-lg font-semibold tracking-wide"
                   style={{
                     fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", serif',
                   }}
@@ -187,7 +216,7 @@ export const ModernWeddingEvents: React.FC = () => {
             {event.subBadge && (
               <div className="flex justify-center mb-4">
                 <div
-                  className="px-4 py-1 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-widest text-[#640e1b] bg-[#ab7a45]/20 border border-[#ab7a45]/40"
+                  className="px-5 py-1 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-widest text-[#640e1b] bg-[#ab7a45]/20 border border-[#ab7a45]/50 shadow-sm"
                   style={{
                     fontFamily: '"Times New Roman", Times, serif',
                   }}
@@ -197,10 +226,10 @@ export const ModernWeddingEvents: React.FC = () => {
               </div>
             )}
 
-            {/* Gold Divider */}
-            <div className="w-16 h-px mx-auto my-3 bg-[#ab7a45]/30" />
+            {/* Gold Hairline Divider */}
+            <div className="w-20 h-px mx-auto my-3 bg-gradient-to-r from-transparent via-[#ab7a45]/50 to-transparent" />
 
-            {/* Venue Details */}
+            {/* Venue Information */}
             <div className="flex flex-col items-center text-center mt-3 mb-6">
               <div className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-[#ab7a45] font-semibold mb-1">
                 <svg
@@ -217,7 +246,7 @@ export const ModernWeddingEvents: React.FC = () => {
                 <span>Venue</span>
               </div>
               <h3
-                className="text-base md:text-lg font-bold text-[#640e1b] mb-1.5"
+                className="text-base md:text-lg font-bold text-[#640e1b] mb-1.5 leading-snug"
                 style={{
                   fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", serif',
                 }}
@@ -225,7 +254,7 @@ export const ModernWeddingEvents: React.FC = () => {
                 {event.venueName}
               </h3>
               <p
-                className="text-xs md:text-sm text-[#640e1b]/75 max-w-[340px] leading-relaxed"
+                className="text-xs md:text-sm text-[#640e1b]/80 max-w-[340px] leading-relaxed"
                 style={{
                   fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", serif',
                 }}
@@ -234,16 +263,16 @@ export const ModernWeddingEvents: React.FC = () => {
               </p>
             </div>
 
-            {/* Modern Interactive Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2 border-t border-[#ab7a45]/25">
+            {/* Interactive Royal Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-3 border-t border-[#ab7a45]/30">
               {/* 1. View Interactive Map Modal */}
               <button
                 type="button"
                 onClick={() => setActiveModalEvent(event)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 shadow-sm active:scale-95"
+                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold text-white overflow-hidden shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
                 style={{
                   backgroundColor: '#640e1b',
-                  color: '#ffffff',
+                  boxShadow: '0 4px 14px rgba(100, 14, 27, 0.35)',
                 }}
               >
                 <svg
@@ -258,18 +287,26 @@ export const ModernWeddingEvents: React.FC = () => {
                   <line x1="16" y1="6" x2="16" y2="22" />
                 </svg>
                 <span>View on Map</span>
+                {/* Button shine sweep */}
+                <div
+                  className="absolute top-0 h-full w-8 pointer-events-none animate-shine"
+                  style={{
+                    background:
+                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                  }}
+                />
               </button>
 
-              {/* 2. Get Directions (Native App / Direct Google Maps) */}
+              {/* 2. Direct GPS Navigation */}
               <a
                 href={event.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 border shadow-sm hover:bg-[#ab7a45]/10 active:scale-95"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 border shadow-sm hover:bg-[#ab7a45]/15 hover:scale-105 active:scale-95"
                 style={{
                   borderColor: '#ab7a45',
                   color: '#640e1b',
-                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.85)',
                 }}
               >
                 <svg
@@ -284,7 +321,7 @@ export const ModernWeddingEvents: React.FC = () => {
                 <span>Directions</span>
               </a>
 
-              {/* 3. Copy Address */}
+              {/* 3. Quick Copy Address */}
               <button
                 type="button"
                 onClick={(e) => handleCopyAddress(event, e)}
@@ -308,10 +345,10 @@ export const ModernWeddingEvents: React.FC = () => {
         ))}
       </div>
 
-      {/* Sleek Interactive Map Modal */}
+      {/* Interactive Royal Map Modal */}
       {activeModalEvent && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm animate-fade-in"
           onClick={() => setActiveModalEvent(null)}
         >
           <div
@@ -337,7 +374,7 @@ export const ModernWeddingEvents: React.FC = () => {
                 >
                   {activeModalEvent.venueName}
                 </h3>
-                <p className="text-xs text-[#640e1b]/70 mt-0.5">
+                <p className="text-xs text-[#640e1b]/75 mt-0.5">
                   {activeModalEvent.address}
                 </p>
               </div>
@@ -400,4 +437,3 @@ export const ModernWeddingEvents: React.FC = () => {
 }
 
 export default ModernWeddingEvents
-

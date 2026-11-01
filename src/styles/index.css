@@ -197,6 +197,34 @@
   animation: shine 3s ease-in-out infinite;
 }
 
+@keyframes royal-glow {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(171, 122, 69, 0.16), 0 0 20px rgba(171, 122, 69, 0.1);
+    border-color: rgba(171, 122, 69, 0.35);
+  }
+  50% {
+    box-shadow: 0 16px 45px rgba(100, 14, 27, 0.22), 0 0 35px rgba(171, 122, 69, 0.28);
+    border-color: rgba(171, 122, 69, 0.65);
+  }
+}
+
+@keyframes gold-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  40%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-royal-glow {
+  animation: royal-glow 4s ease-in-out infinite;
+}
+
+.animate-gold-shimmer {
+  animation: gold-shimmer 3.5s ease-in-out infinite;
+}
+
 .animate-seal-pulse {
   animation: seal-pulse 2.2s ease-in-out infinite;
 }

@@ -1,0 +1,169 @@
+{
+  "id": "0d590f22-84fb-46a1-bb1f-79b3abf16796",
+  "title": "Invitation 1",
+  "data": {
+    "date": "2026-11-20",
+    "time": "18:00",
+    "address": {
+      "en": "13, Military Rd, Ammapet, Salem, Tamil Nadu 636003"
+    },
+    "showMap": true,
+    "showBank": true,
+    "showRsvp": true,
+    "timezone": "America/Los_Angeles",
+    "partyType": "wedding",
+    "showParty": true,
+    "brideFirst": false,
+    "ceremonies": [
+      {
+        "id": "a0e53107",
+        "date": "2026-11-20",
+        "time": "04:00",
+        "header": {
+          "en": "WEDDING CEREMONY",
+          "vi": "LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI\nTƯ GIA"
+        }
+      },
+      {
+        "id": "a553315a",
+        "date": "2026-11-19",
+        "time": "18:00",
+        "header": {
+          "en": "WEDDING RECEPTION",
+          "vi": "LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI\nTƯ GIA"
+        }
+      }
+    ],
+    "templateId": "mahal_gold",
+    "timeFormat": "12h",
+    "giftMethods": [],
+    "ogImageMode": "envelope",
+    "brideBankBin": "",
+    "groomBankBin": "",
+    "musicEndTime": 27,
+    "musicTrackId": "yt-0bdcc4d2-21d",
+    "showSponsors": false,
+    "showThankYou": true,
+    "showTimeline": true,
+    "thankYouNote": {
+      "en": "With love and gratitude, we invite you to be part of our special day. Your presence, blessings, and good wishes will make our celebration even more memorable.\n\nThank you for being a part of our happiness and for showering us with your love and blessings. ❤️"
+    },
+    "weddingTitle": "Happy Wedding",
+    "activeLocales": [
+      "en"
+    ],
+    "brideBankCode": "",
+    "brideBankLogo": "",
+    "brideBankName": "",
+    "brideFullName": "Swetha",
+    "galleryImages": [
+      {
+        "url": "https://cdn.chungdoi.com/uploads/6289f909-6979-4bee-a95d-5ea5a876fd8a.jpg",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      {
+        "url": "https://cdn.chungdoi.com/uploads/fd6b9841-d85e-4679-8256-36b490e84ba9.jpg",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      {
+        "url": "https://cdn.chungdoi.com/uploads/966ac989-6fc1-4222-b757-a404f84c0d9b.jpg",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    ],
+    "galleryLayout": "cards",
+    "groomBankCode": "",
+    "groomBankLogo": "",
+    "groomBankName": "",
+    "groomFullName": "\tDeepak Kumar",
+    "rsvpQuestions": [],
+    "showGuestbook": true,
+    "brideShortName": "",
+    "groomShortName": "",
+    "musicStartTime": 0,
+    "showFamilyInfo": true,
+    "timelineEvents": [
+      {
+        "id": "d0034e01",
+        "time": "04:00",
+        "label": {
+          "ar": "استقبال الضيوف",
+          "de": "Empfang",
+          "en": "Welcome",
+          "es": "Bienvenida",
+          "fr": "Accueil des invités",
+          "hi": "अतिथि आगमन",
+          "id": "Penyambutan Tamu",
+          "it": "Accoglienza degli ospiti",
+          "ja": "受付",
+          "ko": "하객 맞이",
+          "ms": "Ketibaan Tetamu",
+          "pt": "Boas-vindas",
+          "ru": "Встреча гостей",
+          "th": "ต้อนรับแขก",
+          "tr": "Misafir Karşılama",
+          "uz": "Mehmonlarni kutib olish",
+          "vi": "Đón khách",
+          "fil": "Pagdating ng mga Bisita",
+          "zh-CN": "宾客迎接",
+          "zh-HK": "賓客迎接",
+          "zh-TW": "賓客迎接"
+        }
+      },
+      {
+        "id": "05ed3b66",
+        "time": "18:00",
+        "label": {
+          "ar": "الاستقبال",
+          "de": "Feier",
+          "en": "Reception",
+          "es": "Recepción",
+          "fr": "Réception",
+          "hi": "प्रीतिभोज",
+          "id": "Resepsi",
+          "it": "Ricevimento",
+          "ja": "披露宴",
+          "ko": "피로연",
+          "ms": "Majlis Resepsi",
+          "pt": "Recepção",
+          "ru": "Банкет",
+          "th": "เริ่มงานเลี้ยง",
+          "tr": "Kutlama",
+          "uz": "Toʻy marosimi",
+          "vi": "Khai tiệc",
+          "fil": "Reception",
+          "zh-CN": "开席",
+          "zh-HK": "開席",
+          "zh-TW": "開席"
+        }
+      }
+    ],
+    "rsvpDisplayMode": "button",
+    "brideAccountName": "",
+    "groomAccountName": "",
+    "hideAnnouncement": true,
+    "brideAccountNumber": "",
+    "groomAccountNumber": "",
+    "receptionInfoTitle": {
+      "en": "WEDDING "
+    },
+    "showReceptionTimes": false
+  },
+  "slug": "deepakkumar-swetha",
+  "unique_visitors": 3,
+  "is_paid": false,
+  "is_demo": false,
+  "published_at": "2026-11-01T12:01:08.134Z",
+  "created_at": "2026-11-01T11:32:57.441Z",
+  "updated_at": "2026-11-01T12:01:08.134Z",
+  "og_fields_updated_at": "2026-11-01T11:58:56.718Z",
+  "branding": null
+}

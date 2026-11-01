@@ -1,4 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { ModernWeddingEvents } from './ModernWeddingEvents'
+import { MahalMandapamThankYou } from './MahalMandapamThankYou'
+
+// Set to false to instantly revert to the original castle footer
+const SHOW_TRADITIONAL_MANDAPAM_THANK_YOU = true
 
 interface MahalGoldInvitationProps {
   onRsvpClick: () => void
@@ -476,8 +481,8 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     WEDDING CEREMONY
                   </span>
                 </div>
-                <p className="font-normal text-[14px] md:text-[15px] text-center uppercase" style={{ color: '#ab7a45' }}>
-                  AT 4:00 AM
+                <p className="font-normal text-[14px] md:text-[15px] text-center uppercase tracking-wide" style={{ color: '#ab7a45' }}>
+                  AT 4:00 AM – 6:00 AM (MUHURTHAM)
                 </p>
                 <div className="flex items-center gap-6" style={{ color: '#640e1b' }}>
                   <span
@@ -550,8 +555,8 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     WEDDING RECEPTION
                   </span>
                 </div>
-                <p className="font-normal text-[14px] md:text-[15px] text-center uppercase" style={{ color: '#ab7a45' }}>
-                  AT 6:00 PM
+                <p className="font-normal text-[14px] md:text-[15px] text-center uppercase tracking-wide" style={{ color: '#ab7a45' }}>
+                  AT 6:00 PM – 10:00 PM
                 </p>
                 <div className="flex items-center gap-6" style={{ color: '#640e1b' }}>
                   <span
@@ -1054,73 +1059,18 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
         </section>
 
         {/* ======================================================== */}
-        {/* SECTION 5: VENUE, MAP, AND WEDDING DAY SCHEDULE          */}
+        {/* SECTION 5: MODERN WEDDING EVENTS & VENUE MAP MODAL       */}
         {/* ======================================================== */}
-        <div className="relative isolate z-10 w-full pt-[9%] md:pt-[5%]">
-          <div className="relative z-10 flex w-full flex-col items-center">
-            <section className="relative flex w-full flex-col gap-3 px-[10%] pb-6 md:px-[14%]" data-landing-screenshot-id="invite-map">
-              <div className="relative text-center">
-                <h3
-                  className="font-bold text-[18px] md:text-[24px] text-center uppercase tracking-[0.04em]"
-                  style={{
-                    color: '#640e1b',
-                    fontFamily: '"Times New Roman", Times, ChungDoiIndic, serif',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  <span dir="auto">Wedding Reception Venue</span>
-                </h3>
-                <div
-                  className="whitespace-pre-line mx-auto mt-1 max-w-[260px] md:max-w-[400px] text-center text-[12px] md:text-[14px] flex flex-col items-center"
-                  style={{
-                    backgroundColor: 'transparent',
-                    color: '#ab7a45',
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                  }}
-                >
-                  <span dir="auto">13, Military Rd, Ammapet, Salem, Tamil Nadu 636003</span>
-                </div>
-              </div>
-
-              {/* Embedded Google Map */}
-              <div className="relative flex flex-col items-center gap-4 md:gap-5 w-full" data-showcase-keep="">
-                <iframe
-                  title="Venue Map"
-                  className="w-full mt-3 rounded-[15px] h-[250px] md:h-[330px] overflow-hidden border"
-                  style={{ borderColor: '#ab7a45' }}
-                  src="https://maps.google.com/maps?q=13,%20Military%20Rd,%20Ammapet,%20Salem,%20Tamil%20Nadu%20636003&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                  loading="lazy"
-                  allowFullScreen
-                />
-                <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=13%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm md:text-base font-semibold transition-transform hover:scale-[1.03]"
-                  style={{
-                    backgroundColor: 'transparent',
-                    color: '#ab7a45',
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                  }}
-                >
-                  <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
-                  </svg>
-                  <span>Get directions</span>
-                </a>
-              </div>
-            </section>
-
-            <img
-              src="/images/themes/mahal-gold/gold-line.webp"
-              alt=""
-              aria-hidden="true"
-              className="mx-auto block h-auto max-w-[300px] object-contain w-[53.7%] mt-2 md:mt-4"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+        <div className="relative isolate z-10 w-full pt-[4%] md:pt-[2%]">
+          <ModernWeddingEvents />
+          <img
+            src="/images/themes/mahal-gold/gold-line.webp"
+            alt=""
+            aria-hidden="true"
+            className="mx-auto block h-auto max-w-[300px] object-contain w-[53.7%] mt-4 md:mt-6 mb-8"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         {/* WEDDING DAY SCHEDULE */}
@@ -1350,37 +1300,41 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
           </div>
         </section>
 
-        {/* FOOTER THANK YOU NOTE & CASTLE BOTTOM SILHOUETTE */}
-        <div className="relative isolate z-10">
-          <footer className="relative z-20 flex flex-col items-center px-[9%] pb-[62%] text-center md:px-[14%] md:pb-[44%]">
-            <span
-              className="whitespace-pre-line flex flex-col items-center gap-1 text-[11px] md:text-[14px] mx-auto md:max-w-[560px]"
-              style={{
-                color: '#640e1b',
-                fontFamily: '"Roboto", system-ui, ChungDoiIndic, sans-serif',
-                fontWeight: 500,
-              }}
-            >
-              <span dir="auto">
-                With love and gratitude, we invite you to be part of our special day. Your presence,
-                blessings, and good wishes will make our celebration even more memorable.
-                {'\n\n'}
-                Thank you for being a part of our happiness and for showering us with your love and
-                blessings. ❤️
+        {/* FOOTER THANK YOU SECTION (REVERSIBLE TOGGLE) */}
+        {SHOW_TRADITIONAL_MANDAPAM_THANK_YOU ? (
+          <MahalMandapamThankYou />
+        ) : (
+          <div className="relative isolate z-10">
+            <footer className="relative z-20 flex flex-col items-center px-[9%] pb-[62%] text-center md:px-[14%] md:pb-[44%]">
+              <span
+                className="whitespace-pre-line flex flex-col items-center gap-1 text-[11px] md:text-[14px] mx-auto md:max-w-[560px]"
+                style={{
+                  color: '#640e1b',
+                  fontFamily: '"Roboto", system-ui, ChungDoiIndic, sans-serif',
+                  fontWeight: 500,
+                }}
+              >
+                <span dir="auto">
+                  With love and gratitude, we invite you to be part of our special day. Your presence,
+                  blessings, and good wishes will make our celebration even more memorable.
+                  {'\n\n'}
+                  Thank you for being a part of our happiness and for showering us with your love and
+                  blessings. ❤️
+                </span>
               </span>
-            </span>
-          </footer>
+            </footer>
 
-          {/* Bottom Castle Layer */}
-          <img
-            src="/images/themes/mahal-gold/castle.webp"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute bottom-[-15%] left-[-40.6%] z-0 h-auto w-[176.6%] max-w-none object-contain md:left-[-18%] md:w-[136%]"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
+            {/* Bottom Castle Layer */}
+            <img
+              src="/images/themes/mahal-gold/castle.webp"
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-[-15%] left-[-40.6%] z-0 h-auto w-[176.6%] max-w-none object-contain md:left-[-18%] md:w-[136%]"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        )}
 
         {/* Fullscreen Lightbox Dialog */}
         {lightboxOpen && (

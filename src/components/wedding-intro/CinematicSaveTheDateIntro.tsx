@@ -209,7 +209,7 @@ export function CinematicSaveTheDateIntro({
             <span className="font-serif italic font-bold text-[#FFF0F3] text-[10px]">S&amp;D</span>
           </div>
           <span className="text-[11px] sm:text-xs font-cinzel tracking-wider text-[#5C1D2A] font-semibold">
-            Dr. Swetha &amp; Er. Deepak
+            Er. Swetha &amp; Er. Deepak
           </span>
         </div>
 
@@ -427,7 +427,7 @@ export function CinematicSaveTheDateIntro({
                   </p>
 
                   <h2 className="text-lg sm:text-2xl font-cinzel font-bold text-[#7E2E40] tracking-wide gold-foil-text-rich drop-shadow-sm">
-                    Dr. Swetha
+                    Er. Swetha
                   </h2>
                   <span className="text-xs sm:text-sm font-serif italic text-[#B5566A] my-0.5">&amp;</span>
                   <h2 className="text-lg sm:text-2xl font-cinzel font-bold text-[#7E2E40] tracking-wide gold-foil-text-rich drop-shadow-sm">
@@ -477,21 +477,26 @@ export function CinematicSaveTheDateIntro({
                           }`}
                         >
                           {isWeddingDay && (
-                            <div className="absolute inset-0 -top-0.5 -left-0.5 w-6 h-6 flex items-center justify-center pointer-events-none">
-                              <svg viewBox="0 0 100 100" className="w-full h-full text-rose-500 filter drop-shadow-[0_0_8px_rgba(244,63,94,0.9)]">
-                                <path
-                                  d="M50 88 C20 62 10 44 10 30 A18 18 0 0 1 50 22 A18 18 0 0 1 90 30 C90 44 80 62 50 88 Z"
-                                  fill="none"
-                                  stroke="#F43F5E"
-                                  strokeWidth="7"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  className="heart-draw-anim"
-                                />
-                              </svg>
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                              <div className="size-6.5 sm:size-7 flex items-center justify-center translate-y-[2px]">
+                                <svg
+                                  viewBox="0 0 100 100"
+                                  className="w-full h-full text-rose-500 filter drop-shadow-[0_0_8px_rgba(244,63,94,0.9)] overflow-visible"
+                                >
+                                  <path
+                                    d="M50 88 C20 62 10 44 10 30 A18 18 0 0 1 50 22 A18 18 0 0 1 90 30 C90 44 80 62 50 88 Z"
+                                    fill="none"
+                                    stroke="#F43F5E"
+                                    strokeWidth="7"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="heart-draw-anim"
+                                  />
+                                </svg>
+                              </div>
                             </div>
                           )}
-                          <span>{day}</span>
+                          <span className="relative z-10 leading-none">{day}</span>
                         </div>
                       )
                     })}
@@ -520,7 +525,7 @@ export function CinematicSaveTheDateIntro({
                     AVVS Mahal &amp; Sri Senraya Perumal Temple
                   </h4>
                   <p className="text-[9px] sm:text-[10px] font-serif text-[#6D424B]">
-                    Civil Line Road, Dharmapuri, Tamil Nadu
+                    Ammapet (Ammapettai) &amp; Odayapatti, Salem, Tamil Nadu
                   </p>
 
                   {/* Dual Action Buttons */}
@@ -627,20 +632,23 @@ export function CinematicSaveTheDateIntro({
               className="group relative flex flex-col items-center cursor-pointer select-none active:scale-95 transition-transform"
               title="Click to Open Wedding Invitation"
             >
-              {/* Pulsing Golden Halo Ring */}
-              <div className="absolute inset-0 size-24 sm:size-28 -top-3 -left-3 rounded-full border-2 border-[#D4AF37] animate-ping opacity-60 pointer-events-none" />
+              {/* Central Seal Anchor: Positioned directly over ribbon knot & printed card seal */}
+              <div className="relative flex items-center justify-center">
+                {/* Pulsing Golden Halo Ring */}
+                <div className="absolute size-26 sm:size-32 rounded-full border-2 border-[#D4AF37] animate-ping opacity-60 pointer-events-none" />
 
-              {/* The Blue Heart Wax Seal with Gold Trim */}
-              <div className="relative size-20 sm:size-24 rounded-full overflow-hidden border-2 border-[#D4AF37] shadow-[0_12px_40px_rgba(126,46,64,0.5),0_0_25px_rgba(212,175,55,0.7)] bg-[#7E2E40] transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
-                <img
-                  src="/assets/seal_stamp.jpg"
-                  alt="Auspicious Wax Seal"
-                  className="w-full h-full object-cover"
-                />
+                {/* Auspicious SD Wax Seal: Sized and centered to completely cover the underlying card seal */}
+                <div className="relative size-22 sm:size-26 rounded-full overflow-hidden border-2 border-[#D4AF37] shadow-[0_12px_40px_rgba(126,46,64,0.5),0_0_25px_rgba(212,175,55,0.7)] bg-[#FAF5EE] transition-transform duration-300 group-hover:scale-108 flex items-center justify-center">
+                  <img
+                    src="/assets/seal_stamp.jpg"
+                    alt="Auspicious Wax Seal"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
 
-              {/* THE MISSING PROMINENT "TAP TO OPEN" BUTTON RESTORED */}
-              <div className="mt-5 px-5 py-2 rounded-full bg-gradient-to-r from-[#7E2E40] via-[#9E3D52] to-[#7E2E40] hover:from-[#9E3D52] hover:to-[#B5566A] border-2 border-[#F3D279] shadow-[0_8px_30px_rgba(126,46,64,0.5)] whitespace-nowrap transition-all duration-300 group-hover:scale-105 active:scale-95 animate-bounce">
+              {/* Centered "TAP TO OPEN" Button positioned directly below the seal without offsetting seal center */}
+              <div className="absolute top-[calc(100%+14px)] left-1/2 -translate-x-1/2 px-5 py-2 rounded-full bg-gradient-to-r from-[#7E2E40] via-[#9E3D52] to-[#7E2E40] hover:from-[#9E3D52] hover:to-[#B5566A] border-2 border-[#F3D279] shadow-[0_8px_30px_rgba(126,46,64,0.5)] whitespace-nowrap transition-all duration-300 group-hover:scale-105 active:scale-95 animate-bounce">
                 <span className="text-xs sm:text-sm font-cinzel text-[#FFF0F3] font-bold tracking-widest uppercase flex items-center gap-2">
                   <Sparkles className="size-3.5 text-[#F3D279] animate-pulse" />
                   <span>✦ TAP TO OPEN ✦</span>

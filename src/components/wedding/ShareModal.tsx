@@ -17,8 +17,16 @@ interface ShareModalProps {
 
 export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalProps) {
   const [copied, setCopied] = useState(false)
-  const networkUrl = 'http://192.168.1.60:5174/'
-  const shareUrl = window.location.href.includes('localhost') ? networkUrl : window.location.href
+
+  const shareUrl = React.useMemo(() => {
+    if (typeof window === 'undefined') return 'http://192.168.1.6:5174/'
+    const hostname = window.location.hostname
+    const port = window.location.port ? `:${window.location.port}` : ''
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return `http://192.168.1.6${port}/`
+    }
+    return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+  }, [isOpen])
 
   const shareText = `💍 Swetha & Deepak Kumar Wedding Invitation\n\nWe cordially invite you to join our wedding celebration on 19 & 20 November 2026.\n\n✨ Reception: 19 Nov, 6:00 PM @ AVVS Mahal, Ammapet, Salem\n✨ Muhurtham: 20 Nov, 4:00 AM @ Senraya Perumal Temple, Odayapatti, Salem\n\nView details & live invitation: ${shareUrl}`
 
@@ -49,13 +57,13 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-md p-6 bg-[#FAF5EB] border-[#D8C7A9]">
         <DialogHeader className="text-center">
-          <div className="mx-auto size-12 rounded-full bg-[#FFF0F3] text-[#7E2E40] flex items-center justify-center mb-1 border border-[#E8C5CB]">
-            <Share2 className="w-6 h-6 text-[#7E2E40]" />
+          <div className="mx-auto size-12 rounded-full bg-[#EAF2ED] text-[#25D366] flex items-center justify-center mb-1">
+            <Share2 className="w-6 h-6 text-[#163224]" />
           </div>
-          <DialogTitle className="font-serif text-3xl text-[#7E2E40]">
+          <DialogTitle className="font-serif text-3xl text-[#163224]">
             Share Invitation
           </DialogTitle>
-          <DialogDescription className="text-xs text-[#8C3A4F]">
+          <DialogDescription className="text-xs text-[#7A6D5E]">
             Share the joyful wedding invitation with friends and family.
           </DialogDescription>
         </DialogHeader>
@@ -65,7 +73,7 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
           <Button
             onClick={handleWhatsAppShare}
             variant="default"
-            className="w-full py-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full flex items-center justify-center gap-2 font-medium shadow-sm transition-transform active:scale-98 cursor-pointer"
+            className="w-full py-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full flex items-center justify-center gap-2 font-medium shadow-sm transition-transform active:scale-98"
           >
             <MessageCircle className="w-5 h-5 fill-white text-[#25D366]" />
             <span>Share via WhatsApp</span>
@@ -77,16 +85,18 @@ export function ShareModal({ isOpen, onClose, onOpenNetworkShare }: ShareModalPr
               onClose()
               onOpenNetworkShare()
             }}
-            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border border-[#E8C5CB] bg-[#FFF0F3] hover:bg-white text-xs uppercase tracking-wider text-[#7E2E40] font-cinzel font-semibold transition-transform active:scale-98 cursor-pointer"
+            variant="creamOutline"
+            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border-[#C59B27] bg-[#FAF4E4] hover:bg-[#F3EACB] text-xs uppercase tracking-wider text-[#163224] transition-transform active:scale-98"
           >
-            <QrCode className="w-4 h-4 text-[#B5566A]" />
+            <QrCode className="w-4 h-4 text-[#C59B27]" />
             <span>Open on Mobile via QR Code / Wi-Fi</span>
           </Button>
 
           {/* Copy Full Invite & Link */}
           <Button
             onClick={handleCopyLink}
-            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border border-[#E8C5CB] bg-white hover:bg-[#FFF7F8] text-xs uppercase tracking-wider text-[#7E2E40] font-cinzel font-semibold transition-transform active:scale-98 cursor-pointer"
+            variant="creamOutline"
+            className="w-full py-3 rounded-full flex items-center justify-center gap-2 border-[#D8C7A9] text-xs uppercase tracking-wider text-[#163224] transition-transform active:scale-98"
           >
             {copied ? (
               <>

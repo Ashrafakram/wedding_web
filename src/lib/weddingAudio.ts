@@ -304,4 +304,3 @@ class RoyalWeddingAudio {
 }
 
 export const weddingAudio = new RoyalWeddingAudio()
-

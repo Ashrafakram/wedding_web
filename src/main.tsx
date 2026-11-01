@@ -29,11 +29,11 @@ class RootErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-[#FAF5EE] flex flex-col items-center justify-center p-6 text-center text-[#7E2E40]">
-          <h1 className="text-xl font-cinzel font-bold text-[#7E2E40] mb-2">
+        <div className="min-h-screen bg-[#FBF7F0] flex flex-col items-center justify-center p-6 text-center text-[#163224]">
+          <h1 className="text-xl font-cinzel font-bold text-[#C59B27] mb-2">
             Swetha & Deepak Kumar Wedding Invitation
           </h1>
-          <p className="text-sm mb-4 text-[#5C1D2A]">
+          <p className="text-sm mb-4 text-[#2D261E]">
             Welcome to our wedding celebration!
           </p>
           <button
@@ -41,7 +41,7 @@ class RootErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState
               this.setState({ hasError: false })
               window.location.reload()
             }}
-            className="px-6 py-2.5 rounded-full bg-[#7E2E40] text-[#FFF0F3] font-cinzel text-xs tracking-wider uppercase border border-[#E8C5CB]"
+            className="px-6 py-2.5 rounded-full bg-[#163224] text-[#F3D279] font-cinzel text-xs tracking-wider uppercase border border-[#C59B27]"
           >
             Enter Wedding Invitation
           </button>

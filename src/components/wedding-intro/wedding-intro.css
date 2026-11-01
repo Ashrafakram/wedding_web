@@ -488,8 +488,8 @@
 /* Center Silk Ribbon & Wax Seal Trigger */
 .cinematic-ribbon-seal {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 49.5%;
+  left: 50.8%;
   transform: translate(-50%, -50%);
   z-index: 40;
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -658,7 +658,7 @@
     opacity: 1;
   }
   100% {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 320;
     opacity: 1;
     transform: scale(1);
   }

@@ -1,7 +1,5 @@
 import React from 'react'
 import { CinematicSaveTheDateIntro } from './CinematicSaveTheDateIntro'
-// import { RoyalSealFloralIntro } from './RoyalSealFloralIntro'
-// import { LuxeGatefoldIntro } from './LuxeGatefoldIntro'
 import './wedding-intro.css'
 
 interface WeddingIntroProps {

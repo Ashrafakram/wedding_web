@@ -5,19 +5,36 @@
 @import './blessing.css';
 
 @theme inline {
-  --color-wedding-cream: #FAF5EE;
+  /* Warm Champagne Beige & Cream Palette */
+  --color-wedding-cream: #FBF7F0;
   --color-wedding-ivory: #FFFDF9;
-  --color-wedding-parchment: #F4EFE6;
-  --color-wedding-pink: #B5566A;
-  --color-wedding-pink-light: #F7D6DC;
-  --color-wedding-pink-deep: #7E2E40;
-  --color-wedding-gold: #D4AF37;
+  --color-wedding-parchment: #F5EFE3;
+  --color-wedding-beige: #FAF5EB;
+  --color-wedding-beige-dark: #E8D8C3;
+  --color-wedding-linen: #F3EBE0;
+
+  /* Royal Wine & Burgundy Palette */
+  --color-wedding-wine: #5C131E;
+  --color-wedding-wine-deep: #3E0C13;
+  --color-wedding-wine-card: #4A0E17;
+  --color-wedding-wine-light: #7A1D2B;
+  --color-wedding-wine-soft: rgba(92, 19, 30, 0.08);
+
+  /* Romantic Lotus Pink & Rose Palette */
+  --color-wedding-rose: #C45B6E;
+  --color-wedding-rose-light: #F5D0D7;
+  --color-wedding-rose-card: #6B1D2E;
+  --color-wedding-blush: #FAF0EE;
+
+  /* Antique Temple Gold */
+  --color-wedding-gold: #C59B27;
   --color-wedding-gold-dark: #9A7516;
   --color-wedding-gold-light: #F3D279;
-  --color-wedding-border: #E8D8C8;
-  --color-wedding-border-pink: #E8C5CB;
-  --color-wedding-text: #2D1B22;
-  --color-wedding-muted: #7A6368;
+
+  /* Legacy & Text */
+  --color-wedding-border: #E8DEC8;
+  --color-wedding-text: #2D261E;
+  --color-wedding-muted: #6B6255;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-script: 'Great Vibes', cursive;
@@ -69,7 +86,154 @@
   scrollbar-width: none !important;
 }
 
-/* Smooth Luxury Modal Animations */
+/* ==========================================================================
+   ADVANCED TAMIL WEDDING ANIMATIONS & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* 1. Metallic Gold Text Shimmer */
+@keyframes gold-text-shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #9A7516 0%,
+    #C59B27 25%,
+    #FFF6DC 50%,
+    #C59B27 75%,
+    #9A7516 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gold-text-shine 5s linear infinite;
+}
+
+/* 2. Self-Drawing Kolam / Rangoli Stroke Animation */
+@keyframes kolam-stroke-draw {
+  from {
+    stroke-dashoffset: 1000;
+    opacity: 0.2;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-kolam {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: kolam-stroke-draw 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* 3. Swaying Temple Bells (Mani) Physics */
+@keyframes bell-pendulum {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(12deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(6deg);
+  }
+  80% {
+    transform: rotate(-3deg);
+  }
+}
+
+.animate-sway-bell {
+  transform-origin: top center;
+  animation: bell-pendulum 4.5s ease-in-out infinite;
+}
+
+.animate-sway-bell-delayed {
+  transform-origin: top center;
+  animation: bell-pendulum 4.5s ease-in-out 1.5s infinite;
+}
+
+/* 4. Auspicious Diya / Homam Sacred Flame Flicker */
+@keyframes diya-flame-flicker {
+  0%, 100% {
+    transform: scale(1) translateY(0) rotate(-1deg);
+    filter: drop-shadow(0 0 10px rgba(243, 210, 121, 0.7));
+  }
+  25% {
+    transform: scale(1.08, 0.94) translateY(-1px) rotate(2deg);
+    filter: drop-shadow(0 0 16px rgba(255, 170, 50, 0.9));
+  }
+  50% {
+    transform: scale(0.95, 1.05) translateY(-2px) rotate(-1deg);
+    filter: drop-shadow(0 0 12px rgba(243, 210, 121, 0.8));
+  }
+  75% {
+    transform: scale(1.04, 0.98) translateY(0) rotate(1deg);
+    filter: drop-shadow(0 0 14px rgba(255, 180, 70, 0.85));
+  }
+}
+
+.animate-diya-flame {
+  transform-origin: bottom center;
+  animation: diya-flame-flicker 2.2s ease-in-out infinite;
+}
+
+/* 5. Living Breathing Floating Animation for Artwork */
+@keyframes living-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.012);
+  }
+}
+
+.animate-living-float {
+  animation: living-float 6s ease-in-out infinite;
+}
+
+/* 6. Radar Concentric Pulse for Venues */
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar-ping {
+  animation: radar-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* 7. Subtle 3D Card Hover Perspective */
+.card-wine-glow {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px -10px rgba(92, 19, 30, 0.15), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.card-wine-glow:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px -12px rgba(92, 19, 30, 0.28), 0 0 20px rgba(197, 155, 39, 0.25);
+  border-color: #C59B27;
+}
+
+/* Modal and Backdrop Animations */
 @keyframes modal-scale-in {
   0% {
     opacity: 0;
@@ -93,21 +257,13 @@
 }
 
 @keyframes backdrop-fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes backdrop-fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .animate-modal-in {
@@ -126,16 +282,6 @@
   animation: backdrop-fade-out 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Floating & Gentle Breathing Keyframes */
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(1.5deg);
-  }
-}
-
 @keyframes pulse-ring {
   0% {
     transform: scale(0.95);
@@ -151,325 +297,6 @@
   }
 }
 
-.animate-float-slow {
-  animation: float-slow 5s ease-in-out infinite;
-}
-
 .animate-pulse-ring {
   animation: pulse-ring 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 }
-
-/* ==========================================================================
-   Romantic Falling Flower Petals Keyframes & Physics
-   Top-to-Bottom Fall • 8-12s Speeds • Wind Drift • 360° Natural Rotation
-   ========================================================================== */
-@keyframes romanticPetalFall1 {
-  0% {
-    transform: translate3d(0, -12vh, 0) rotateZ(0deg) rotateY(0deg) rotateX(0deg);
-    opacity: 0;
-  }
-  8% {
-    opacity: var(--petal-max-opacity, 0.9);
-  }
-  28% {
-    transform: translate3d(32px, 28vh, 18px) rotateZ(95deg) rotateY(80deg) rotateX(45deg);
-  }
-  55% {
-    transform: translate3d(-18px, 58vh, -12px) rotateZ(195deg) rotateY(170deg) rotateX(90deg);
-  }
-  82% {
-    transform: translate3d(28px, 88vh, 15px) rotateZ(295deg) rotateY(280deg) rotateX(135deg);
-    opacity: var(--petal-max-opacity, 0.9);
-  }
-  100% {
-    transform: translate3d(8px, 112vh, 0px) rotateZ(360deg) rotateY(360deg) rotateX(180deg);
-    opacity: 0;
-  }
-}
-
-@keyframes romanticPetalFall2 {
-  0% {
-    transform: translate3d(0, -12vh, 0) rotateZ(20deg) rotateY(30deg) rotateX(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: var(--petal-max-opacity, 0.85);
-  }
-  32% {
-    transform: translate3d(-34px, 34vh, -16px) rotateZ(115deg) rotateY(120deg) rotateX(60deg);
-  }
-  65% {
-    transform: translate3d(36px, 70vh, 22px) rotateZ(235deg) rotateY(225deg) rotateX(120deg);
-    opacity: var(--petal-max-opacity, 0.85);
-  }
-  88% {
-    opacity: var(--petal-max-opacity, 0.8);
-  }
-  100% {
-    transform: translate3d(-12px, 112vh, 0px) rotateZ(380deg) rotateY(360deg) rotateX(180deg);
-    opacity: 0;
-  }
-}
-
-@keyframes romanticPetalFall3 {
-  0% {
-    transform: translate3d(0, -12vh, 0) rotateZ(-25deg) rotateY(0deg) rotateX(25deg);
-    opacity: 0;
-  }
-  9% {
-    opacity: var(--petal-max-opacity, 0.88);
-  }
-  25% {
-    transform: translate3d(22px, 25vh, 20px) rotateZ(80deg) rotateY(90deg) rotateX(65deg);
-  }
-  52% {
-    transform: translate3d(48px, 54vh, 10px) rotateZ(180deg) rotateY(185deg) rotateX(110deg);
-  }
-  78% {
-    transform: translate3d(12px, 84vh, -14px) rotateZ(285deg) rotateY(275deg) rotateX(155deg);
-    opacity: var(--petal-max-opacity, 0.88);
-  }
-  100% {
-    transform: translate3d(38px, 112vh, 0px) rotateZ(340deg) rotateY(360deg) rotateX(200deg);
-    opacity: 0;
-  }
-}
-
-/* Backwards compatibility */
-@keyframes petal-sway {
-  0% {
-    transform: translate3d(0, -10vh, 0) rotate(0deg) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.9;
-  }
-  50% {
-    transform: translate3d(40px, 50vh, 0) rotate(180deg) scale(0.9);
-  }
-  90% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate3d(-30px, 110vh, 0) rotate(360deg) scale(0.8);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .romantic-petals-container {
-    display: none !important;
-  }
-}
-
-/* ==========================================================================
-   Realistic Romantic Thoori (Swing) Up and Down Animation
-   Smooth vertical oscillation (-22px to +10px) with harmonic pendulum tilt
-   ========================================================================== */
-@keyframes thooriSwingMotion {
-  0% {
-    transform: translateY(0px) rotate(0deg) scale(1.08);
-  }
-  25% {
-    transform: translateY(-22px) rotate(-2deg) scale(1.095);
-  }
-  50% {
-    transform: translateY(10px) rotate(0deg) scale(1.07);
-  }
-  75% {
-    transform: translateY(-22px) rotate(2deg) scale(1.095);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg) scale(1.08);
-  }
-}
-
-.animate-thoori-swing {
-  animation: thooriSwingMotion 5.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-  transform-origin: 50% 5%;
-  will-change: transform;
-}
-
-@keyframes thooriShadowPulse {
-  0% {
-    transform: scale(1.0) translateY(0);
-    opacity: 0.35;
-  }
-  25% {
-    transform: scale(0.8) translateY(8px);
-    opacity: 0.16;
-  }
-  50% {
-    transform: scale(1.2) translateY(-2px);
-    opacity: 0.48;
-  }
-  75% {
-    transform: scale(0.8) translateY(8px);
-    opacity: 0.16;
-  }
-  100% {
-    transform: scale(1.0) translateY(0);
-  }
-}
-
-.animate-thoori-shadow {
-  animation: thooriShadowPulse 5.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-  will-change: transform, opacity;
-}
-
-/* Card hover glow */
-.hover-card-glow {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.hover-card-glow:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 36px -12px rgba(197, 155, 39, 0.25), 0 4px 16px rgba(0, 0, 0, 0.05);
-  border-color: #C59B27;
-}
-
-/* ==========================================================================
-   Luxury Royal Typography & Metallic Gold Foil Shimmer
-   ========================================================================== */
-@keyframes goldShimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-.gold-foil-text {
-  background: linear-gradient(
-    115deg,
-    #B3841D 0%,
-    #E8C86A 25%,
-    #FFF6DC 48%,
-    #D4AF37 55%,
-    #9A7516 75%,
-    #E8C86A 100%
-  );
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  display: inline-block;
-  animation: goldShimmer 8s linear infinite;
-  text-shadow: 0 0 1px rgba(255, 246, 220, 0.1);
-}
-
-.gold-foil-text-rich {
-  background: linear-gradient(
-    120deg,
-    #7E2E40 0%,
-    #B5566A 20%,
-    #D4AF37 45%,
-    #F3D279 58%,
-    #9A7516 75%,
-    #7E2E40 100%
-  );
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  display: inline-block;
-  animation: goldShimmer 7s linear infinite;
-  filter: drop-shadow(0 1px 2px rgba(126, 46, 64, 0.12));
-}
-
-/* ==========================================================================
-   Sacred Temple Diya Flame Flicker Physics
-   ========================================================================== */
-@keyframes flameFlicker {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.95;
-    filter: drop-shadow(0 0 8px #FF9F1C) drop-shadow(0 0 18px rgba(255, 179, 71, 0.7));
-  }
-  20% {
-    transform: scale(1.08, 0.96) rotate(-1.5deg);
-    opacity: 1;
-    filter: drop-shadow(0 0 11px #FFAA33) drop-shadow(0 0 24px rgba(255, 179, 71, 0.9));
-  }
-  40% {
-    transform: scale(0.96, 1.05) rotate(1.2deg);
-    opacity: 0.88;
-    filter: drop-shadow(0 0 7px #FF8800) drop-shadow(0 0 15px rgba(255, 179, 71, 0.6));
-  }
-  60% {
-    transform: scale(1.04, 0.98) rotate(-0.8deg);
-    opacity: 0.98;
-    filter: drop-shadow(0 0 12px #FFAA33) drop-shadow(0 0 22px rgba(255, 179, 71, 0.85));
-  }
-  80% {
-    transform: scale(0.98, 1.02) rotate(1deg);
-    opacity: 0.92;
-    filter: drop-shadow(0 0 9px #FF9911) drop-shadow(0 0 17px rgba(255, 179, 71, 0.75));
-  }
-}
-
-.animate-flame {
-  transform-origin: center bottom;
-  animation: flameFlicker 2.8s ease-in-out infinite;
-  will-change: transform, opacity, filter;
-}
-
-/* Diya Warm Radiance Halo */
-.diya-halo {
-  background: radial-gradient(circle, rgba(255, 196, 82, 0.45) 0%, rgba(224, 138, 22, 0.18) 45%, transparent 70%);
-  filter: blur(8px);
-  animation: pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* ==========================================================================
-   Royal Palace Border & Shimmer Ribbons
-   ========================================================================== */
-.royal-gold-frame {
-  position: relative;
-  background: linear-gradient(145deg, #FFFDF9 0%, #FAF5EB 100%);
-  border: 1.5px solid #D8C7A9;
-  box-shadow: 0 10px 30px -10px rgba(22, 50, 36, 0.08), 0 0 0 1px rgba(197, 155, 39, 0.2);
-}
-
-.royal-gold-frame::before {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  border: 1px dashed rgba(197, 155, 39, 0.35);
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-/* Subtle Golden Stardust Shimmer */
-@keyframes stardustFloat {
-  0% {
-    transform: translateY(0px) scale(0.8);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.9;
-    transform: translateY(-20px) scale(1.1);
-  }
-  100% {
-    transform: translateY(-45px) scale(0.6);
-    opacity: 0;
-  }
-}
-
-.animate-stardust {
-  animation: stardustFloat 3.8s ease-in-out infinite;
-}
-
-/* Countdown Unit Pulse Keyframe */
-@keyframes numberHighlight {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
-}
-
-.animate-number-tick {
-  animation: numberHighlight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-

@@ -1,52 +1,70 @@
 import React from 'react'
-import { GoldFloralDivider } from '@/components/common/Ornaments'
+import { GoldFloralDivider, AnimatedKolamDivider } from '@/components/common/Ornaments'
+import { Sparkles, Heart } from 'lucide-react'
 
 export function HeartfeltInvitation() {
   return (
-    <section id="invitation" className="relative py-16 sm:py-20 px-4 sm:px-6">
+    <section id="invitation" className="relative py-16 sm:py-24 px-4 sm:px-6 bg-[#FAF5EB]">
       <div className="max-w-4xl mx-auto">
-        <div className="relative rounded-3xl border-2 border-[#D8C7A9] bg-gradient-to-b from-[#FFFDF9] to-[#FAF6EE] p-8 sm:p-12 shadow-md overflow-hidden">
+        <div className="relative rounded-3xl border-2 border-[#C59B27]/40 bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EB] p-8 sm:p-14 shadow-xl overflow-hidden card-wine-glow">
           
-          {/* Subtle Corner Florals */}
-          <div className="absolute top-0 right-0 w-28 h-28 pointer-events-none opacity-25">
-            <svg viewBox="0 0 100 100" fill="none" className="w-full h-full text-[#C59B27]">
-              <path d="M100 0 Q 70 30, 0 100" stroke="currentColor" strokeWidth="1.2" />
-              <circle cx="85" cy="15" r="4" fill="#C59B27" />
-              <circle cx="70" cy="30" r="3" fill="#E8C86A" />
-            </svg>
-          </div>
+          {/* Traditional Temple Corner Accents */}
+          <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-[#C59B27] pointer-events-none" />
+          <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-[#C59B27] pointer-events-none" />
+          <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-[#C59B27] pointer-events-none" />
+          <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-[#C59B27] pointer-events-none" />
           
-          <div className="text-center mb-8">
-            <div className="text-base sm:text-lg text-[#C59B27] font-serif mb-1">ௐ</div>
-            <h2 className="font-script text-4xl sm:text-6xl font-normal leading-tight">
-              <span className="gold-foil-text-rich">A Heartfelt Invitation</span>
+          {/* Inner Dashed Gold Border */}
+          <div className="absolute inset-2 border border-dashed border-[#C59B27]/25 rounded-2xl pointer-events-none" />
+
+          {/* Header */}
+          <div className="text-center mb-8 relative z-10">
+            <p className="text-[10px] sm:text-xs font-cinzel tracking-[0.28em] uppercase text-[#5C131E] font-bold mb-1">
+              அழைப்பிதழ் &bull; INVITATION
+            </p>
+            <h2 className="font-script text-4xl sm:text-5xl text-[#5C131E] font-normal leading-tight">
+              A Heartfelt Invitation
             </h2>
             <GoldFloralDivider className="my-3" />
           </div>
 
           {/* Bilingual Invitation Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-[#4A4237] leading-relaxed text-sm sm:text-base">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-[#4A4237] leading-relaxed text-sm sm:text-base relative z-10">
             
             {/* English Invitation */}
-            <div className="flex flex-col justify-center space-y-4 text-center md:text-left border-b md:border-b-0 md:border-r border-[#EFE5D3] pb-6 md:pb-0 md:pr-6">
-              <p className="font-sans text-[#4A4237]">
-                With grateful hearts and the love of our families, we are delighted to invite you to celebrate the beginning of our life together.
+            <div className="flex flex-col justify-center space-y-4 text-center md:text-left border-b md:border-b-0 md:border-r border-[#E8DEC8] pb-6 md:pb-0 md:pr-6">
+              <p className="font-sans text-[#2D261E]">
+                With grateful hearts and the divine blessings of our beloved families, we are delighted to invite you to celebrate the sacred union of our lives.
               </p>
-              <p className="font-sans text-[#5A5044]">
-                Your presence, blessings and good wishes will make these precious moments even more memorable. We look forward to sharing the joy, traditions and happiness of our wedding with you.
+              <p className="font-sans text-[#5A5044] text-xs sm:text-sm">
+                Your presence, blessings and warm wishes will make these treasured moments forever memorable. We look forward to sharing our auspicious traditions and joy with you.
               </p>
             </div>
 
             {/* Tamil Traditional Invitation */}
             <div className="flex flex-col justify-center space-y-4 text-center md:text-left font-tamil text-[#3D352B] leading-relaxed">
-              <p>
-                இறைவனின் அருளுடனும், எங்கள் குடும்பத்தினரின் அன்பு மற்றும் ஆசீர்வாதங்களுடனும், எங்கள் வாழ்வின் புதிய அத்தியாயத்தைத் தொடங்கும் இந்த இனிய தருணத்தில் தங்களை அன்புடன் அழைக்கிறோம்.
+              <p className="text-[#5C131E] font-medium">
+                இறைவனின் திருவருளுடனும், எங்கள் குடும்பப் பெரியோர்களின் நல்லாசியுடனும், எங்கள் வாழ்வின் புதிய நற்பயணம் தொடங்கும் இந்த மங்கல நாளில் தங்களை அன்புடன் அழைக்கிறோம்.
               </p>
-              <p className="text-[#5A5044]">
-                தங்களின் வருகையும், வாழ்த்துகளும், ஆசீர்வாதங்களும் எங்கள் திருமண விழாவை மேலும் சிறப்பாக்கும். எங்களின் மகிழ்ச்சியை தங்களுடன் பகிர்ந்து கொள்ள ஆவலுடன் காத்திருக்கிறோம்.
+              <p className="text-[#5A5044] text-xs sm:text-sm">
+                தங்களின் மேலான வருகையும், உளம் கனிந்த வாழ்த்துகளும் எங்கள் திருமண விழாவை மேலும் சிறப்பாக்கும் என மகிழ்வோடு வேண்டுகிறோம்.
               </p>
             </div>
 
+          </div>
+
+          {/* Animated Kolam Divider at Bottom */}
+          <div className="mt-8 relative z-10">
+            <AnimatedKolamDivider />
+          </div>
+
+          {/* Auspicious Brass Urli with Fresh Rose Petals from Mandapam Theme */}
+          <div className="flex justify-center -mb-8 sm:-mb-12 mt-4 relative z-10 pointer-events-none">
+            <img
+              src="/assets/mandapam_urli_transparent.png"
+              alt="Auspicious Brass Urli with Pink Rose Petals"
+              className="w-48 sm:w-64 h-auto object-contain mix-blend-multiply opacity-95 drop-shadow-sm"
+            />
           </div>
 
         </div>

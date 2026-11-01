@@ -31,10 +31,10 @@ export function FloatingAudioControls({ onReopenEnvelope }: FloatingAudioControl
       {/* 1. Audio Mute / Unmute Player Button */}
       <button
         onClick={handleToggleAudio}
-        className={`group relative flex items-center gap-2 px-3.5 py-2 rounded-full backdrop-blur-md border transition-all duration-300 shadow-xl cursor-pointer active:scale-95 ${
+        className={`group relative flex items-center gap-2 px-3 py-2 rounded-full backdrop-blur-md border transition-all duration-300 shadow-xl cursor-pointer active:scale-95 ${
           isPlaying
-            ? 'bg-[#7E2E40]/95 border-[#E8C5CB] text-[#FFF0F3] shadow-[0_4px_20px_rgba(126,46,64,0.4)] ring-2 ring-[#E8C5CB]/40'
-            : 'bg-[#FFFDF9]/95 border-[#E8C5CB] text-[#7E2E40] hover:border-[#D4AF37]'
+            ? 'bg-[#163224]/95 border-[#D4AF37] text-[#F3D279] shadow-[#163224]/40 ring-2 ring-[#D4AF37]/30'
+            : 'bg-[#1A2621]/90 border-[#A89880]/40 text-[#DFDBD1] hover:border-[#D4AF37]/60'
         }`}
         title={isPlaying ? 'Pause Wedding Music' : 'Play Auspicious Wedding Music'}
         aria-label={isPlaying ? 'Pause wedding music' : 'Play wedding music'}
@@ -48,14 +48,14 @@ export function FloatingAudioControls({ onReopenEnvelope }: FloatingAudioControl
               <span className="w-0.5 bg-[#F3D279] rounded-full animate-[pulse_0.75s_ease-in-out_infinite_0.3s] h-4/5" />
             </div>
             <Volume2 className="size-4 text-[#F3D279]" />
-            <span className="hidden sm:inline text-[11px] font-cinzel tracking-wider uppercase font-semibold text-[#FFF0F3]">
+            <span className="hidden sm:inline text-[11px] font-cinzel tracking-wider uppercase font-semibold text-[#F3D279]">
               Music Playing
             </span>
           </>
         ) : (
           <>
-            <VolumeX className="size-4 text-[#B5566A]" />
-            <span className="hidden sm:inline text-[11px] font-cinzel tracking-wider uppercase text-[#7E2E40] font-semibold">
+            <VolumeX className="size-4 text-[#C9AA71]" />
+            <span className="hidden sm:inline text-[11px] font-cinzel tracking-wider uppercase text-[#DFDBD1]">
               Music Off
             </span>
           </>
@@ -65,9 +65,9 @@ export function FloatingAudioControls({ onReopenEnvelope }: FloatingAudioControl
       {/* 2. Re-open Royal Envelope Button */}
       <button
         onClick={onReopenEnvelope}
-        className="group flex items-center justify-center size-10 rounded-full bg-[#7E2E40]/95 hover:bg-[#9E3D52] backdrop-blur-md border border-[#E8C5CB] text-[#FFF0F3] shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-        title="Re-open Save The Date Animation"
-        aria-label="Re-open Save The Date Animation"
+        className="group flex items-center justify-center size-10 rounded-full bg-[#163224]/90 hover:bg-[#163224] backdrop-blur-md border border-[#D4AF37]/60 hover:border-[#F3D279] text-[#F3D279] shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+        title="Re-open Royal Envelope Ceremony"
+        aria-label="Re-open Royal Envelope Ceremony"
       >
         <MailOpen className="size-4 text-[#F3D279] group-hover:scale-110 transition-transform" />
       </button>

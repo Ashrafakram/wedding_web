@@ -1,6 +1,4 @@
-node_modules/.vite/
-dist/
-dist-ssr/
+node_modules/
 *.local
 .vscode/*
 !.vscode/extensions.json
@@ -12,3 +10,4 @@ dist-ssr/
 *.sw?
 .DS_Store
 *.log
+chrome_*.png

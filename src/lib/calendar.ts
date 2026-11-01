@@ -35,6 +35,7 @@ END:VCALENDAR`
   window.URL.revokeObjectURL(url)
 }
 
+
 export function getGoogleCalendarUrl(): string {
   const title = encodeURIComponent("Swetha & Deepak Kumar Wedding Celebration")
   const details = encodeURIComponent(
@@ -43,4 +44,3 @@ export function getGoogleCalendarUrl(): string {
   const location = encodeURIComponent("AVVS Mahal, Ammapet, Salem & Senraya Perumal Temple, Salem")
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261119T123000Z/20261120T060000Z&details=${details}&location=${location}`
 }
-

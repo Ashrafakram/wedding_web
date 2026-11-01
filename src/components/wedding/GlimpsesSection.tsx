@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Sparkles, ChevronLeft, ChevronRight, Eye } from 'lucide-react'
 import { GoldFloralDivider, AnimatedKolamDivider } from '@/components/common/Ornaments'
+import { Card3DTilt } from '@/components/common/Card3DTilt'
 
 interface GlimpseItem {
   id: string
@@ -79,13 +80,19 @@ export function GlimpsesSection() {
         {/* Gallery Grid (3 columns on desktop, 2 on tablet, 1 on mobile) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {glimpses.map((item) => (
-            <div
+            <Card3DTilt
               key={item.id}
+              maxTiltDeg={10}
+              scaleOnHover={1.025}
+              glareOpacity={0.28}
               onClick={() => setActiveImage(item)}
-              className="group relative rounded-2xl overflow-hidden shadow-md border-2 border-[#C59B27]/40 bg-[#FFFDF9] cursor-pointer hover-card-glow transition-all duration-500"
+              className="cursor-pointer h-full"
             >
-              {/* Photo */}
-              <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-[#FAF0EE]">
+              <div
+                className="group relative h-full rounded-2xl overflow-hidden shadow-md border-2 border-[#C59B27]/40 bg-[#FFFDF9] hover-card-glow transition-all duration-500"
+              >
+                {/* Photo */}
+                <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-[#FAF0EE]">
                 <img
                   src={item.src}
                   alt={item.title}
@@ -120,6 +127,7 @@ export function GlimpsesSection() {
                 </div>
               </div>
             </div>
+          </Card3DTilt>
           ))}
         </div>
 

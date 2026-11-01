@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Sparkles, Heart } from 'lucide-react'
+import { Countdown3DCard } from './Countdown3DCard'
 
 export function CountdownSection() {
   // Wedding Reception target: 19 November 2026 at 18:00 (6:00 PM IST)
@@ -34,17 +35,10 @@ export function CountdownSection() {
     return () => clearInterval(timer)
   }, [targetDate])
 
-  const timeUnits = [
-    { label: 'Days', value: timeLeft.days, progress: Math.min(100, (timeLeft.days / 365) * 100) },
-    { label: 'Hours', value: timeLeft.hours, progress: (timeLeft.hours / 24) * 100 },
-    { label: 'Minutes', value: timeLeft.minutes, progress: (timeLeft.minutes / 60) * 100 },
-    { label: 'Seconds', value: timeLeft.seconds, progress: (timeLeft.seconds / 60) * 100 },
-  ]
-
   return (
-    <section className="relative my-8 sm:my-12 px-3 sm:px-6">
+    <section id="countdown" className="relative my-8 sm:my-14 px-3 sm:px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-[#4A0E17] via-[#5C131E] to-[#380A11] text-[#FFFDF8] py-12 sm:py-18 px-4 sm:px-12 text-center shadow-2xl border-2 border-[#C59B27]/50">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-[#4A0E17] via-[#5C131E] to-[#380A11] text-[#FFFDF8] py-12 sm:py-18 px-3 sm:px-12 text-center shadow-[0_25px_60px_-15px_rgba(62,12,19,0.7),0_0_35px_rgba(197,155,39,0.3)] border-2 border-[#D4AF37]/60">
           
           {/* Subtle Silk Pattern Background Overlay */}
           <div className="absolute inset-0 pointer-events-none opacity-15 bg-[radial-gradient(#F3D279_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -69,11 +63,11 @@ export function CountdownSection() {
             </svg>
           </div>
 
-          <div className="relative z-10 max-w-2xl mx-auto">
+          <div className="relative z-10 max-w-3xl mx-auto">
             {/* Header */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-[#F3D279]/30 mb-2">
               <Sparkles className="size-3 text-[#F3D279] animate-pulse" />
-              <span className="text-[10px] sm:text-xs font-cinzel uppercase tracking-[0.22em] text-[#F3D279]">
+              <span className="text-[10px] sm:text-xs font-cinzel uppercase tracking-[0.22em] text-[#F3D279] font-bold">
                 Together Soon
               </span>
             </div>
@@ -86,29 +80,33 @@ export function CountdownSection() {
               மங்கல நாளை எதிர்நோக்கி...
             </p>
 
-            <p className="text-[11px] sm:text-sm text-zinc-300 max-w-lg mx-auto font-light leading-relaxed mb-8 px-2">
+            <p className="text-[11px] sm:text-sm text-zinc-300 max-w-lg mx-auto font-light leading-relaxed mb-6 sm:mb-8 px-2">
               Every passing second brings us closer to a joyous celebration of sacred love, family traditions, and everlasting memories.
             </p>
 
-            {/* Countdown Grid with Pulsing Ring Accents */}
-            <div className="grid grid-cols-4 gap-2.5 sm:gap-6 max-w-xl mx-auto">
-              {timeUnits.map((unit) => (
-                <div
-                  key={unit.label}
-                  className="group relative flex flex-col items-center justify-center rounded-2xl bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EB] text-[#5C131E] py-4 sm:py-6 px-1 sm:px-2 shadow-xl border-2 border-[#C59B27]/40 hover:border-[#F3D279] transition-all duration-300 hover:-translate-y-1 active:scale-95 overflow-hidden"
-                >
-                  {/* Subtle Inner Gold Ring */}
-                  <div className="absolute inset-1 rounded-xl border border-dashed border-[#C59B27]/25 pointer-events-none" />
-
-                  <span className="font-serif text-2xl sm:text-5xl font-bold tracking-tight text-[#5C131E] group-hover:scale-105 transition-transform">
-                    {String(unit.value).padStart(2, '0')}
-                  </span>
-                  
-                  <span className="text-[9px] sm:text-xs font-cinzel uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[#8C6D23] mt-1 sm:mt-1.5 font-bold">
-                    {unit.label}
-                  </span>
-                </div>
-              ))}
+            {/* 3D Animated Countdown Grid with Physical Bevel & Flip Animations */}
+            <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 max-w-2xl mx-auto my-3">
+              <Countdown3DCard
+                label="Days"
+                tamilLabel="நாட்கள்"
+                value={timeLeft.days}
+              />
+              <Countdown3DCard
+                label="Hours"
+                tamilLabel="மணி"
+                value={timeLeft.hours}
+              />
+              <Countdown3DCard
+                label="Minutes"
+                tamilLabel="நிமிடம்"
+                value={timeLeft.minutes}
+              />
+              <Countdown3DCard
+                label="Seconds"
+                tamilLabel="நொடி"
+                value={timeLeft.seconds}
+                isSeconds={true}
+              />
             </div>
 
             {/* Heart Blessing Line */}
@@ -124,3 +122,5 @@ export function CountdownSection() {
     </section>
   )
 }
+
+export default CountdownSection

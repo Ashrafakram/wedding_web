@@ -15,6 +15,7 @@ import { weddingAudio } from '@/lib/weddingAudio'
 import { launchPetalShower, launchHeartAndMultiShapeBurst } from '@/lib/confetti'
 import { getGoogleCalendarUrl } from '@/lib/calendar'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
+import { ThreeWeddingScene3D } from '@/components/common/ThreeWeddingScene3D'
 
 interface CinematicSaveTheDateIntroProps {
   isOpen: boolean
@@ -139,6 +140,21 @@ export function CinematicSaveTheDateIntro({
 
   if (!isOpen) return null
 
+  // 3D Card Hover Tilt state
+  const [cardTilt, setCardTilt] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isDoorOpen) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setCardTilt({ x: -y * 11, y: x * 11 })
+  }
+
+  const handleCardMouseLeave = () => {
+    setCardTilt({ x: 0, y: 0 })
+  }
+
   const triggerDoorOpen = () => {
     if (isDoorOpen) return
     setIsDoorOpen(true)
@@ -196,7 +212,7 @@ export function CinematicSaveTheDateIntro({
         />
 
         {/* Realistic Romantic Falling Flower Petals Animation */}
-        <FloatingPetals count={26} zIndexClass="z-0" />
+        <ThreeWeddingScene3D petalCount={28} sparkleCount={80} interactive={true} />
       </div>
 
       {/* =========================================================================
@@ -272,7 +288,17 @@ export function CinematicSaveTheDateIntro({
           Includes 3D French Gatefold Doors + "TAP TO OPEN" Button + Inner Video!
           ========================================================================= */}
       <main className="relative z-10 w-full flex items-center justify-center p-2 sm:p-4 my-auto">
-        <div className="cinematic-gatefold-stage relative h-[88vh] sm:h-[90vh] max-h-[820px] aspect-[736/1308] w-auto max-w-[94vw] rounded-2xl sm:rounded-3xl border-2 border-[#D4AF37]/90 shadow-[0_25px_70px_-10px_rgba(126,46,64,0.35),0_0_35px_rgba(212,175,55,0.4)] overflow-hidden select-none bg-[#FAF5EE]">
+        <div
+          onMouseMove={handleCardMouseMove}
+          onMouseLeave={handleCardMouseLeave}
+          className="cinematic-gatefold-stage relative h-[88vh] sm:h-[90vh] max-h-[820px] aspect-[736/1308] w-auto max-w-[94vw] rounded-2xl sm:rounded-3xl border-2 border-[#D4AF37]/90 shadow-[0_25px_70px_-10px_rgba(126,46,64,0.35),0_0_35px_rgba(212,175,55,0.4)] overflow-hidden select-none bg-[#FAF5EE] transition-transform duration-200 ease-out"
+          style={{
+            transform: !isDoorOpen
+              ? `perspective(1400px) rotateX(${cardTilt.x}deg) rotateY(${cardTilt.y}deg)`
+              : 'perspective(1400px) rotateX(0deg) rotateY(0deg)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
           
           {/* =====================================================================
               DUAL CINEMATIC SCENES:
@@ -633,7 +659,7 @@ export function CinematicSaveTheDateIntro({
               title="Click to Open Wedding Invitation"
             >
               {/* Central Seal Anchor: Positioned directly over ribbon knot & printed card seal */}
-              <div className="relative flex items-center justify-center">
+              <div className="relative flex items-center justify-center transform-gpu" style={{ transform: "translateZ(35px)" }}>
                 {/* Pulsing Golden Halo Ring */}
                 <div className="absolute size-26 sm:size-32 rounded-full border-2 border-[#D4AF37] animate-ping opacity-60 pointer-events-none" />
 

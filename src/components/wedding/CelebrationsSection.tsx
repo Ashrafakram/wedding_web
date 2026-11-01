@@ -1,6 +1,7 @@
 import React from 'react'
 import { Clock, MapPin, Sparkles, Utensils, Heart } from 'lucide-react'
 import { GoldFloralDivider, AnimatedKolamDivider } from '@/components/common/Ornaments'
+import { Card3DTilt } from '@/components/common/Card3DTilt'
 
 export function CelebrationsSection() {
   return (
@@ -25,7 +26,8 @@ export function CelebrationsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           
           {/* Day 1: Reception Card */}
-          <div className="relative rounded-3xl border-2 border-[#E5A5B2]/60 bg-gradient-to-b from-[#FFFDF9] via-[#FAF0EE] to-[#FAF5EB] p-6 sm:p-8 shadow-lg card-wine-glow overflow-hidden group flex flex-col justify-between">
+          <Card3DTilt maxTiltDeg={7} scaleOnHover={1.015} glareOpacity={0.25} className="h-full">
+            <div className="relative h-full rounded-3xl border-2 border-[#E5A5B2]/60 bg-gradient-to-b from-[#FFFDF9] via-[#FAF0EE] to-[#FAF5EB] p-6 sm:p-8 shadow-lg card-wine-glow overflow-hidden group flex flex-col justify-between">
             {/* Top Corner Lotus Accent */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#C45B6E]/15 to-transparent rounded-bl-full pointer-events-none" />
             
@@ -87,9 +89,11 @@ export function CelebrationsSection() {
               </div>
             </div>
           </div>
+          </Card3DTilt>
 
           {/* Day 2: Wedding (Muhurtham) Card */}
-          <div className="relative rounded-3xl border-2 border-[#C59B27]/60 bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EB] to-[#FAF0EE] p-6 sm:p-8 shadow-lg card-wine-glow overflow-hidden group flex flex-col justify-between">
+          <Card3DTilt maxTiltDeg={7} scaleOnHover={1.015} glareOpacity={0.25} className="h-full">
+            <div className="relative h-full rounded-3xl border-2 border-[#C59B27]/60 bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EB] to-[#FAF0EE] p-6 sm:p-8 shadow-lg card-wine-glow overflow-hidden group flex flex-col justify-between">
             {/* Top Corner Wine & Gold Accent */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#5C131E]/15 to-transparent rounded-bl-full pointer-events-none" />
 
@@ -151,6 +155,7 @@ export function CelebrationsSection() {
               </div>
             </div>
           </div>
+          </Card3DTilt>
 
         </div>
 

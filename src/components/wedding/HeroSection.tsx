@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ChevronDown, Sparkles, Heart } from 'lucide-react'
 import { GoldFloralDivider, AnimatedKolamDivider, SwayingTempleBells } from '@/components/common/Ornaments'
 import { launchPetalShower, launchHeartAndMultiShapeBurst } from '@/lib/confetti'
+import { Card3DTilt } from '@/components/common/Card3DTilt'
 
 export function HeroSection() {
   const [tapCount, setTapCount] = useState(0)
@@ -56,38 +57,54 @@ export function HeroSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full relative z-10 mt-6 sm:mt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Couple Artwork with Living Float Animation & Tap Shower */}
+          {/* Couple Artwork with 3D Holographic Parallax Tilt & Living Float */}
           <div className="lg:col-span-6 flex justify-center order-1 lg:order-1 relative">
-            <div
-              className="relative group max-w-[290px] sm:max-w-md w-full cursor-pointer animate-living-float"
+            <Card3DTilt
+              maxTiltDeg={15}
+              scaleOnHover={1.04}
+              glareOpacity={0.4}
+              className="max-w-[290px] sm:max-w-md w-full cursor-pointer animate-living-float"
               onClick={handleCoupleTap}
-              title="Tap for flower blessings!"
             >
-              {/* Soft Pulsing Golden Aura */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#C59B27]/25 via-[#5C131E]/15 to-[#F3D279]/30 rounded-full blur-2xl opacity-75 animate-pulse" />
-              
-              {/* Couple Illustration - Tender Cheek Pinch in Dusty Pink Attire */}
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl border-2 border-[#C59B27]/60 group-hover:border-[#C59B27] transition-all duration-500 group-hover:scale-102 bg-[#FAF0EE]">
-                <img
-                  src="/assets/couple_pinch_pink_hero.jpg"
-                  alt="Swetha and Deepak Kumar - Loving Cheek Pinch Pose in Matching Dusty Pink Wedding Attire"
-                  className="w-full h-auto object-cover rounded-3xl"
+              <div
+                className="relative group w-full"
+                title="Tap for flower blessings!"
+              >
+                {/* 3D Depth Layer 1: Soft Pulsing Golden Aura behind card */}
+                <div
+                  className="absolute -inset-4 bg-gradient-to-tr from-[#C59B27]/25 via-[#5C131E]/15 to-[#F3D279]/30 rounded-full blur-2xl opacity-75 animate-pulse"
+                  style={{ transform: 'translateZ(-20px)' }}
                 />
+                
+                {/* 3D Depth Layer 2: Couple Illustration in Royal Dusty Pink Attire */}
+                <div
+                  className="relative overflow-hidden rounded-3xl shadow-2xl border-2 border-[#C59B27]/60 group-hover:border-[#C59B27] transition-all duration-500 bg-[#FAF0EE]"
+                  style={{ transform: 'translateZ(15px)' }}
+                >
+                  <img
+                    src="/assets/couple_pinch_pink_hero.jpg"
+                    alt="Swetha and Deepak Kumar - Loving Cheek Pinch Pose in Matching Dusty Pink Wedding Attire"
+                    className="w-full h-auto object-cover rounded-3xl transition-transform duration-700 group-hover:scale-103"
+                  />
 
-                {/* Subtle Silk Sheen Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3E0C13]/30 via-transparent to-transparent pointer-events-none" />
+                  {/* Subtle Silk Sheen Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#3E0C13]/30 via-transparent to-transparent pointer-events-none" />
 
-                {/* Tap to bless floating pill badge */}
-                <div className="absolute bottom-3 inset-x-3 flex justify-center">
-                  <div className="flex items-center gap-1.5 bg-[#3E0C13]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#F3D279]/60 text-[10px] sm:text-xs text-[#F3D279] shadow-lg group-hover:scale-105 transition-transform">
-                    <Sparkles className="size-3 animate-spin text-[#F3D279]" />
-                    <span className="font-cinzel tracking-wider uppercase font-semibold">
-                      {tapCount > 0 ? `Blessed ${tapCount}x 🌸` : 'Tap for Flower Blessings 🌸'}
-                    </span>
+                  {/* 3D Depth Layer 3: Floating Flower Blessings Pill in Foreground */}
+                  <div
+                    className="absolute bottom-3 inset-x-3 flex justify-center"
+                    style={{ transform: 'translateZ(38px)' }}
+                  >
+                    <div className="flex items-center gap-1.5 bg-[#3E0C13]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#F3D279]/70 text-[10px] sm:text-xs text-[#F3D279] shadow-xl group-hover:scale-106 transition-transform">
+                      <Sparkles className="size-3 animate-spin text-[#F3D279]" />
+                      <span className="font-cinzel tracking-wider uppercase font-semibold">
+                        {tapCount > 0 ? `Blessed ${tapCount}x 🌸` : 'Tap for Flower Blessings 🌸'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card3DTilt>
           </div>
 
           {/* Typography & Details in Royal Wine & Champagne Gold */}

@@ -9,6 +9,7 @@ import { GlimpsesSection } from '@/components/wedding/GlimpsesSection'
 import { InvitationActionsFooter } from '@/components/wedding/InvitationActionsFooter'
 import { FloatingPetals } from '@/components/common/FloatingPetals'
 import { MandapamAestheticTheme } from '@/components/common/MandapamAestheticTheme'
+import { ThreeWeddingScene3D } from '@/components/common/ThreeWeddingScene3D'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { WeddingIntro } from '@/components/wedding-intro/WeddingIntro'
 import { FloatingAudioControls } from '@/components/wedding/FloatingAudioControls'
@@ -62,6 +63,10 @@ export function App() {
       <FloatingPetals />
 
       {/* 3b. Traditional Mandapam Watercolor Theme (Banana Trees, Kuthuvilakku Lamps, Rose Urlis) */}
+      {/* 3b. Real WebGL 3D Falling Rose & Lotus Petals with Gold Sparkles */}
+      <ThreeWeddingScene3D petalCount={36} sparkleCount={110} interactive={true} />
+
+      {/* 3c. Traditional Mandapam Watercolor Theme (Banana Trees, Kuthuvilakku Lamps, Rose Urlis) */}
       <MandapamAestheticTheme />
 
       {/* 4. Navigation Header */}

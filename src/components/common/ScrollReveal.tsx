@@ -37,8 +37,14 @@ export function ScrollReveal({
       observer.observe(current)
     }
 
+    // Resilient fallback: ensure content is revealed even if IntersectionObserver doesn't fire
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true)
+    }, 2000)
+
     return () => {
       if (current) observer.unobserve(current)
+      clearTimeout(fallbackTimer)
     }
   }, [])
 

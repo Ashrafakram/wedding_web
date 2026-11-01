@@ -1,6 +1,7 @@
 import React from 'react'
 import { ExternalLink, MapPin, Navigation, Sparkles } from 'lucide-react'
 import { GoldFloralDivider, AnimatedKolamDivider } from '@/components/common/Ornaments'
+import { Card3DTilt } from '@/components/common/Card3DTilt'
 
 export function VenuesSection() {
   const avvsMapsUrl =
@@ -30,7 +31,8 @@ export function VenuesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           
           {/* Venue 1: AVVS Mahal (Real Outsourced Exterior Photo) */}
-          <div className="group rounded-3xl border-2 border-[#C59B27]/40 bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EB] p-6 sm:p-7 shadow-lg card-wine-glow transition-all duration-500 flex flex-col justify-between">
+          <Card3DTilt maxTiltDeg={7} scaleOnHover={1.015} glareOpacity={0.25} className="h-full">
+            <div className="group h-full rounded-3xl border-2 border-[#C59B27]/40 bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EB] p-6 sm:p-7 shadow-lg card-wine-glow transition-all duration-500 flex flex-col justify-between">
             <div>
               {/* Header */}
               <div className="text-center mb-4">
@@ -86,9 +88,11 @@ export function VenuesSection() {
               </a>
             </div>
           </div>
+          </Card3DTilt>
 
           {/* Venue 2: Senraya Perumal Temple */}
-          <div className="group rounded-3xl border-2 border-[#C59B27]/40 bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EB] p-6 sm:p-7 shadow-lg card-wine-glow transition-all duration-500 flex flex-col justify-between">
+          <Card3DTilt maxTiltDeg={7} scaleOnHover={1.015} glareOpacity={0.25} className="h-full">
+            <div className="group h-full rounded-3xl border-2 border-[#C59B27]/40 bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EB] p-6 sm:p-7 shadow-lg card-wine-glow transition-all duration-500 flex flex-col justify-between">
             <div>
               {/* Header */}
               <div className="text-center mb-4">
@@ -143,6 +147,7 @@ export function VenuesSection() {
               </a>
             </div>
           </div>
+          </Card3DTilt>
 
         </div>
 

@@ -820,7 +820,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
 
           <div className="relative z-10 flex w-full flex-col items-center">
             <h2
-              className="font-bold text-[20px] md:text-[26px] text-center uppercase tracking-[0.04em]"
+              className="font-bold text-[20px] md:text-[26px] text-center uppercase tracking-[0.04em] mb-4 md:mb-6"
               style={{
                 color: '#640e1b',
                 fontFamily: '"Times New Roman", Times, ChungDoiIndic, serif',
@@ -828,171 +828,11 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 textTransform: 'uppercase',
               }}
             >
-              <span dir="auto">WEDDING CELEBRATIONS</span>
+              <span dir="auto">Countdown &amp; Auspicious Dates</span>
             </h2>
 
-            {/* Event 1 (First): Reception */}
-            <div
-              className="mt-6 flex w-full flex-col items-center gap-3 md:mt-8"
-              style={{
-                fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                color: '#ab7a45',
-              }}
-              data-landing-screenshot-id="invite-reception"
-            >
-              <h3
-                className="text-[16px] md:text-[20px] uppercase flex flex-col items-center text-center tracking-[0.04em]"
-                style={{
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                  color: '#640e1b',
-                  fontWeight: 600,
-                }}
-              >
-                <span dir="auto">The reception will take place at:</span>
-              </h3>
-              <div
-                className="text-[20px] md:text-[28px]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                6:00 PM
-              </div>
-
-              <div
-                className="flex items-center gap-6"
-                style={{
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                <span
-                  className="text-[12px] md:text-[16px] uppercase"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    textAlign: 'right',
-                  }}
-                >
-                  <span dir="auto">THURSDAY</span>
-                </span>
-                <div className="h-6 w-[1px] md:h-8" style={{ backgroundColor: '#ab7a45' }} />
-                <span
-                  className="text-[30px] md:text-[40px]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#640e1b',
-                  }}
-                >
-                  19
-                </span>
-                <div className="h-6 w-[1px] md:h-8" style={{ backgroundColor: '#ab7a45' }} />
-                <span
-                  className="text-[12px] md:text-[16px] uppercase"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    textAlign: 'left',
-                  }}
-                >
-                  <span dir="auto">NOVEMBER</span>
-                </span>
-              </div>
-
-              <div
-                className="text-[18px] md:text-[24px]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                2026
-              </div>
-            </div>
-
-            {/* Elegant Divider between Reception and Wedding Ceremony */}
-            <div className="flex items-center justify-center gap-3 my-5">
-              <div className="w-12 h-px" style={{ background: 'linear-gradient(to right, transparent, #ab7a45)' }} />
-              <span className="text-sm select-none" style={{ color: '#ab7a45' }}>❦</span>
-              <div className="w-12 h-px" style={{ background: 'linear-gradient(to left, transparent, #ab7a45)' }} />
-            </div>
-
-            {/* Event 2 (Second): Wedding Ceremony */}
-            <div
-              className="flex w-full flex-col items-center gap-3"
-              style={{
-                fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                color: '#ab7a45',
-              }}
-            >
-              <h3
-                className="text-[16px] md:text-[20px] uppercase flex flex-col items-center text-center tracking-[0.04em]"
-                style={{
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                  color: '#640e1b',
-                  fontWeight: 600,
-                }}
-              >
-                <span dir="auto">The wedding ceremony will take place at:</span>
-              </h3>
-              <div
-                className="text-[20px] md:text-[28px]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                4:00 AM – 6:00 AM (MUHURTHAM)
-              </div>
-
-              <div
-                className="flex items-center gap-6"
-                style={{
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                <span
-                  className="text-[12px] md:text-[16px] uppercase"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    textAlign: 'right',
-                  }}
-                >
-                  <span dir="auto">FRIDAY</span>
-                </span>
-                <div className="h-6 w-[1px] md:h-8" style={{ backgroundColor: '#ab7a45' }} />
-                <span
-                  className="text-[30px] md:text-[40px]"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    color: '#640e1b',
-                  }}
-                >
-                  20
-                </span>
-                <div className="h-6 w-[1px] md:h-8" style={{ backgroundColor: '#ab7a45' }} />
-                <span
-                  className="text-[12px] md:text-[16px] uppercase"
-                  style={{
-                    fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                    textAlign: 'left',
-                  }}
-                >
-                  <span dir="auto">NOVEMBER</span>
-                </span>
-              </div>
-
-              <div
-                className="text-[18px] md:text-[24px]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                2026
-              </div>
-            </div>
-
             {/* Highlighted Royal Countdown Timer Plaque */}
-            <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-7 mb-2">
+            <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-2 mb-2">
               <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-[#ab7a45]/30 via-[#d4af37]/70 to-[#ab7a45]/30 shadow-[0_12px_32px_rgba(100,14,27,0.14)] animate-royal-glow">
                 <div className="rounded-[14px] bg-[#fff9f0]/95 backdrop-blur-xs px-3.5 py-4 md:px-5 md:py-5 border border-[#ab7a45]/35">
                   {/* Header with Fleur-de-lis / Royal Accents */}

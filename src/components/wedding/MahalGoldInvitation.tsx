@@ -158,18 +158,19 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     return () => clearInterval(timer)
   }, [])
 
-  // Guestbook wishes - completely clean initial state (zero dummy memory)
+  // Guestbook wishes - completely wiped test memory, starting clean
   const [wishes, setWishes] = useState<Wish[]>(() => {
     try {
-      // Wipe legacy dummy test data
+      // Purge all test / legacy wish data across storage keys
       localStorage.removeItem('swetha_deepak_guestbook')
-      const saved = localStorage.getItem('swetha_deepak_wishes_live')
+      localStorage.removeItem('swetha_deepak_wishes_live')
+      localStorage.removeItem('deepak_swetha_wishes')
+      localStorage.removeItem('deepak_swetha_guestbook')
+      localStorage.removeItem('wedding_wishes')
+      const saved = localStorage.getItem('swetha_deepak_wishes_v2')
       if (saved) {
         const parsed = JSON.parse(saved)
-        if (Array.isArray(parsed)) {
-          // Filter out any legacy dummy/mock wishes starting with 'w-'
-          return parsed.filter((w: Wish) => w && w.id && !w.id.startsWith('w-'))
-        }
+        if (Array.isArray(parsed)) return parsed
       }
     } catch {}
     return []
@@ -193,7 +194,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     const updated = [newWish, ...wishes]
     setWishes(updated)
     try {
-      localStorage.setItem('swetha_deepak_wishes_live', JSON.stringify(updated))
+      localStorage.setItem('swetha_deepak_wishes_v2', JSON.stringify(updated))
     } catch {}
 
     // Dispatch wish via SMTP service
@@ -213,6 +214,10 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     try {
       localStorage.removeItem('swetha_deepak_guestbook')
       localStorage.removeItem('swetha_deepak_wishes_live')
+      localStorage.removeItem('swetha_deepak_wishes_v2')
+      localStorage.removeItem('deepak_swetha_wishes')
+      localStorage.removeItem('deepak_swetha_guestbook')
+      localStorage.removeItem('wedding_wishes')
     } catch {}
     setWishes([])
     setWishesPage(1)

@@ -25,35 +25,7 @@ interface Wish {
   likes: number
 }
 
-const initialWishes: Wish[] = [
-  {
-    id: '1',
-    name: 'Karthik & Priya',
-    relation: 'Family',
-    message:
-      'Wishing dear Swetha and Deepak a blissful married life filled with endless love and laughter! May Lord Senraya Perumal shower all his blessings upon both of you!',
-    timestamp: 'Just now',
-    likes: 5,
-  },
-  {
-    id: '2',
-    name: 'Venkatesh Raman',
-    relation: 'Friend',
-    message:
-      'Heartiest congratulations Deepak and Swetha! Looking forward to celebrating with you at AVVS Mahal on the 19th!',
-    timestamp: '2 hours ago',
-    likes: 3,
-  },
-  {
-    id: '3',
-    name: 'Anitha & Sundar',
-    relation: 'Well-Wisher',
-    message:
-      'இரு மனங்கள் இணையும் இனிய திருமண நல்வாழ்த்துகள்! Have a prosperous and joyous life together!',
-    timestamp: 'Yesterday',
-    likes: 8,
-  },
-]
+const initialWishes: Wish[] = []
 
 export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
   const [activeTab, setActiveTab] = useState<'form' | 'wall'>('form')

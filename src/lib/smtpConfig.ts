@@ -27,20 +27,20 @@ export const defaultSmtpConfig: SmtpConfig = {
   host: (import.meta.env.VITE_SMTP_HOST as string) || 'smtp.gmail.com',
 
   // SMTP Port (587 for TLS, 465 for SSL)
-  port: Number(import.meta.env.VITE_SMTP_PORT) || 587,
+  port: Number(import.meta.env.VITE_SMTP_PORT) || 465,
 
   // Secure connection flag (true for 465, false for 587)
-  secure: (import.meta.env.VITE_SMTP_SECURE as string) === 'true',
+  secure: (import.meta.env.VITE_SMTP_SECURE as string) !== 'false',
 
   // SMTP Username / Authenticated Email
-  user: (import.meta.env.VITE_SMTP_USER as string) || '',
+  user: (import.meta.env.VITE_SMTP_USER as string) || 'swethavenkatachalam37@gmail.com',
 
   // SMTP Password or Google App Password (16 characters)
-  pass: (import.meta.env.VITE_SMTP_PASS as string) || '',
+  pass: (import.meta.env.VITE_SMTP_PASS as string) || 'sdevnwehwzoazpwd',
 
   // Recipient Email where wedding wishes will be delivered
-  to: (import.meta.env.VITE_SMTP_TO as string) || 'swetha.deepak.wedding@gmail.com',
+  to: (import.meta.env.VITE_SMTP_TO as string) || 'swethavenkatachalam37@gmail.com',
 
   // Sender Display
-  from: (import.meta.env.VITE_SMTP_FROM as string) || '"Swetha & Deepak Wedding Guestbook" <no-reply@wedding.com>',
+  from: (import.meta.env.VITE_SMTP_FROM as string) || '"Swetha & Deepak Wedding Guestbook" <swethavenkatachalam37@gmail.com>',
 }

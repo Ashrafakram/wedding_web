@@ -31,6 +31,45 @@ const GALLERY_IMAGES = [
   },
 ]
 
+// Synthesizes an authentic Indian brass temple bell chime with warm harmonic overtones
+const playTempleBellChime = () => {
+  try {
+    const AudioCtx =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+    if (!AudioCtx) return
+    const ctx = new AudioCtx()
+    if (ctx.state === 'suspended') {
+      ctx.resume()
+    }
+    const now = ctx.currentTime
+
+    // Frequencies of an auspicious brass temple bell (D5, A5, D6, A6)
+    const harmonics = [
+      { freq: 587.33, gain: 0.35, decay: 2.8 },
+      { freq: 880.0, gain: 0.22, decay: 2.2 },
+      { freq: 1174.66, gain: 0.15, decay: 1.8 },
+      { freq: 1760.0, gain: 0.08, decay: 1.4 },
+    ]
+
+    harmonics.forEach(({ freq, gain, decay }) => {
+      const osc = ctx.createOscillator()
+      const gainNode = ctx.createGain()
+      osc.type = 'triangle'
+      osc.frequency.setValueAtTime(freq, now)
+
+      gainNode.gain.setValueAtTime(gain, now)
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + decay)
+
+      osc.connect(gainNode)
+      gainNode.connect(ctx.destination)
+
+      osc.start(now)
+      osc.stop(now + decay + 0.1)
+    })
+  } catch {}
+}
+
 export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvpClick }) => {
   // Parallax scroll state
   const [scrollY, setScrollY] = useState(0)
@@ -42,6 +81,14 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Interactive Temple Bell Sway & Chime
+  const [isBellRinging, setIsBellRinging] = useState(false)
+  const handleBellRing = () => {
+    setIsBellRinging(true)
+    playTempleBellChime()
+    setTimeout(() => setIsBellRinging(false), 1800)
+  }
 
   // 3D Perspective Card Carousel State
   const [activePhotoIdx, setActivePhotoIdx] = useState(0)
@@ -208,10 +255,16 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
         {/* ======================================================== */}
         <section dir="ltr" className="relative isolate w-full overflow-hidden pt-[13.2%] pb-[16.6%]">
           <div className="relative mx-auto w-full max-w-[480px] md:max-w-[680px]">
-            {/* Bells */}
+            {/* Hanging Temple Bells with Breeze Sway & Interactive Ringing Chime */}
             <div
-              aria-hidden="true"
-              className="pointer-events-none absolute bg-contain bg-center bg-no-repeat top-0 left-[1.4%] mt-[-17.9%] z-[2] w-[32.7%]"
+              role="button"
+              tabIndex={0}
+              aria-label="Ring the sacred temple bell"
+              onClick={handleBellRing}
+              title="Tap to ring temple bell 🔔"
+              className={`absolute bg-contain bg-center bg-no-repeat top-0 left-[1.4%] mt-[-17.9%] z-[2] w-[32.7%] cursor-pointer select-none transition-transform active:scale-95 ${
+                isBellRinging ? 'animate-bell-ring' : 'animate-bell-sway'
+              }`}
               style={{
                 aspectRatio: '1086/1448',
                 backgroundImage: 'url(/images/themes/mahal-gold/bells.webp)',

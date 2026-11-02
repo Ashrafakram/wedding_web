@@ -28,13 +28,44 @@ const GALLERY_IMAGES = [
   },
 ]
 
-const WISH_SUGGESTIONS = [
-  '🌸 Wishing dear Swetha & Deepak a lifetime of endless love, joyful laughter, and blissful togetherness!',
-  '🪔 May Lord Senraya Perumal bless your sacred bond with boundless happiness, peace, and prosperity!',
-  '💖 Heartiest congratulations to the gorgeous couple! Truly excited to celebrate your special day!',
-]
+// Synthesizes an authentic Indian brass temple bell chime with warm harmonic overtones
+const playTempleBellChime = () => {
+  try {
+    const AudioCtx =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+    if (!AudioCtx) return
+    const ctx = new AudioCtx()
+    if (ctx.state === 'suspended') {
+      ctx.resume()
+    }
+    const now = ctx.currentTime
 
-const DEFAULT_INITIAL_WISHES: Wish[] = []
+    // Frequencies of an auspicious brass temple bell (D5, A5, D6, A6)
+    const harmonics = [
+      { freq: 587.33, gain: 0.35, decay: 2.8 },
+      { freq: 880.0, gain: 0.22, decay: 2.2 },
+      { freq: 1174.66, gain: 0.15, decay: 1.8 },
+      { freq: 1760.0, gain: 0.08, decay: 1.4 },
+    ]
+
+    harmonics.forEach(({ freq, gain, decay }) => {
+      const osc = ctx.createOscillator()
+      const gainNode = ctx.createGain()
+      osc.type = 'triangle'
+      osc.frequency.setValueAtTime(freq, now)
+
+      gainNode.gain.setValueAtTime(gain, now)
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + decay)
+
+      osc.connect(gainNode)
+      gainNode.connect(ctx.destination)
+
+      osc.start(now)
+      osc.stop(now + decay + 0.1)
+    })
+  } catch {}
+}
 
 export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvpClick }) => {
   // Parallax scroll state
@@ -47,6 +78,14 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Interactive Temple Bell Sway & Chime
+  const [isBellRinging, setIsBellRinging] = useState(false)
+  const handleBellRing = () => {
+    setIsBellRinging(true)
+    playTempleBellChime()
+    setTimeout(() => setIsBellRinging(false), 1800)
+  }
 
   // 3D Perspective Card Carousel State
   const [activePhotoIdx, setActivePhotoIdx] = useState(0)
@@ -109,10 +148,12 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     return () => clearInterval(timer)
   }, [])
 
-  // Guestbook wishes
+  // Guestbook wishes - completely clean initial state (zero dummy memory)
   const [wishes, setWishes] = useState<Wish[]>(() => {
     try {
-      const saved = localStorage.getItem('swetha_deepak_guestbook')
+      // Wipe legacy dummy test data
+      localStorage.removeItem('swetha_deepak_guestbook')
+      const saved = localStorage.getItem('swetha_deepak_wishes_live')
       if (saved) {
         const parsed = JSON.parse(saved)
         if (Array.isArray(parsed)) {
@@ -142,7 +183,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     const updated = [newWish, ...wishes]
     setWishes(updated)
     try {
-      localStorage.setItem('swetha_deepak_guestbook', JSON.stringify(updated))
+      localStorage.setItem('swetha_deepak_wishes_live', JSON.stringify(updated))
     } catch {}
 
     // Dispatch wish via SMTP service
@@ -156,6 +197,16 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     setGuestMsg('')
     setWishSentSuccess(true)
     setTimeout(() => setWishSentSuccess(false), 3500)
+  }
+
+  const handleClearWishes = () => {
+    try {
+      localStorage.removeItem('swetha_deepak_guestbook')
+      localStorage.removeItem('swetha_deepak_wishes_live')
+    } catch {}
+    setWishes([])
+    setWishesPage(1)
+    setWishesSearch('')
   }
 
   // Close wishes modal on Escape
@@ -212,10 +263,16 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
         {/* ======================================================== */}
         <section dir="ltr" className="relative isolate w-full overflow-hidden pt-[13.2%] pb-[16.6%]">
           <div className="relative mx-auto w-full max-w-[480px] md:max-w-[680px]">
-            {/* Bells */}
+            {/* Hanging Temple Bells with Breeze Sway & Interactive Ringing Chime */}
             <div
-              aria-hidden="true"
-              className="pointer-events-none absolute bg-contain bg-center bg-no-repeat top-0 left-[1.4%] mt-[-17.9%] z-[2] w-[32.7%]"
+              role="button"
+              tabIndex={0}
+              aria-label="Ring the sacred temple bell"
+              onClick={handleBellRing}
+              title="Tap to ring temple bell 🔔"
+              className={`absolute bg-contain bg-center bg-no-repeat top-0 left-[1.4%] mt-[-17.9%] z-[2] w-[32.7%] cursor-pointer select-none transition-transform active:scale-95 ${
+                isBellRinging ? 'animate-bell-ring' : 'animate-bell-sway'
+              }`}
               style={{
                 aspectRatio: '1086/1448',
                 backgroundImage: 'url(/images/themes/mahal-gold/bells.webp)',
@@ -270,7 +327,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     fontSize: 'clamp(18px, 6.8vw, 30px)',
                   }}
                 >
-                  &amp;
+                  Weds
                 </span>
                 <div className="w-full">
                   <span
@@ -811,8 +868,20 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
           />
 
           <div className="relative z-10 flex w-full flex-col items-center">
+            <h2
+              className="font-bold text-[20px] md:text-[26px] text-center uppercase tracking-[0.04em] mb-4 md:mb-6"
+              style={{
+                color: '#640e1b',
+                fontFamily: '"Times New Roman", Times, ChungDoiIndic, serif',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+              }}
+            >
+              <span dir="auto">Countdown &amp; Auspicious Dates</span>
+            </h2>
+
             {/* Highlighted Royal Countdown Timer Plaque */}
-            <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-2 md:mt-4 mb-2">
+            <div className="w-full max-w-[370px] md:max-w-[460px] mx-auto mt-2 mb-2">
               <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-[#ab7a45]/30 via-[#d4af37]/70 to-[#ab7a45]/30 shadow-[0_12px_32px_rgba(100,14,27,0.14)] animate-royal-glow">
                 <div className="rounded-[14px] bg-[#fff9f0]/95 backdrop-blur-xs px-3.5 py-4 md:px-5 md:py-5 border border-[#ab7a45]/35">
                   {/* Header with Fleur-de-lis / Royal Accents */}
@@ -1205,7 +1274,13 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               <div className="flex-1 overflow-y-auto max-h-[50vh] pr-1 my-2 space-y-3">
                 {paginatedWishes.length === 0 ? (
                   <div className="py-12 text-center text-[#ab7a45] text-sm">
-                    {wishesSearch ? 'No wishes found matching your search.' : 'No wishes yet. Be the first to send your blessings!'}
+                    <span className="text-3xl block mb-2">💌</span>
+                    <p className="font-semibold text-[#640e1b]">No wishes in guestbook yet</p>
+                    <p className="text-xs text-[#ab7a45]/80 mt-1">
+                      {wishesSearch
+                        ? 'No wishes found matching your search.'
+                        : 'Be the first to shower Swetha & Deepak with your warm blessings!'}
+                    </p>
                   </div>
                 ) : (
                   paginatedWishes.map((w) => (
@@ -1228,11 +1303,23 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 )}
               </div>
 
-              {/* Modal Footer with Pagination Controls */}
+              {/* Modal Footer with Pagination Controls & Memory Reset */}
               <div className="pt-3 border-t border-[#ab7a45]/30 flex items-center justify-between gap-3 text-xs">
-                <span className="text-[#ab7a45] font-medium">
-                  Page {totalWishesPages > 0 ? wishesPage : 0} of {totalWishesPages} ({filteredWishes.length} wishes)
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#ab7a45] font-medium">
+                    Page {totalWishesPages > 0 ? wishesPage : 0} of {totalWishesPages} ({filteredWishes.length} wishes)
+                  </span>
+                  {wishes.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={handleClearWishes}
+                      className="text-[10px] text-[#ab7a45]/70 hover:text-red-700 underline cursor-pointer ml-1"
+                      title="Clear all stored wishes"
+                    >
+                      Clear memory
+                    </button>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-2">
                   <button

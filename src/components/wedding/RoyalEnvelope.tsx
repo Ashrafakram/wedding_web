@@ -240,7 +240,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                   style={{ fontFamily: '"Alex Brush", ChungDoiIndic, cursive' }}
                   className="block w-full text-center text-lg leading-none sm:text-xl"
                 >
-                  &amp;
+                  Weds
                 </span>
                 <span
                   style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
@@ -273,7 +273,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                 }}
                 className="text-[18px] mb-5 flex flex-col items-center"
               >
-                <span dir="auto">November 19, 20, 2026</span>
+                <span dir="auto">November 19 &amp; 20, 2026</span>
               </div>
 
               {/* Cordially Invites */}

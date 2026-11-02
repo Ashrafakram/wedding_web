@@ -28,6 +28,12 @@ const GALLERY_IMAGES = [
   },
 ]
 
+const WISH_SUGGESTIONS = [
+  '🌸 Wishing dear Swetha & Deepak a lifetime of endless love, joyful laughter, and blissful togetherness!',
+  '🪔 May Lord Senraya Perumal bless your sacred bond with boundless happiness, peace, and prosperity!',
+  '💖 Heartiest congratulations to the gorgeous couple! Truly excited to celebrate your special day!',
+]
+
 // Synthesizes an authentic Indian brass temple bell chime with warm harmonic overtones
 const playTempleBellChime = () => {
   try {

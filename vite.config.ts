@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
-import nodemailer from 'nodemailer'
 
 function smtpApiPlugin(): Plugin {
   return {
@@ -21,6 +20,19 @@ function smtpApiPlugin(): Plugin {
               if (!name || !message) {
                 res.writeHead(400, { 'Content-Type': 'application/json' })
                 return res.end(JSON.stringify({ error: 'Name and message are required' }))
+              }
+
+              let nodemailer: any
+              try {
+                const mod = await import('nodemailer')
+                nodemailer = mod.default || mod
+              } catch (importErr) {
+                res.writeHead(500, { 'Content-Type': 'application/json' })
+                return res.end(
+                  JSON.stringify({
+                    error: 'Nodemailer package not installed. Run npm i nodemailer to enable dev SMTP.',
+                  })
+                )
               }
 
               const transporter = nodemailer.createTransport({

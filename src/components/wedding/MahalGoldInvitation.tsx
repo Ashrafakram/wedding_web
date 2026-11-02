@@ -278,7 +278,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     fontSize: 'clamp(18px, 6.8vw, 30px)',
                   }}
                 >
-                  &amp;
+                  Weds
                 </span>
                 <div className="w-full">
                   <span

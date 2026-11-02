@@ -31,30 +31,6 @@ const GALLERY_IMAGES = [
   },
 ]
 
-const DEFAULT_INITIAL_WISHES: Wish[] = [
-  {
-    id: 'w-1',
-    name: 'Ramesh & Geetha',
-    message:
-      'Wishing dear Swetha and Deepak a blissful married life filled with endless joy and love! May Lord Senraya Perumal shower all divine blessings.',
-    date: '1 hour ago',
-  },
-  {
-    id: 'w-2',
-    name: 'Suresh Kumar & Family',
-    message:
-      'Heartiest congratulations to the lovely couple! Looking forward to celebrating with you at AVVS Mahal on the 19th.',
-    date: '3 hours ago',
-  },
-  {
-    id: 'w-3',
-    name: 'Priya & Karthik',
-    message:
-      'So happy for you both, Swetha & Deepak! May your life together be as radiant as your wedding day.',
-    date: 'Yesterday',
-  },
-]
-
 export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvpClick }) => {
   // Parallax scroll state
   const [scrollY, setScrollY] = useState(0)
@@ -128,16 +104,18 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     return () => clearInterval(timer)
   }, [])
 
-  // Guestbook wishes
+  // Guestbook wishes - completely clean initial state (zero dummy memory)
   const [wishes, setWishes] = useState<Wish[]>(() => {
     try {
-      const saved = localStorage.getItem('swetha_deepak_guestbook')
+      // Wipe legacy dummy test data
+      localStorage.removeItem('swetha_deepak_guestbook')
+      const saved = localStorage.getItem('swetha_deepak_wishes_live')
       if (saved) {
         const parsed = JSON.parse(saved)
         if (Array.isArray(parsed) && parsed.length > 0) return parsed
       }
     } catch {}
-    return DEFAULT_INITIAL_WISHES
+    return []
   })
   const [guestName, setGuestName] = useState('')
   const [guestMsg, setGuestMsg] = useState('')
@@ -158,12 +136,22 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     const updated = [newWish, ...wishes]
     setWishes(updated)
     try {
-      localStorage.setItem('swetha_deepak_guestbook', JSON.stringify(updated))
+      localStorage.setItem('swetha_deepak_wishes_live', JSON.stringify(updated))
     } catch {}
     setGuestName('')
     setGuestMsg('')
     setWishSentSuccess(true)
     setTimeout(() => setWishSentSuccess(false), 3500)
+  }
+
+  const handleClearWishes = () => {
+    try {
+      localStorage.removeItem('swetha_deepak_guestbook')
+      localStorage.removeItem('swetha_deepak_wishes_live')
+    } catch {}
+    setWishes([])
+    setWishesPage(1)
+    setWishesSearch('')
   }
 
   // Close wishes modal on Escape
@@ -1193,7 +1181,13 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               <div className="flex-1 overflow-y-auto max-h-[50vh] pr-1 my-2 space-y-3">
                 {paginatedWishes.length === 0 ? (
                   <div className="py-12 text-center text-[#ab7a45] text-sm">
-                    {wishesSearch ? 'No wishes found matching your search.' : 'No wishes yet. Be the first to send your blessings!'}
+                    <span className="text-3xl block mb-2">💌</span>
+                    <p className="font-semibold text-[#640e1b]">No wishes in guestbook yet</p>
+                    <p className="text-xs text-[#ab7a45]/80 mt-1">
+                      {wishesSearch
+                        ? 'No wishes found matching your search.'
+                        : 'Be the first to shower Swetha & Deepak with your warm blessings!'}
+                    </p>
                   </div>
                 ) : (
                   paginatedWishes.map((w) => (
@@ -1216,11 +1210,23 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 )}
               </div>
 
-              {/* Modal Footer with Pagination Controls */}
+              {/* Modal Footer with Pagination Controls & Memory Reset */}
               <div className="pt-3 border-t border-[#ab7a45]/30 flex items-center justify-between gap-3 text-xs">
-                <span className="text-[#ab7a45] font-medium">
-                  Page {totalWishesPages > 0 ? wishesPage : 0} of {totalWishesPages} ({filteredWishes.length} wishes)
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#ab7a45] font-medium">
+                    Page {totalWishesPages > 0 ? wishesPage : 0} of {totalWishesPages} ({filteredWishes.length} wishes)
+                  </span>
+                  {wishes.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={handleClearWishes}
+                      className="text-[10px] text-[#ab7a45]/70 hover:text-red-700 underline cursor-pointer ml-1"
+                      title="Clear all stored wishes"
+                    >
+                      Clear memory
+                    </button>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-2">
                   <button

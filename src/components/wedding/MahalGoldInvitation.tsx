@@ -23,6 +23,10 @@ const GALLERY_IMAGES = [
     alt: 'Swetha & Deepak Kumar Wedding Save The Date',
   },
   {
+    src: '/images/gallery/couple-2.jpg',
+    alt: 'Swetha & Deepak Kumar Loving Portrait',
+  },
+  {
     src: '/images/gallery/couple-3.jpg',
     alt: 'Swetha & Deepak Kumar Wedding Celebration',
   },

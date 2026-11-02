@@ -9,29 +9,7 @@ interface Wish {
   date: string
 }
 
-const DEFAULT_WISHES: Wish[] = [
-  {
-    id: 'w1',
-    name: 'Karthik & Family',
-    relation: 'Friend',
-    message: 'Wishing both Deepak and Swetha a glorious journey of love, laughter, and lifelong togetherness! May God bless you both abundant happiness.',
-    date: 'Just now',
-  },
-  {
-    id: 'w2',
-    name: 'Suresh Kumar',
-    relation: 'Family Elder',
-    message: 'இனிய திருமண நல்வாழ்த்துகள்! தீபக் - ஸ்வேதா தம்பதியினர் பல்லாண்டு காலம் நோயற்ற வாழ்வும் குறைவற்ற செல்வமும் பெற்று வாழ வாழ்த்துகிறேன்.',
-    date: '1 hour ago',
-  },
-  {
-    id: 'w3',
-    name: 'Priya & Vignesh',
-    relation: 'Cousin',
-    message: 'So incredibly happy for you both! Can’t wait to celebrate the grand reception at AVVS Mahal.',
-    date: '3 hours ago',
-  },
-]
+const DEFAULT_WISHES: Wish[] = []
 
 export const MahalGuestbookWishes: React.FC = () => {
   const [wishes, setWishes] = useState<Wish[]>(() => {

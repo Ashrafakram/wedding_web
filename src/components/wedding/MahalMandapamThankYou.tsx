@@ -22,23 +22,14 @@ export const MahalMandapamThankYou: React.FC = () => {
         />
       </div>
 
-      {/* Signature Couple Name */}
-      <div className="relative z-10 -mt-5 sm:-mt-8 pb-10 text-center flex flex-col items-center">
-        <span
-          className="text-3xl sm:text-4xl text-[#640e1b] inline-flex items-center justify-center gap-2"
-          style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
-        >
-          <span>Swetha &amp; Deepak Kumar</span>
-          <span className="font-sans text-2xl sm:text-3xl not-italic select-none" role="img" aria-label="blessings">
-            🙏
-          </span>
-        </span>
-        <span
-          className="text-[11px] uppercase tracking-widest text-[#ab7a45] mt-1 font-serif"
-          style={{ fontFamily: '"Cormorant Garamond", "Times New Roman", serif' }}
-        >
-          With Love &amp; Gratitude
-        </span>
+      {/* Traditional Vanakkam (Namaste) Mandala Greeting Motif */}
+      <div className="relative z-10 -mt-4 sm:-mt-6 pb-12 text-center flex flex-col items-center justify-center">
+        <img
+          src="/images/themes/mahal-gold/vanakkam_mandala.png"
+          alt="Traditional Vanakkam Greeting"
+          className="w-24 h-24 sm:w-32 sm:h-32 object-contain drop-shadow-[0_4px_16px_rgba(171,122,69,0.3)] select-none pointer-events-none hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
       </div>
     </div>
   )

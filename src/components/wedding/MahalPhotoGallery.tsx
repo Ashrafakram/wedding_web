@@ -8,13 +8,8 @@ const GALLERY_IMAGES = [
     caption: 'Moments of Love & Devotion',
   },
   {
-    src: '/images/gallery/couple-2.jpg',
-    alt: 'Swetha & Deepak Kumar Elegant Portrait',
-    caption: 'Together Forever',
-  },
-  {
     src: '/images/gallery/couple-3.jpg',
-    alt: 'Swetha & Deepak Kumar Wedding Portrait',
+    alt: 'Swetha & Deepak Kumar Wedding Celebration',
     caption: 'A Beautiful New Beginning',
   },
 ]
@@ -49,32 +44,33 @@ export const MahalPhotoGallery: React.FC = () => {
           className="text-[22px] md:text-[28px] font-bold text-[#640e1b] uppercase tracking-[0.05em] mb-3"
           style={{ fontFamily: '"Times New Roman", Times, serif' }}
         >
-          PHOTO GALLERY
+          Photo Gallery
         </h2>
 
+        {/* Delicate Ornamental Line */}
         <img
           src="/images/themes/mahal-gold/gold-line.webp"
           alt=""
           aria-hidden="true"
-          className="mx-auto block h-auto w-[55%] max-w-[260px] object-contain mb-8"
+          className="mx-auto block h-auto w-[45%] max-w-[200px] object-contain mb-6"
         />
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5">
           {GALLERY_IMAGES.map((img, idx) => (
             <div
               key={idx}
               onClick={() => setSelectedIdx(idx)}
-              className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-xl border border-[#ab7a45]/30 bg-[#ab7a45]/5 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#ab7a45] hover:-translate-y-1"
+              className="group relative aspect-[3/4] rounded-xl overflow-hidden border border-[#ab7a45]/35 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300"
             >
               <img
                 src={img.src}
                 alt={img.alt}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                <span className="text-white text-xs font-medium truncate">{img.caption}</span>
+                <span className="text-white text-xs font-serif italic">{img.caption}</span>
               </div>
             </div>
           ))}
@@ -84,56 +80,53 @@ export const MahalPhotoGallery: React.FC = () => {
       {/* Lightbox Modal */}
       {selectedIdx !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setSelectedIdx(null)}
         >
-          {/* Close Button */}
           <button
+            type="button"
             onClick={() => setSelectedIdx(null)}
-            className="absolute top-5 right-5 text-white/80 hover:text-white p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-50"
-            aria-label="Close Lightbox"
+            className="absolute top-4 right-4 text-white hover:text-[#ffd700] transition-colors p-2"
+            aria-label="Close"
           >
-            <X className="w-6 h-6" />
+            <X className="w-7 h-7" />
           </button>
 
-          {/* Left Button */}
           <button
+            type="button"
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-50"
-            aria-label="Previous image"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[#ffd700] transition-colors p-2 bg-black/30 rounded-full"
+            aria-label="Previous"
           >
-            <ChevronLeft className="w-7 h-7" />
+            <ChevronLeft className="w-8 h-8" />
           </button>
 
-          {/* Right Button */}
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-50"
-            aria-label="Next image"
-          >
-            <ChevronRight className="w-7 h-7" />
-          </button>
-
-          {/* Main Image Container */}
           <div
-            className="relative max-w-3xl max-h-[85vh] flex flex-col items-center"
+            className="max-w-[85vw] max-h-[85vh] flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={GALLERY_IMAGES[selectedIdx].src}
               alt={GALLERY_IMAGES[selectedIdx].alt}
-              className="max-h-[75vh] w-auto max-w-full rounded-lg shadow-2xl object-contain border border-[#ab7a45]/40"
+              className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl border border-[#ab7a45]/50"
             />
-            <p className="text-white/90 text-sm md:text-base mt-3 font-medium">
+            <p className="text-white text-sm mt-3 font-serif italic text-center">
               {GALLERY_IMAGES[selectedIdx].caption}
             </p>
-            <span className="text-white/60 text-xs mt-1">
-              {selectedIdx + 1} of {GALLERY_IMAGES.length}
-            </span>
           </div>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#ffd700] transition-colors p-2 bg-black/30 rounded-full"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
         </div>
       )}
     </section>
   )
 }
 
+export default MahalPhotoGallery

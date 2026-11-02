@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ModernWeddingEvents } from './ModernWeddingEvents'
 import { MahalMandapamThankYou } from './MahalMandapamThankYou'
+import { sendWishViaSmtp } from '@/lib/smtpService'
 
 // Set to false to instantly revert to the original castle footer
 const SHOW_TRADITIONAL_MANDAPAM_THANK_YOU = true
@@ -22,38 +23,18 @@ const GALLERY_IMAGES = [
     alt: 'Swetha & Deepak Kumar Wedding Save The Date',
   },
   {
-    src: '/images/gallery/couple-2.jpg',
-    alt: 'Swetha & Deepak Kumar Loving Portrait',
-  },
-  {
     src: '/images/gallery/couple-3.jpg',
     alt: 'Swetha & Deepak Kumar Wedding Celebration',
   },
 ]
 
-const DEFAULT_INITIAL_WISHES: Wish[] = [
-  {
-    id: 'w-1',
-    name: 'Ramesh & Geetha',
-    message:
-      'Wishing dear Swetha and Deepak a blissful married life filled with endless joy and love! May Lord Senraya Perumal shower all divine blessings.',
-    date: '1 hour ago',
-  },
-  {
-    id: 'w-2',
-    name: 'Suresh Kumar & Family',
-    message:
-      'Heartiest congratulations to the lovely couple! Looking forward to celebrating with you at AVVS Mahal on the 19th.',
-    date: '3 hours ago',
-  },
-  {
-    id: 'w-3',
-    name: 'Priya & Karthik',
-    message:
-      'So happy for you both, Swetha & Deepak! May your life together be as radiant as your wedding day.',
-    date: 'Yesterday',
-  },
+const WISH_SUGGESTIONS = [
+  '🌸 Wishing dear Swetha & Deepak a lifetime of endless love, joyful laughter, and blissful togetherness!',
+  '🪔 May Lord Senraya Perumal bless your sacred bond with boundless happiness, peace, and prosperity!',
+  '💖 Heartiest congratulations to the gorgeous couple! Truly excited to celebrate your special day!',
 ]
+
+const DEFAULT_INITIAL_WISHES: Wish[] = []
 
 export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvpClick }) => {
   // Parallax scroll state
@@ -134,10 +115,13 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
       const saved = localStorage.getItem('swetha_deepak_guestbook')
       if (saved) {
         const parsed = JSON.parse(saved)
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed
+        if (Array.isArray(parsed)) {
+          // Filter out any legacy dummy/mock wishes starting with 'w-'
+          return parsed.filter((w: Wish) => w && w.id && !w.id.startsWith('w-'))
+        }
       }
     } catch {}
-    return DEFAULT_INITIAL_WISHES
+    return []
   })
   const [guestName, setGuestName] = useState('')
   const [guestMsg, setGuestMsg] = useState('')
@@ -160,6 +144,14 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
     try {
       localStorage.setItem('swetha_deepak_guestbook', JSON.stringify(updated))
     } catch {}
+
+    // Dispatch wish via SMTP service
+    sendWishViaSmtp({
+      name: guestName.trim(),
+      message: guestMsg.trim(),
+      date: new Date().toISOString(),
+    })
+
     setGuestName('')
     setGuestMsg('')
     setWishSentSuccess(true)
@@ -699,12 +691,12 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                       isCenter = true
                     } else if (diff === 1) {
                       // Right Card
-                      transform = 'translateX(62%) translateZ(-150px) rotateY(38deg) scale(0.85)'
+                      transform = 'translateX(56%) translateZ(-140px) rotateY(30deg) scale(0.85)'
                       opacity = 0.75
                       zIndex = 90
                     } else if (diff === -1) {
                       // Left Card
-                      transform = 'translateX(-62%) translateZ(-150px) rotateY(-38deg) scale(0.85)'
+                      transform = 'translateX(-56%) translateZ(-140px) rotateY(-30deg) scale(0.85)'
                       opacity = 0.75
                       zIndex = 90
                     }
@@ -1248,6 +1240,36 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 className="w-full px-4 py-2 rounded-lg border border-[#ab7a45]/40 bg-white/70 text-[#640e1b] text-sm focus:outline-none focus:ring-1 focus:ring-[#640e1b] resize-none"
               />
             </div>
+
+            {/* Curated Wish Suggestions */}
+            <div className="flex flex-col gap-1.5 mt-1">
+              <span className="text-[11px] uppercase tracking-wider text-[#ab7a45] font-semibold flex items-center gap-1">
+                <span>✦</span>
+                <span>Select a wish suggestion:</span>
+              </span>
+              <div className="flex flex-col gap-1.5">
+                {WISH_SUGGESTIONS.map((suggestion, sIdx) => {
+                  const isSelected = guestMsg === suggestion
+                  return (
+                    <button
+                      key={sIdx}
+                      type="button"
+                      onClick={() => setGuestMsg(suggestion)}
+                      className={`text-left text-xs md:text-[13px] px-3.5 py-2 rounded-xl border transition-all duration-300 cursor-pointer flex items-start gap-2.5 leading-relaxed ${
+                        isSelected
+                          ? 'bg-[#640e1b]/10 border-[#640e1b] text-[#640e1b] font-medium shadow-xs scale-[1.01]'
+                          : 'bg-white/60 hover:bg-white/90 border-[#ab7a45]/30 text-[#640e1b]/85 hover:border-[#ab7a45]/70'
+                      }`}
+                    >
+                      <span className="text-[#ab7a45] shrink-0 mt-0.5">
+                        {isSelected ? '✓' : '❧'}
+                      </span>
+                      <span>{suggestion}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
             {wishSentSuccess && (
               <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs text-center font-medium animate-fade-in">
                 ✨ Thank you! Your warm wish has been added to Swetha &amp; Deepak&apos;s guestbook. 🙏
@@ -1261,17 +1283,19 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               >
                 Send wish
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setWishesPage(1)
-                  setIsWishesModalOpen(true)
-                }}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold text-[#640e1b] bg-white/85 hover:bg-white border border-[#ab7a45]/50 shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span>💌</span>
-                <span>View Wishes ({wishes.length})</span>
-              </button>
+              {wishes.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setWishesPage(1)
+                    setIsWishesModalOpen(true)
+                  }}
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold text-[#640e1b] bg-white/85 hover:bg-white border border-[#ab7a45]/50 shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <span>💌</span>
+                  <span>View Wishes ({wishes.length})</span>
+                </button>
+              )}
             </div>
           </form>
         </section>

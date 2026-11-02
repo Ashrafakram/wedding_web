@@ -6,7 +6,13 @@ import { RsvpModal } from '@/components/wedding/RsvpModal'
 import { FlowerRain } from '@/components/wedding/FlowerRain'
 
 export function App() {
-  const [isEnvelopeOpened, setIsEnvelopeOpened] = useState(false)
+  const [isEnvelopeOpened, setIsEnvelopeOpened] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      return params.get('skip_intro') === '1' || params.get('skip_envelope') === '1'
+    }
+    return false
+  })
   const [musicStarted, setMusicStarted] = useState(false)
   const [isRsvpOpen, setIsRsvpOpen] = useState(false)
 

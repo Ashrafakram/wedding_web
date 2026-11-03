@@ -7,7 +7,7 @@ import { sendWishViaSmtp } from '@/lib/smtpService'
 const SHOW_TRADITIONAL_MANDAPAM_THANK_YOU = true
 
 interface MahalGoldInvitationProps {
-  onRsvpClick: () => void
+  onRsvpClick?: () => void
 }
 
 interface Wish {
@@ -1054,12 +1054,12 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             </div>
 
             {/* Add to Calendar Link */}
-            <div className="mt-3 flex justify-center">
+            <div className="mt-3.5 md:mt-4 mb-2 flex justify-center">
               <a
                 href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Swetha%20%26%20Deepak%20Kumar%27s%20Wedding&dates=20261119T123000Z/20261120T153000Z&details=Join%20us%20to%20celebrate%20the%20wedding%20of%20Swetha%20%26%20Deepak%20Kumar%20on%2019%20%26%2020%20November%202026%20at%20AVVS%20Mahal%20%26%20Senraya%20Perumal%20Temple%2C%20Salem.&location=13%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center text-[13px] underline decoration-1 underline-offset-4 transition-opacity hover:opacity-70 md:text-[15px]"
+                className="inline-flex items-center justify-center text-[13px] underline decoration-1 underline-offset-4 transition-opacity hover:opacity-70 md:text-[15px] cursor-pointer"
                 style={{
                   color: '#ab7a45',
                   fontFamily: '"Times New Roman", Times, ChungDoiIndic, serif',
@@ -1068,31 +1068,13 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 <span dir="auto">Add to Calendar</span>
               </a>
             </div>
-
-            {/* CONFIRM ATTENDANCE Button */}
-            <div className="relative z-10 flex flex-col items-center justify-center w-full mt-7 md:mt-9" data-landing-screenshot-id="invite-rsvp">
-              <button
-                type="button"
-                onClick={onRsvpClick}
-                className="text-[13px] md:text-[15px] tracking-wider inline-flex items-center justify-center rounded-full px-7 py-2 transition-transform hover:scale-[1.03] shadow-md"
-                style={{
-                  backgroundColor: '#640e1b',
-                  color: '#ffffff',
-                  fontFamily: '"Baskerville", "Libre Baskerville", "Times New Roman", ChungDoiIndic, serif',
-                }}
-              >
-                <span className="relative z-10 flex min-h-0 items-center justify-center gap-2">
-                  <span dir="auto">CONFIRM ATTENDANCE</span>
-                </span>
-              </button>
-            </div>
           </div>
         </section>
 
         {/* ======================================================== */}
         {/* SECTION 5: MODERN WEDDING EVENTS & VENUE MAP MODAL       */}
         {/* ======================================================== */}
-        <div className="relative isolate z-10 w-full pt-[4%] md:pt-[2%]">
+        <div className="relative isolate z-10 w-full pt-[2%] md:pt-[1%]">
           <ModernWeddingEvents />
           <img
             src="/images/themes/mahal-gold/gold-line.webp"

@@ -45,91 +45,84 @@ export const MahalGoldHero: React.FC = () => {
             }}
           />
 
-          {/* Couple Header, Names & Ornaments matching Reference Card Design */}
-          <div className="absolute left-1/2 top-[38%] z-20 flex w-[90%] -translate-x-1/2 flex-col items-center text-center select-none">
-            {/* Invitation Line */}
-            <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 opacity-90">
-              <div className="h-[1px] w-6 sm:w-12 bg-gradient-to-r from-transparent via-[#ab7a45]/60 to-[#ab7a45]" />
-              <p
-                className="text-[10px] sm:text-[12px] md:text-[14px] text-[#640e1b] tracking-wider uppercase font-medium"
-                style={{ fontFamily: '"EB Garamond", "Cormorant Garamond", serif', letterSpacing: '0.12em' }}
+          {/* Couple Header, Names & Royal Invitation matching Authentic Royal Palace Design */}
+          <div className="absolute left-1/2 top-[39%] z-20 flex w-[92%] max-w-[620px] -translate-x-1/2 flex-col items-center text-center select-none">
+            {/* Couple Names - Equal Alignment Single Line (Groom first, Bride second) */}
+            <h1
+              style={{
+                color: '#640e1b',
+                textShadow: '0 2px 4px rgba(100, 14, 27, 0.12)',
+              }}
+              className="mb-1.5 sm:mb-2 flex flex-row items-baseline justify-center gap-2 sm:gap-3.5 text-center whitespace-nowrap leading-none select-none"
+            >
+              <span
+                style={{
+                  fontFamily: '"Great Vibes", cursive',
+                  fontSize: 'clamp(28px, 6.8vw, 56px)',
+                }}
               >
-                You are cordially invited to the Wedding of
-              </p>
-              <div className="h-[1px] w-6 sm:w-12 bg-gradient-to-l from-transparent via-[#ab7a45]/60 to-[#ab7a45]" />
-            </div>
+                Deepak Kumar
+              </span>
+              <span
+                style={{
+                  fontFamily: '"Great Vibes", cursive',
+                  fontSize: 'clamp(22px, 5.2vw, 42px)',
+                  color: '#ab7a45',
+                }}
+                className="px-0.5 select-none"
+              >
+                &amp;
+              </span>
+              <span
+                style={{
+                  fontFamily: '"Great Vibes", cursive',
+                  fontSize: 'clamp(28px, 6.8vw, 56px)',
+                }}
+              >
+                Swetha
+              </span>
+            </h1>
 
-            {/* Names Block (Deepak Kumar & Swetha) */}
-            <div className="my-1 sm:my-1.5 flex items-center justify-center gap-2 sm:gap-4 select-none leading-none">
-              {/* Left Pink Blossom Accent */}
-              <span className="text-xs sm:text-base text-[#df4977] -mt-6 select-none">🌸</span>
-
-              {/* Groom: Deepak Kumar (2-line stacked block) */}
-              <div className="flex flex-col text-right leading-[0.85] sm:leading-[0.88]">
-                <span
-                  style={{
-                    fontFamily: '"Great Vibes", "Alex Brush", cursive',
-                    color: '#640e1b',
-                    fontSize: 'clamp(28px, 6.6vw, 56px)',
-                  }}
-                >
-                  Deepak
-                </span>
-                <span
-                  style={{
-                    fontFamily: '"Great Vibes", "Alex Brush", cursive',
-                    color: '#640e1b',
-                    fontSize: 'clamp(28px, 6.6vw, 56px)',
-                  }}
-                >
-                  Kumar
-                </span>
-              </div>
-
-              {/* Vertical Divider & Script Ampersand */}
-              <div className="flex flex-col items-center justify-center px-1">
-                <div className="h-4 sm:h-7 w-[1.5px] bg-[#ab7a45]/60 mb-0.5" />
-                <span
-                  className="text-[#640e1b] text-xl sm:text-3xl my-0.5 leading-none"
-                  style={{ fontFamily: '"Great Vibes", "Alex Brush", cursive' }}
-                >
-                  &amp;
-                </span>
-                <div className="h-4 sm:h-7 w-[1.5px] bg-[#ab7a45]/60 mt-0.5" />
-              </div>
-
-              {/* Bride: Swetha (Single large name vertically centered) */}
-              <div className="flex items-center text-left leading-[0.85] sm:leading-[0.88]">
-                <span
-                  style={{
-                    fontFamily: '"Great Vibes", "Alex Brush", cursive',
-                    color: '#640e1b',
-                    fontSize: 'clamp(36px, 8.5vw, 70px)',
-                  }}
-                >
-                  Swetha
-                </span>
-              </div>
-            </div>
-
-            {/* Gold Ornament Divider with Pink Blossom */}
-            <div className="flex items-center justify-center gap-2 mt-1.5 select-none">
+            {/* Royal Symmetrical Gold Filigree Divider */}
+            <div className="flex items-center justify-center gap-2 my-1 sm:my-1.5 select-none">
               <div
                 style={{ background: 'linear-gradient(to right, transparent, #ab7a45)' }}
-                className="w-10 sm:w-20 h-px"
+                className="w-8 sm:w-16 h-px"
               />
               <span style={{ color: '#ab7a45', opacity: 0.8 }} className="text-xs sm:text-sm">
                 ❖
               </span>
-              <span className="text-xs sm:text-sm text-[#df4977]">🌸</span>
+              <span style={{ color: '#ab7a45', opacity: 0.9 }} className="text-sm sm:text-base">
+                ❦
+              </span>
               <span style={{ color: '#ab7a45', opacity: 0.8 }} className="text-xs sm:text-sm">
                 ❖
               </span>
               <div
                 style={{ background: 'linear-gradient(to left, transparent, #ab7a45)' }}
-                className="w-10 sm:w-20 h-px"
+                className="w-8 sm:w-16 h-px"
               />
             </div>
+
+            {/* Royal Invitation Line - Under the Names */}
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 mt-1 mb-1.5 opacity-90 select-none">
+              <div className="h-[1px] w-5 sm:w-10 bg-gradient-to-r from-transparent via-[#ab7a45]/60 to-[#ab7a45]" />
+              <p
+                className="text-[10px] sm:text-[12px] md:text-[13px] text-[#640e1b] tracking-[0.16em] sm:tracking-[0.22em] uppercase font-semibold"
+                style={{ fontFamily: '"EB Garamond", "Cormorant Garamond", Georgia, serif' }}
+              >
+                You are cordially invited to the Wedding of
+              </p>
+              <div className="h-[1px] w-5 sm:w-10 bg-gradient-to-l from-transparent via-[#ab7a45]/60 to-[#ab7a45]" />
+            </div>
+
+            {/* Auspicious Dates & Location */}
+            <p
+              className="text-[10px] sm:text-[12px] md:text-[13px] text-[#ab7a45] tracking-widest uppercase font-medium select-none"
+              style={{ fontFamily: '"Cinzel", "EB Garamond", Georgia, serif' }}
+            >
+              19 &amp; 20 November 2026 &bull; Salem, Tamil Nadu
+            </p>
           </div>
         </div>
 

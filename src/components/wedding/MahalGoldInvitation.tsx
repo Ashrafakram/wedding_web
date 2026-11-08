@@ -321,41 +321,39 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                   backgroundImage: 'url(/images/themes/mahal-gold/ganesha.webp)',
                 }}
               />
-              <div className="absolute left-1/2 top-[43.9%] z-20 flex w-[68%] -translate-x-1/2 flex-col items-center gap-[1.2%] text-center leading-[1.15]">
-                <div className="w-full">
-                  <span
-                    className="inline-block"
-                    style={{
-                      fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
-                      color: '#640e1b',
-                      fontSize: 'clamp(30px, 12.5vw, 55px)',
-                    }}
-                  >
-                    Swetha
-                  </span>
-                </div>
+              {/* Couple Names - Single Horizontal Line Format */}
+              <div className="absolute left-1/2 top-[46%] z-20 flex w-[90%] -translate-x-1/2 flex-row items-baseline justify-center gap-1.5 sm:gap-2.5 text-center whitespace-nowrap leading-none">
                 <span
-                  className="block"
+                  className="inline-block"
+                  style={{
+                    fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
+                    color: '#640e1b',
+                    fontSize: 'clamp(24px, 6.4vw, 48px)',
+                  }}
+                >
+                  Swetha
+                </span>
+                <span
+                  className="inline-block px-0.5"
                   style={{
                     fontFamily: '"Alex Brush", "The Nautigal", ChungDoiIndic, cursive',
                     color: '#640e1b',
-                    fontSize: 'clamp(18px, 6.8vw, 30px)',
+                    fontSize: 'clamp(14px, 3.8vw, 26px)',
+                    opacity: 0.9,
                   }}
                 >
                   Weds
                 </span>
-                <div className="w-full">
-                  <span
-                    className="inline-block"
-                    style={{
-                      fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
-                      color: '#640e1b',
-                      fontSize: 'clamp(30px, 12.5vw, 55px)',
-                    }}
-                  >
-                    Deepak Kumar
-                  </span>
-                </div>
+                <span
+                  className="inline-block"
+                  style={{
+                    fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
+                    color: '#640e1b',
+                    fontSize: 'clamp(24px, 6.4vw, 48px)',
+                  }}
+                >
+                  Deepak Kumar
+                </span>
               </div>
             </div>
 
@@ -466,56 +464,64 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               <span dir="auto">CEREMONY INFO</span>
             </h2>
 
-            {/* Couple Announcement (Bride first, parents removed per request) */}
-            <div data-showcase-keep="" className="w-full min-w-0 relative flex flex-col items-center text-center gap-3 md:gap-4 mt-2 mb-4">
-              <h3
-                className="w-[80%] min-h-[70px] flex items-center justify-center leading-[50px] md:leading-[68px] whitespace-nowrap"
-                style={{
-                  fontSize: '43px',
-                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                  color: '#640e1b',
-                }}
-              >
-                Swetha
-              </h3>
-              <div
-                className="text-xs uppercase tracking-[0.2em]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
-                  letterSpacing: '0.16em',
-                }}
-              >
-                <span dir="auto">Bride</span>
-              </div>
-              <div
-                className="text-[28px] md:text-[36px]"
-                style={{
-                  color: '#640e1b',
-                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                }}
-              >
-                &amp;
-              </div>
-              <h3
-                className="w-[80%] min-h-[70px] flex items-center justify-center leading-[50px] md:leading-[68px] whitespace-nowrap"
-                style={{
-                  fontSize: '43px',
-                  fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                  color: '#640e1b',
-                }}
-              >
-                Deepak Kumar
-              </h3>
-              <div
-                className="text-xs uppercase tracking-[0.2em]"
-                style={{
-                  color: '#ab7a45',
-                  fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
-                  letterSpacing: '0.16em',
-                }}
-              >
-                <span dir="auto">Groom</span>
+            {/* Couple Announcement - Single Horizontal Line Equal Alignment */}
+            <div data-showcase-keep="" className="w-full min-w-0 relative flex flex-col items-center text-center mt-3 mb-6">
+              <div className="flex flex-row items-baseline justify-center gap-3 sm:gap-5 md:gap-8 flex-wrap">
+                {/* Bride Column */}
+                <div className="flex flex-col items-center">
+                  <h3
+                    className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight whitespace-nowrap"
+                    style={{
+                      fontFamily: '"EB Garamond", ChungDoiIndic, serif',
+                      color: '#640e1b',
+                    }}
+                  >
+                    Swetha
+                  </h3>
+                  <span
+                    className="text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-1"
+                    style={{
+                      color: '#ab7a45',
+                      fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
+                      letterSpacing: '0.18em',
+                    }}
+                  >
+                    Bride
+                  </span>
+                </div>
+
+                {/* Auspicious Center Connector */}
+                <span
+                  className="text-xl sm:text-2xl md:text-3xl text-[#640e1b]/70 self-center -mt-3.5"
+                  style={{
+                    fontFamily: '"EB Garamond", ChungDoiIndic, serif',
+                  }}
+                >
+                  &amp;
+                </span>
+
+                {/* Groom Column */}
+                <div className="flex flex-col items-center">
+                  <h3
+                    className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight whitespace-nowrap"
+                    style={{
+                      fontFamily: '"EB Garamond", ChungDoiIndic, serif',
+                      color: '#640e1b',
+                    }}
+                  >
+                    Deepak Kumar
+                  </h3>
+                  <span
+                    className="text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-1"
+                    style={{
+                      color: '#ab7a45',
+                      fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
+                      letterSpacing: '0.18em',
+                    }}
+                  >
+                    Groom
+                  </span>
+                </div>
               </div>
             </div>
 

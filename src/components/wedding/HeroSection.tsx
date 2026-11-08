@@ -123,21 +123,14 @@ export function HeroSection() {
             </p>
 
             {/* Names in Royal Wine & Shimmering Gold */}
-            <div className="my-2 sm:my-3">
-              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-[#5C131E] tracking-tight leading-none mb-1">
+            <div className="my-2 sm:my-3 flex flex-row items-baseline justify-center gap-2 sm:gap-4 flex-wrap">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#5C131E] tracking-tight leading-none whitespace-nowrap">
                 Er. Swetha
               </h1>
-              
-              {/* Ampersand Flourish with Gold Glow */}
-              <div className="flex items-center justify-center gap-3 my-1">
-                <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-[#C59B27]" />
-                <span className="font-script text-3xl sm:text-4xl text-[#C59B27] inline-flex items-center px-2">
-                  &amp;
-                </span>
-                <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-[#C59B27]" />
-              </div>
-
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#5C131E] tracking-tight leading-none">
+              <span className="font-script text-2xl sm:text-3xl text-[#C59B27] inline-flex items-center px-1">
+                &amp;
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#5C131E] tracking-tight leading-none whitespace-nowrap">
                 Er. Deepak Kumar
               </h2>
             </div>

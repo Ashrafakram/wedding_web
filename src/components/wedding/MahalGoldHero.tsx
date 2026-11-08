@@ -45,42 +45,39 @@ export const MahalGoldHero: React.FC = () => {
             }}
           />
 
-          {/* Couple Names Inside Arch */}
-          <div className="absolute left-1/2 top-[43.5%] z-20 flex w-[75%] -translate-x-1/2 flex-col items-center gap-[1.5%] text-center leading-[1.12]">
-            <div className="w-full">
-              <span
-                className="inline-block"
-                style={{
-                  fontFamily: '"The Nautigal", cursive',
-                  color: '#640e1b',
-                  fontSize: 'clamp(38px, 12.5vw, 72px)',
-                }}
-              >
-                Deepak Kumar
-              </span>
-            </div>
+          {/* Couple Names Inside Arch - Single Horizontal Line */}
+          <div className="absolute left-1/2 top-[46%] z-20 flex w-[90%] -translate-x-1/2 flex-row items-baseline justify-center gap-1.5 sm:gap-2.5 text-center whitespace-nowrap leading-none">
             <span
-              className="block my-0.5"
+              className="inline-block"
               style={{
-                fontFamily: '"Alex Brush", cursive',
+                fontFamily: '"The Nautigal", cursive',
                 color: '#640e1b',
-                fontSize: 'clamp(20px, 6.5vw, 36px)',
+                fontSize: 'clamp(24px, 6.4vw, 48px)',
               }}
             >
-              &amp;
+              Swetha
             </span>
-            <div className="w-full">
-              <span
-                className="inline-block"
-                style={{
-                  fontFamily: '"The Nautigal", cursive',
-                  color: '#640e1b',
-                  fontSize: 'clamp(38px, 12.5vw, 72px)',
-                }}
-              >
-                Swetha
-              </span>
-            </div>
+            <span
+              className="inline-block px-0.5"
+              style={{
+                fontFamily: '"Alex Brush", "The Nautigal", cursive',
+                color: '#640e1b',
+                fontSize: 'clamp(14px, 3.8vw, 26px)',
+                opacity: 0.9,
+              }}
+            >
+              Weds
+            </span>
+            <span
+              className="inline-block"
+              style={{
+                fontFamily: '"The Nautigal", cursive',
+                color: '#640e1b',
+                fontSize: 'clamp(24px, 6.4vw, 48px)',
+              }}
+            >
+              Deepak Kumar
+            </span>
           </div>
         </div>
 

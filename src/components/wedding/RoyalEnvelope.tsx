@@ -222,29 +222,37 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
 
             {/* Card Content */}
             <div className="relative z-10 text-center px-6 pt-28 pb-14 md:pt-24 md:pb-8">
-              {/* Names */}
+              {/* Names - Single Line Horizontal Format */}
               <h1
                 style={{
                   color: '#640e1b',
                   fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
                 }}
-                className="mb-2 flex flex-col items-center leading-tight text-3xl sm:text-4xl"
+                className="mb-2.5 flex flex-row items-baseline justify-center gap-1.5 sm:gap-2.5 text-center whitespace-nowrap leading-none"
               >
                 <span
-                  style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
-                  className="block w-full text-center"
+                  style={{
+                    fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
+                    fontSize: 'clamp(28px, 6.5vw, 44px)',
+                  }}
                 >
                   Swetha
                 </span>
                 <span
-                  style={{ fontFamily: '"Alex Brush", ChungDoiIndic, cursive' }}
-                  className="block w-full text-center text-lg leading-none sm:text-xl"
+                  style={{
+                    fontFamily: '"Alex Brush", "The Nautigal", ChungDoiIndic, cursive',
+                    fontSize: 'clamp(16px, 3.8vw, 24px)',
+                    color: '#ab7a45',
+                  }}
+                  className="px-0.5"
                 >
                   Weds
                 </span>
                 <span
-                  style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
-                  className="block w-full text-center"
+                  style={{
+                    fontFamily: '"The Nautigal", ChungDoiIndic, cursive',
+                    fontSize: 'clamp(28px, 6.5vw, 44px)',
+                  }}
                 >
                   Deepak Kumar
                 </span>

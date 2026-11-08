@@ -84,7 +84,7 @@ export function SendWishesModal({ isOpen, onClose }: SendWishesModalProps) {
             Wedding Blessings &amp; Wishes
           </DialogTitle>
           <DialogDescription className="text-xs text-[#7A6D5E]">
-            Share your heartfelt love and blessings for Swetha &amp; Deepak Kumar
+            Share your heartfelt love and blessings for Deepak Kumar &amp; Swetha
           </DialogDescription>
         </DialogHeader>
 

@@ -45,7 +45,7 @@ export const MahalGoldHero: React.FC = () => {
             }}
           />
 
-          {/* Couple Names Inside Arch - Single Horizontal Line */}
+          {/* Couple Names Inside Arch - Single Horizontal Line (Groom first, Bride second) */}
           <div className="absolute left-1/2 top-[46%] z-20 flex w-[90%] -translate-x-1/2 flex-row items-baseline justify-center gap-1.5 sm:gap-2.5 text-center whitespace-nowrap leading-none">
             <span
               className="inline-block"
@@ -55,7 +55,7 @@ export const MahalGoldHero: React.FC = () => {
                 fontSize: 'clamp(24px, 6.4vw, 48px)',
               }}
             >
-              Swetha
+              Deepak Kumar
             </span>
             <span
               className="inline-block px-0.5"
@@ -76,7 +76,7 @@ export const MahalGoldHero: React.FC = () => {
                 fontSize: 'clamp(24px, 6.4vw, 48px)',
               }}
             >
-              Deepak Kumar
+              Swetha
             </span>
           </div>
         </div>

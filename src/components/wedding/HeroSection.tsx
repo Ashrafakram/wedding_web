@@ -122,16 +122,16 @@ export function HeroSection() {
               || ஸ்ரீ விநாயகர் துணை ||
             </p>
 
-            {/* Names in Royal Wine & Shimmering Gold */}
+            {/* Names in Royal Wine & Shimmering Gold (Groom first, Bride second) */}
             <div className="my-2 sm:my-3 flex flex-row items-baseline justify-center gap-2 sm:gap-4 flex-wrap">
               <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#5C131E] tracking-tight leading-none whitespace-nowrap">
-                Er. Swetha
+                Er. Deepak Kumar
               </h1>
               <span className="font-script text-2xl sm:text-3xl text-[#C59B27] inline-flex items-center px-1">
                 &amp;
               </span>
               <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#5C131E] tracking-tight leading-none whitespace-nowrap">
-                Er. Deepak Kumar
+                Er. Swetha
               </h2>
             </div>
 

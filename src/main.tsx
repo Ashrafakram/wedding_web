@@ -31,7 +31,7 @@ class RootErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState
       return (
         <div className="min-h-screen bg-[#FBF7F0] flex flex-col items-center justify-center p-6 text-center text-[#163224]">
           <h1 className="text-xl font-cinzel font-bold text-[#C59B27] mb-2">
-            Swetha & Deepak Kumar Wedding Invitation
+            Deepak Kumar & Swetha Wedding Invitation
           </h1>
           <p className="text-sm mb-4 text-[#2D261E]">
             Welcome to our wedding celebration!

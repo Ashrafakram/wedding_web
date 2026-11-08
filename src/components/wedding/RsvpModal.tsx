@@ -98,7 +98,7 @@ export function RsvpModal({ isOpen, onClose }: RsvpModalProps) {
             Wedding RSVP
           </DialogTitle>
           <DialogDescription className="text-xs text-[#8C3A4F] font-cinzel tracking-wider">
-            Kindly confirm your presence for Swetha &amp; Deepak Kumar's Wedding
+            Kindly confirm your presence for Deepak Kumar &amp; Swetha's Wedding
           </DialogDescription>
         </DialogHeader>
 

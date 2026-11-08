@@ -62,12 +62,12 @@ export const MahalMandapamThankYou: React.FC = () => {
             loading="lazy"
           />
 
-          {/* Couple Calligraphy Name */}
+          {/* Couple Calligraphy Name (Groom first, Bride second) */}
           <h3
             className="text-3xl sm:text-4xl md:text-[42px] leading-tight text-[#640e1b] my-0.5 tracking-wide"
             style={{ fontFamily: '"The Nautigal", ChungDoiIndic, cursive' }}
           >
-            Swetha &amp; Deepak Kumar
+            Deepak Kumar &amp; Swetha
           </h3>
 
           {/* Subtitle */}

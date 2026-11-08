@@ -222,7 +222,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
 
             {/* Card Content */}
             <div className="relative z-10 text-center px-6 pt-28 pb-14 md:pt-24 md:pb-8">
-              {/* Names - Single Line Horizontal Format */}
+              {/* Names - Single Line Horizontal Format (Groom first, Bride second) */}
               <h1
                 style={{
                   color: '#640e1b',
@@ -236,7 +236,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                     fontSize: 'clamp(28px, 6.5vw, 44px)',
                   }}
                 >
-                  Swetha
+                  Deepak Kumar
                 </span>
                 <span
                   style={{
@@ -254,7 +254,7 @@ export const RoyalEnvelope: React.FC<RoyalEnvelopeProps> = ({ onOpen }) => {
                     fontSize: 'clamp(28px, 6.5vw, 44px)',
                   }}
                 >
-                  Deepak Kumar
+                  Swetha
                 </span>
               </h1>
 

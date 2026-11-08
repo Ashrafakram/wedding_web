@@ -33,7 +33,7 @@ const GALLERY_IMAGES = [
 ]
 
 const WISH_SUGGESTIONS = [
-  '🌸 Wishing dear Swetha & Deepak a lifetime of endless love, joyful laughter, and blissful togetherness!',
+  '🌸 Wishing dear Deepak & Swetha a lifetime of endless love, joyful laughter, and blissful togetherness!',
   '🪔 May Lord Senraya Perumal bless your sacred bond with boundless happiness, peace, and prosperity!',
   '💖 Heartiest congratulations to the gorgeous couple! Truly excited to celebrate your special day!',
 ]
@@ -321,7 +321,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                   backgroundImage: 'url(/images/themes/mahal-gold/ganesha.webp)',
                 }}
               />
-              {/* Couple Names - Single Horizontal Line Format */}
+              {/* Couple Names - Single Horizontal Line Format (Groom first, Bride second) */}
               <div className="absolute left-1/2 top-[46%] z-20 flex w-[90%] -translate-x-1/2 flex-row items-baseline justify-center gap-1.5 sm:gap-2.5 text-center whitespace-nowrap leading-none">
                 <span
                   className="inline-block"
@@ -331,7 +331,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     fontSize: 'clamp(24px, 6.4vw, 48px)',
                   }}
                 >
-                  Swetha
+                  Deepak Kumar
                 </span>
                 <span
                   className="inline-block px-0.5"
@@ -352,7 +352,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     fontSize: 'clamp(24px, 6.4vw, 48px)',
                   }}
                 >
-                  Deepak Kumar
+                  Swetha
                 </span>
               </div>
             </div>
@@ -464,42 +464,9 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
               <span dir="auto">CEREMONY INFO</span>
             </h2>
 
-            {/* Couple Announcement - Single Horizontal Line Equal Alignment */}
+            {/* Couple Announcement - Single Horizontal Line Equal Alignment (Groom first, Bride second) */}
             <div data-showcase-keep="" className="w-full min-w-0 relative flex flex-col items-center text-center mt-3 mb-6">
               <div className="flex flex-row items-baseline justify-center gap-3 sm:gap-5 md:gap-8 flex-wrap">
-                {/* Bride Column */}
-                <div className="flex flex-col items-center">
-                  <h3
-                    className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight whitespace-nowrap"
-                    style={{
-                      fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                      color: '#640e1b',
-                    }}
-                  >
-                    Swetha
-                  </h3>
-                  <span
-                    className="text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-1"
-                    style={{
-                      color: '#ab7a45',
-                      fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
-                      letterSpacing: '0.18em',
-                    }}
-                  >
-                    Bride
-                  </span>
-                </div>
-
-                {/* Auspicious Center Connector */}
-                <span
-                  className="text-xl sm:text-2xl md:text-3xl text-[#640e1b]/70 self-center -mt-3.5"
-                  style={{
-                    fontFamily: '"EB Garamond", ChungDoiIndic, serif',
-                  }}
-                >
-                  &amp;
-                </span>
-
                 {/* Groom Column */}
                 <div className="flex flex-col items-center">
                   <h3
@@ -520,6 +487,39 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     }}
                   >
                     Groom
+                  </span>
+                </div>
+
+                {/* Auspicious Center Connector */}
+                <span
+                  className="text-xl sm:text-2xl md:text-3xl text-[#640e1b]/70 self-center -mt-3.5"
+                  style={{
+                    fontFamily: '"EB Garamond", ChungDoiIndic, serif',
+                  }}
+                >
+                  &amp;
+                </span>
+
+                {/* Bride Column */}
+                <div className="flex flex-col items-center">
+                  <h3
+                    className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight whitespace-nowrap"
+                    style={{
+                      fontFamily: '"EB Garamond", ChungDoiIndic, serif',
+                      color: '#640e1b',
+                    }}
+                  >
+                    Swetha
+                  </h3>
+                  <span
+                    className="text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-1"
+                    style={{
+                      color: '#ab7a45',
+                      fontFamily: '"Cormorant Garamond", "Times New Roman", ChungDoiIndic, serif',
+                      letterSpacing: '0.18em',
+                    }}
+                  >
+                    Bride
                   </span>
                 </div>
               </div>
@@ -1062,7 +1062,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             {/* Add to Calendar Button with Lite Royal Highlight */}
             <div className="mt-4 md:mt-5 mb-2 flex justify-center">
               <a
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Swetha%20%26%20Deepak%20Kumar%27s%20Wedding&dates=20261119T123000Z/20261120T153000Z&details=Join%20us%20to%20celebrate%20the%20wedding%20of%20Swetha%20%26%20Deepak%20Kumar%20on%2019%20%26%2020%20November%202026%20at%20AVVS%20Mahal%20%26%20Senraya%20Perumal%20Temple%2C%20Salem.&location=13%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Deepak%20Kumar%20%26%20Swetha%27s%20Wedding&dates=20261119T123000Z/20261120T153000Z&details=Join%20us%20to%20celebrate%20the%20wedding%20of%20Deepak%20Kumar%20%26%20Swetha%20on%2019%20%26%2020%20November%202026%20at%20AVVS%20Mahal%20%26%20Senraya%20Perumal%20Temple%2C%20Salem.&location=13%2C%20Military%20Rd%2C%20Ammapet%2C%20Salem%2C%20Tamil%20Nadu%20636003"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_3px_12px_rgba(171,122,69,0.18)] hover:shadow-[0_5px_18px_rgba(100,14,27,0.22)] border border-[#ab7a45]/50 hover:border-[#640e1b] cursor-pointer"
@@ -1152,7 +1152,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                 rows={3}
                 value={guestMsg}
                 onChange={(e) => setGuestMsg(e.target.value)}
-                placeholder="Send a wish to Swetha & Deepak..."
+                placeholder="Send a wish to Deepak & Swetha..."
                 className="w-full px-4 py-2 rounded-lg border border-[#ab7a45]/40 bg-white/70 text-[#640e1b] text-sm focus:outline-none focus:ring-1 focus:ring-[#640e1b] resize-none"
               />
             </div>
@@ -1188,7 +1188,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
             </div>
             {wishSentSuccess && (
               <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs text-center font-medium animate-fade-in">
-                ✨ Thank you! Your warm wish has been added to Swetha &amp; Deepak&apos;s guestbook. 🙏
+                ✨ Thank you! Your warm wish has been added to Deepak &amp; Swetha&apos;s guestbook. 🙏
               </div>
             )}
 
@@ -1246,7 +1246,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     </h3>
                   </div>
                   <p className="text-xs text-[#ab7a45] mt-0.5">
-                    For Swetha &amp; Deepak Kumar • {wishes.length} {wishes.length === 1 ? 'Wish' : 'Wishes'} received
+                    For Deepak Kumar &amp; Swetha • {wishes.length} {wishes.length === 1 ? 'Wish' : 'Wishes'} received
                   </p>
                 </div>
 
@@ -1298,7 +1298,7 @@ export const MahalGoldInvitation: React.FC<MahalGoldInvitationProps> = ({ onRsvp
                     <p className="text-xs text-[#ab7a45]/80 mt-1">
                       {wishesSearch
                         ? 'No wishes found matching your search.'
-                        : 'Be the first to shower Swetha & Deepak with your warm blessings!'}
+                        : 'Be the first to shower Deepak & Swetha with your warm blessings!'}
                     </p>
                   </div>
                 ) : (
